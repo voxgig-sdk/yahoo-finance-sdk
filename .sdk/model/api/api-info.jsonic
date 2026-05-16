@@ -1,0 +1,33 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Ran Aroussi"
+        url: "https://github.com/ranaroussi/yfinance"
+      }
+      description: "Yahoo finance API to access current and historical crypto and finance data. This is an unofficial API wrapper that uses Yahoo's publicly available APIs for research and educational purposes."
+      license: {
+        name: "Apache 2.0"
+        url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+      servers: [
+        {
+          description: "Yahoo Finance API Server"
+          url: "https://query1.finance.yahoo.com"
+        }
+        {
+          description: "Yahoo Finance API Server (Alternative)"
+          url: "https://query2.finance.yahoo.com"
+        }
+      ]
+      termsOfService: "https://policies.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.htm"
+      title: "Yahoo Finance API"
+      version: "1.1.0"
+    }
+  }
+}
+
+}

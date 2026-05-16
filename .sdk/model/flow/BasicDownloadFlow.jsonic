@@ -1,0 +1,32 @@
+# BasicDownloadFlow
+
+main: kit: flow: BasicDownloadFlow:
+{
+  entity: "download",
+  kind: "basic",
+  name: "BasicDownloadFlow",
+  step: [
+    {
+      input: {
+        ref: "download_ref01",
+        srcdatavar: "download_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "download01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-download_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDownloadFlow"
+}

@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "market": {
+      "MARKET00": {
+        "finance": {},
+        "region": "REGION01"
+      },
+      "MARKET01": {
+        "finance": {},
+        "region": "REGION01"
+      },
+      "MARKET02": {
+        "finance": {},
+        "region": "REGION01"
+      }
+    }
+  },
+  "new": {
+    "market": {
+      "market_ref01": {
+        "finance": {}
+      }
+    }
+  }
+}

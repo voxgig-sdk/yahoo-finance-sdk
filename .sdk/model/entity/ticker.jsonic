@@ -1,0 +1,328 @@
+# Entity: ticker
+
+main: kit: entity: ticker: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "chart"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "finance"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "option_chain"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "quote_response"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "quote_summary"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "spark"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "ticker"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "AAPL"
+                kind: "param"
+                name: "symbol"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "event"
+                orig: "event"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "1d"
+                kind: "query"
+                name: "interval"
+                orig: "interval"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "period1"
+                orig: "period1"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "period2"
+                orig: "period2"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "range"
+                orig: "range"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v8/finance/chart/{symbol}"
+          parts: [
+            "v8"
+            "finance"
+            "chart"
+            "{symbol}"
+          ]
+          select: {
+            exist: [
+              "event"
+              "interval"
+              "period1"
+              "period2"
+              "range"
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "5m"
+                kind: "query"
+                name: "interval"
+                orig: "interval"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "1d"
+                kind: "query"
+                name: "range"
+                orig: "range"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "symbol"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/finance/spark"
+          parts: [
+            "v1"
+            "finance"
+            "spark"
+          ]
+          select: {
+            exist: [
+              "interval"
+              "range"
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "symbol"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v7/finance/options/{symbol}"
+          parts: [
+            "v7"
+            "finance"
+            "options"
+            "{symbol}"
+          ]
+          select: {
+            exist: [
+              "date"
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "symbol"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "assetProfile,financialData,defaultKeyStatistics"
+                kind: "query"
+                name: "module"
+                orig: "module"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v10/finance/quoteSummary/{symbol}"
+          parts: [
+            "v10"
+            "finance"
+            "quoteSummary"
+            "{symbol}"
+          ]
+          select: {
+            exist: [
+              "module"
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "AAPL,MSFT,GOOGL"
+                kind: "query"
+                name: "symbol"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v6/finance/quote"
+          parts: [
+            "v6"
+            "finance"
+            "quote"
+          ]
+          select: {
+            exist: [
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "symbol"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/ws/insights/v1/finance/insights"
+          parts: [
+            "ws"
+            "insights"
+            "v1"
+            "finance"
+            "insights"
+          ]
+          select: {
+            exist: [
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "quote_summary"
+      ]
+      [
+        "option"
+      ]
+      [
+        "chart"
+      ]
+    ]
+  }
+
+
+
+}

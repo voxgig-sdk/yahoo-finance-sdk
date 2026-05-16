@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "screener": {
+      "SCREENER00": {
+        "finance": {},
+        "offset": "s47",
+        "query": {},
+        "quote_type": "s49",
+        "size": "s4a",
+        "sort_field": "s4b",
+        "sort_type": "s4c"
+      },
+      "SCREENER01": {
+        "finance": {},
+        "offset": "s8d",
+        "query": {},
+        "quote_type": "s8f",
+        "size": "s90",
+        "sort_field": "s91",
+        "sort_type": "s92"
+      },
+      "SCREENER02": {
+        "finance": {},
+        "offset": "sd3",
+        "query": {},
+        "quote_type": "sd5",
+        "size": "sd6",
+        "sort_field": "sd7",
+        "sort_type": "sd8"
+      }
+    }
+  },
+  "new": {
+    "screener": {
+      "screener_ref01": {
+        "finance": {},
+        "offset": "s119",
+        "query": {},
+        "quote_type": "s11b",
+        "size": "s11c",
+        "sort_field": "s11d",
+        "sort_type": "s11e"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+# Entity: market
+
+main: kit: entity: market: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "finance"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "market"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "US"
+                kind: "param"
+                name: "region"
+                orig: "region"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/finance/trending/{region}"
+          parts: [
+            "v1"
+            "finance"
+            "trending"
+            "{region}"
+          ]
+          select: {
+            exist: [
+              "region"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "trending"
+      ]
+    ]
+  }
+
+
+
+}

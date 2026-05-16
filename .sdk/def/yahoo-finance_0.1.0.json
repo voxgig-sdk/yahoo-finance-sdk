@@ -1,0 +1,1087 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yahoo Finance API",
+    "description": "Yahoo finance API to access current and historical crypto and finance data. This is an unofficial API wrapper that uses Yahoo's publicly available APIs for research and educational purposes.",
+    "version": "1.1.0",
+    "contact": {
+      "name": "Ran Aroussi",
+      "url": "https://github.com/ranaroussi/yfinance"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "termsOfService": "https://policies.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.htm"
+  },
+  "externalDocs": {
+    "description": "Official Documentation",
+    "url": "https://ranaroussi.github.io/yfinance"
+  },
+  "servers": [
+    {
+      "url": "https://query1.finance.yahoo.com",
+      "description": "Yahoo Finance API Server"
+    },
+    {
+      "url": "https://query2.finance.yahoo.com",
+      "description": "Yahoo Finance API Server (Alternative)"
+    }
+  ],
+  "paths": {
+    "/v8/finance/chart/{symbol}": {
+      "get": {
+        "summary": "Get ticker chart data",
+        "description": "Download historical market data for a single ticker symbol including price, volume, and other market metrics",
+        "operationId": "getTickerChart",
+        "tags": [
+          "Ticker"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Ticker symbol (e.g., AAPL, BTC-USD, EURUSD=X)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "AAPL"
+          },
+          {
+            "name": "period1",
+            "in": "query",
+            "description": "Start date as Unix timestamp",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "period2",
+            "in": "query",
+            "description": "End date as Unix timestamp",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Data interval",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1m",
+                "2m",
+                "5m",
+                "15m",
+                "30m",
+                "60m",
+                "90m",
+                "1h",
+                "1d",
+                "5d",
+                "1wk",
+                "1mo",
+                "3mo"
+              ],
+              "default": "1d"
+            }
+          },
+          {
+            "name": "range",
+            "in": "query",
+            "description": "Time range for data",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1d",
+                "5d",
+                "1mo",
+                "3mo",
+                "6mo",
+                "1y",
+                "2y",
+                "5y",
+                "10y",
+                "ytd",
+                "max"
+              ]
+            }
+          },
+          {
+            "name": "events",
+            "in": "query",
+            "description": "Include dividends and splits",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "div",
+                "split",
+                "div,split"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with chart data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "chart": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "meta": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string"
+                                  },
+                                  "symbol": {
+                                    "type": "string"
+                                  },
+                                  "exchangeName": {
+                                    "type": "string"
+                                  },
+                                  "instrumentType": {
+                                    "type": "string"
+                                  },
+                                  "regularMarketPrice": {
+                                    "type": "number"
+                                  },
+                                  "chartPreviousClose": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "timestamp": {
+                                "type": "array",
+                                "items": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                }
+                              },
+                              "indicators": {
+                                "type": "object",
+                                "properties": {
+                                  "quote": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "open": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        },
+                                        "high": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        },
+                                        "low": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        },
+                                        "close": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        },
+                                        "volume": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "integer"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "error": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Symbol not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v10/finance/quoteSummary/{symbol}": {
+      "get": {
+        "summary": "Get ticker summary",
+        "description": "Get detailed summary information for a ticker including financial data, statistics, and company information",
+        "operationId": "getTickerSummary",
+        "tags": [
+          "Ticker"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Ticker symbol",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modules",
+            "in": "query",
+            "description": "Comma-separated list of data modules to retrieve",
+            "schema": {
+              "type": "string"
+            },
+            "example": "assetProfile,financialData,defaultKeyStatistics"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with ticker summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "quoteSummary": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        },
+                        "error": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Symbol not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v7/finance/download/{symbol}": {
+      "get": {
+        "summary": "Download historical data",
+        "description": "Download historical market data for a ticker in CSV format",
+        "operationId": "downloadHistoricalData",
+        "tags": [
+          "Download"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Ticker symbol",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "period1",
+            "in": "query",
+            "required": true,
+            "description": "Start date as Unix timestamp",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "period2",
+            "in": "query",
+            "required": true,
+            "description": "End date as Unix timestamp",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Data interval",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1d",
+                "1wk",
+                "1mo"
+              ],
+              "default": "1d"
+            }
+          },
+          {
+            "name": "events",
+            "in": "query",
+            "description": "Events to include",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "history",
+                "div",
+                "split"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file with historical data",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Symbol not found"
+          }
+        }
+      }
+    },
+    "/v1/finance/search": {
+      "get": {
+        "summary": "Search for tickers",
+        "description": "Search for ticker symbols, quotes, and news",
+        "operationId": "searchTickers",
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quotesCount",
+            "in": "query",
+            "description": "Number of quote results to return",
+            "schema": {
+              "type": "integer",
+              "default": 6
+            }
+          },
+          {
+            "name": "newsCount",
+            "in": "query",
+            "description": "Number of news results to return",
+            "schema": {
+              "type": "integer",
+              "default": 4
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "quotes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "symbol": {
+                            "type": "string"
+                          },
+                          "shortname": {
+                            "type": "string"
+                          },
+                          "longname": {
+                            "type": "string"
+                          },
+                          "exchange": {
+                            "type": "string"
+                          },
+                          "quoteType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "news": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "uuid": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "publisher": {
+                            "type": "string"
+                          },
+                          "link": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v6/finance/quote": {
+      "get": {
+        "summary": "Get quotes for multiple tickers",
+        "description": "Get current quote data for one or more ticker symbols",
+        "operationId": "getQuotes",
+        "tags": [
+          "Tickers"
+        ],
+        "parameters": [
+          {
+            "name": "symbols",
+            "in": "query",
+            "required": true,
+            "description": "Comma-separated list of ticker symbols",
+            "schema": {
+              "type": "string"
+            },
+            "example": "AAPL,MSFT,GOOGL"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quote data for requested tickers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "quoteResponse": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "symbol": {
+                                "type": "string"
+                              },
+                              "regularMarketPrice": {
+                                "type": "number"
+                              },
+                              "regularMarketChange": {
+                                "type": "number"
+                              },
+                              "regularMarketChangePercent": {
+                                "type": "number"
+                              },
+                              "regularMarketVolume": {
+                                "type": "integer"
+                              },
+                              "regularMarketOpen": {
+                                "type": "number"
+                              },
+                              "regularMarketDayHigh": {
+                                "type": "number"
+                              },
+                              "regularMarketDayLow": {
+                                "type": "number"
+                              },
+                              "regularMarketPreviousClose": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        },
+                        "error": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v7/finance/options/{symbol}": {
+      "get": {
+        "summary": "Get options data",
+        "description": "Get options chain data for a ticker symbol",
+        "operationId": "getOptions",
+        "tags": [
+          "Ticker"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Ticker symbol",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Expiration date as Unix timestamp",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Options chain data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "optionChain": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "expirationDates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "integer"
+                                }
+                              },
+                              "strikes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              },
+                              "options": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "calls": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object"
+                                      }
+                                    },
+                                    "puts": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/finance/screener": {
+      "post": {
+        "summary": "Screen stocks",
+        "description": "Build and execute equity screening queries to filter stocks based on various criteria",
+        "operationId": "screenStocks",
+        "tags": [
+          "Screener"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "size": {
+                    "type": "integer",
+                    "description": "Number of results to return"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Offset for pagination"
+                  },
+                  "sortField": {
+                    "type": "string",
+                    "description": "Field to sort by"
+                  },
+                  "sortType": {
+                    "type": "string",
+                    "enum": [
+                      "ASC",
+                      "DESC"
+                    ]
+                  },
+                  "quoteType": {
+                    "type": "string",
+                    "enum": [
+                      "EQUITY",
+                      "ETF",
+                      "MUTUALFUND"
+                    ]
+                  },
+                  "query": {
+                    "type": "object",
+                    "description": "Query criteria"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Screening results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "finance": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/finance/trending/{region}": {
+      "get": {
+        "summary": "Get trending tickers",
+        "description": "Get trending ticker symbols for a specific region",
+        "operationId": "getTrending",
+        "tags": [
+          "Market"
+        ],
+        "parameters": [
+          {
+            "name": "region",
+            "in": "path",
+            "required": true,
+            "description": "Region code (e.g., US, GB, AU)",
+            "schema": {
+              "type": "string",
+              "default": "US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trending tickers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "finance": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "quotes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "symbol": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/finance/spark": {
+      "get": {
+        "summary": "Get spark chart data",
+        "description": "Get lightweight chart data for quick visualization",
+        "operationId": "getSparkData",
+        "tags": [
+          "Ticker"
+        ],
+        "parameters": [
+          {
+            "name": "symbols",
+            "in": "query",
+            "required": true,
+            "description": "Comma-separated list of ticker symbols",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "range",
+            "in": "query",
+            "description": "Time range",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1d",
+                "5d",
+                "1mo",
+                "3mo",
+                "6mo",
+                "1y",
+                "5y"
+              ],
+              "default": "1d"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Data interval",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1m",
+                "5m",
+                "15m",
+                "1d"
+              ],
+              "default": "5m"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Spark chart data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "spark": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ws/insights/v1/finance/insights": {
+      "get": {
+        "summary": "Get ticker insights",
+        "description": "Get AI-powered insights and analysis for a ticker",
+        "operationId": "getInsights",
+        "tags": [
+          "Ticker"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "description": "Ticker symbol",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ticker insights",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "finance": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Quote": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Ticker symbol"
+          },
+          "regularMarketPrice": {
+            "type": "number",
+            "description": "Current market price"
+          },
+          "regularMarketChange": {
+            "type": "number",
+            "description": "Price change"
+          },
+          "regularMarketChangePercent": {
+            "type": "number",
+            "description": "Percentage change"
+          },
+          "regularMarketVolume": {
+            "type": "integer",
+            "description": "Trading volume"
+          },
+          "regularMarketOpen": {
+            "type": "number",
+            "description": "Opening price"
+          },
+          "regularMarketDayHigh": {
+            "type": "number",
+            "description": "Day high price"
+          },
+          "regularMarketDayLow": {
+            "type": "number",
+            "description": "Day low price"
+          },
+          "regularMarketPreviousClose": {
+            "type": "number",
+            "description": "Previous close price"
+          },
+          "fiftyTwoWeekHigh": {
+            "type": "number",
+            "description": "52-week high"
+          },
+          "fiftyTwoWeekLow": {
+            "type": "number",
+            "description": "52-week low"
+          },
+          "marketCap": {
+            "type": "number",
+            "description": "Market capitalization"
+          },
+          "shortName": {
+            "type": "string",
+            "description": "Short company name"
+          },
+          "longName": {
+            "type": "string",
+            "description": "Full company name"
+          },
+          "exchange": {
+            "type": "string",
+            "description": "Exchange name"
+          },
+          "quoteType": {
+            "type": "string",
+            "description": "Type of security",
+            "enum": [
+              "EQUITY",
+              "ETF",
+              "CRYPTOCURRENCY",
+              "MUTUALFUND",
+              "INDEX",
+              "FUTURE",
+              "CURRENCY"
+            ]
+          }
+        }
+      },
+      "HistoricalData": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of Unix timestamps"
+          },
+          "open": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Opening prices"
+          },
+          "high": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "High prices"
+          },
+          "low": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Low prices"
+          },
+          "close": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Closing prices"
+          },
+          "volume": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Trading volumes"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "Session",
+        "description": "Yahoo Finance uses cookie-based authentication for some endpoints"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Ticker",
+      "description": "Operations for single ticker data"
+    },
+    {
+      "name": "Tickers",
+      "description": "Operations for multiple tickers"
+    },
+    {
+      "name": "Download",
+      "description": "Download market data"
+    },
+    {
+      "name": "Market",
+      "description": "Market information and trending data"
+    },
+    {
+      "name": "Search",
+      "description": "Search for tickers, quotes, and news"
+    },
+    {
+      "name": "Screener",
+      "description": "Screen and filter stocks"
+    }
+  ]
+}

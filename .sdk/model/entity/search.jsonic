@@ -1,0 +1,78 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "new"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "quote"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 4
+                kind: "query"
+                name: "news_count"
+                orig: "news_count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: 6
+                kind: "query"
+                name: "quotes_count"
+                orig: "quotes_count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/finance/search"
+          parts: [
+            "v1"
+            "finance"
+            "search"
+          ]
+          select: {
+            exist: [
+              "news_count"
+              "q"
+              "quotes_count"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,88 @@
+# Entity: download
+
+main: kit: entity: download: {
+
+  alias: field: {}
+
+  name: "download"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "event"
+                orig: "event"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "1d"
+                kind: "query"
+                name: "interval"
+                orig: "interval"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "period1"
+                orig: "period1"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "period2"
+                orig: "period2"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v7/finance/download/{symbol}"
+          parts: [
+            "v7"
+            "finance"
+            "download"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              symbol: "id"
+            }
+          }
+          select: {
+            exist: [
+              "event"
+              "id"
+              "interval"
+              "period1"
+              "period2"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

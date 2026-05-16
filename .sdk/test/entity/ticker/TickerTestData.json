@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "ticker": {
+      "TICKER00": {
+        "chart": {},
+        "finance": {},
+        "option_chain": {},
+        "quote_response": {},
+        "quote_summary": {},
+        "spark": {},
+        "symbol": "SYMBOL01"
+      },
+      "TICKER01": {
+        "chart": {},
+        "finance": {},
+        "option_chain": {},
+        "quote_response": {},
+        "quote_summary": {},
+        "spark": {},
+        "symbol": "SYMBOL01"
+      },
+      "TICKER02": {
+        "chart": {},
+        "finance": {},
+        "option_chain": {},
+        "quote_response": {},
+        "quote_summary": {},
+        "spark": {},
+        "symbol": "SYMBOL01"
+      }
+    }
+  },
+  "new": {
+    "ticker": {
+      "ticker_ref01": {
+        "chart": {},
+        "finance": {},
+        "option_chain": {},
+        "quote_response": {},
+        "quote_summary": {},
+        "spark": {}
+      }
+    }
+  }
+}

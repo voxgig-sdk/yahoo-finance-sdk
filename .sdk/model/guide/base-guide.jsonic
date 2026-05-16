@@ -1,0 +1,54 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 5
+  metrics: count: path: 10
+  metrics: count: method: 10
+
+  entity: download: {
+    path: "/v7/finance/download/{symbol}": {
+      rename: param: "symbol": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: market: {
+    path: "/v1/finance/trending/{region}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: screener: {
+    path: "/v1/finance/screener": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: search: {
+    path: "/v1/finance/search": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: ticker: {
+    path: "/v1/finance/spark": {
+      op: load: method: *GET
+    }
+    path: "/v10/finance/quoteSummary/{symbol}": {
+      op: load: method: *GET
+    }
+    path: "/v6/finance/quote": {
+      op: load: method: *GET
+    }
+    path: "/v7/finance/options/{symbol}": {
+      op: load: method: *GET
+    }
+    path: "/v8/finance/chart/{symbol}": {
+      op: load: method: *GET
+    }
+    path: "/ws/insights/v1/finance/insights": {
+      op: load: method: *GET
+    }
+  }
+
+}

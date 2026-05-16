@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "download": {
+      "DOWNLOAD00": {},
+      "DOWNLOAD01": {},
+      "DOWNLOAD02": {}
+    }
+  },
+  "new": {
+    "download": {
+      "download_ref01": {}
+    }
+  }
+}

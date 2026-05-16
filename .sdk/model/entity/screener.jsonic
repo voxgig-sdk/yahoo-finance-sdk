@@ -1,0 +1,69 @@
+# Entity: screener
+
+main: kit: entity: screener: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "finance"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "offset"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "query"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "quote_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "size"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "sort_field"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "sort_type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "screener"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/v1/finance/screener"
+          parts: [
+            "v1"
+            "finance"
+            "screener"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

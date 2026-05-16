@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "search": {
+      "SEARCH00": {
+        "new": [],
+        "quote": []
+      },
+      "SEARCH01": {
+        "new": [],
+        "quote": []
+      },
+      "SEARCH02": {
+        "new": [],
+        "quote": []
+      }
+    }
+  },
+  "new": {
+    "search": {
+      "search_ref01": {
+        "new": [],
+        "quote": []
+      }
+    }
+  }
+}

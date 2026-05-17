@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/yahoo-finance-sdk"
-	"github.com/voxgig-sdk/yahoo-finance-sdk/core"
+	sdk "github.com/voxgig-sdk/yahoo-finance-sdk/go"
+	"github.com/voxgig-sdk/yahoo-finance-sdk/go/core"
 )
 
 func TestDownloadDirect(t *testing.T) {

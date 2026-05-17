@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/yahoo-finance-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/yahoo-finance-sdk/core"
+	"github.com/voxgig-sdk/yahoo-finance-sdk/go/core"
 )
 
 func prepareQueryUtil(ctx *core.Context) map[string]any {

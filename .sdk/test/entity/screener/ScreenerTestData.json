@@ -8,7 +8,8 @@
         "quote_type": "s49",
         "size": "s4a",
         "sort_field": "s4b",
-        "sort_type": "s4c"
+        "sort_type": "s4c",
+        "id": "SCREENER00"
       },
       "SCREENER01": {
         "finance": {},
@@ -17,7 +18,8 @@
         "quote_type": "s8f",
         "size": "s90",
         "sort_field": "s91",
-        "sort_type": "s92"
+        "sort_type": "s92",
+        "id": "SCREENER01"
       },
       "SCREENER02": {
         "finance": {},
@@ -26,7 +28,8 @@
         "quote_type": "sd5",
         "size": "sd6",
         "sort_field": "sd7",
-        "sort_type": "sd8"
+        "sort_type": "sd8",
+        "id": "SCREENER02"
       }
     }
   },

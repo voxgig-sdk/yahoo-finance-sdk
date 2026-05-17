@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/yahoo-finance-sdk"
-	"github.com/voxgig-sdk/yahoo-finance-sdk/core"
+	sdk "github.com/voxgig-sdk/yahoo-finance-sdk/go"
+	"github.com/voxgig-sdk/yahoo-finance-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/yahoo-finance-sdk/go/utility/struct"
 )
 
 func TestTickerEntity(t *testing.T) {

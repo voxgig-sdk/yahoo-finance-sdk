@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/yahoo-finance-sdk/core"
+	"github.com/voxgig-sdk/yahoo-finance-sdk/go/core"
 )
 
 type LogFeature struct {

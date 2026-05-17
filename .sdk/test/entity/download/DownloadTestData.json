@@ -1,9 +1,15 @@
 {
   "existing": {
     "download": {
-      "DOWNLOAD00": {},
-      "DOWNLOAD01": {},
-      "DOWNLOAD02": {}
+      "DOWNLOAD00": {
+        "id": "DOWNLOAD00"
+      },
+      "DOWNLOAD01": {
+        "id": "DOWNLOAD01"
+      },
+      "DOWNLOAD02": {
+        "id": "DOWNLOAD02"
+      }
     }
   },
   "new": {

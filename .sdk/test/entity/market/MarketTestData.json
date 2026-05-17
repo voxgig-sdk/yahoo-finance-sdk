@@ -3,15 +3,18 @@
     "market": {
       "MARKET00": {
         "finance": {},
-        "region": "REGION01"
+        "region": "REGION01",
+        "id": "MARKET00"
       },
       "MARKET01": {
         "finance": {},
-        "region": "REGION01"
+        "region": "REGION01",
+        "id": "MARKET01"
       },
       "MARKET02": {
         "finance": {},
-        "region": "REGION01"
+        "region": "REGION01",
+        "id": "MARKET02"
       }
     }
   },

@@ -1,10 +1,10 @@
 package voxgigyahoofinancesdk
 
 import (
-	"github.com/voxgig-sdk/yahoo-finance-sdk/core"
-	"github.com/voxgig-sdk/yahoo-finance-sdk/entity"
-	"github.com/voxgig-sdk/yahoo-finance-sdk/feature"
-	_ "github.com/voxgig-sdk/yahoo-finance-sdk/utility"
+	"github.com/voxgig-sdk/yahoo-finance-sdk/go/core"
+	"github.com/voxgig-sdk/yahoo-finance-sdk/go/entity"
+	"github.com/voxgig-sdk/yahoo-finance-sdk/go/feature"
+	_ "github.com/voxgig-sdk/yahoo-finance-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

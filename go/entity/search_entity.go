@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/yahoo-finance-sdk/core"
+	"github.com/voxgig-sdk/yahoo-finance-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/yahoo-finance-sdk/go/utility/struct"
 )
 
 type SearchEntity struct {

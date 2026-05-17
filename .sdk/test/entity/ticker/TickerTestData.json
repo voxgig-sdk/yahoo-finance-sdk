@@ -8,7 +8,8 @@
         "quote_response": {},
         "quote_summary": {},
         "spark": {},
-        "symbol": "SYMBOL01"
+        "symbol": "SYMBOL01",
+        "id": "TICKER00"
       },
       "TICKER01": {
         "chart": {},
@@ -17,7 +18,8 @@
         "quote_response": {},
         "quote_summary": {},
         "spark": {},
-        "symbol": "SYMBOL01"
+        "symbol": "SYMBOL01",
+        "id": "TICKER01"
       },
       "TICKER02": {
         "chart": {},
@@ -26,7 +28,8 @@
         "quote_response": {},
         "quote_summary": {},
         "spark": {},
-        "symbol": "SYMBOL01"
+        "symbol": "SYMBOL01",
+        "id": "TICKER02"
       }
     }
   },

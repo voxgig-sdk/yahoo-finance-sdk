@@ -91,7 +91,6 @@ def _ticker_basic_setup(extra):
         "YAHOOFINANCE_TEST_TICKER_ENTID": idmap,
         "YAHOOFINANCE_TEST_LIVE": "FALSE",
         "YAHOOFINANCE_TEST_EXPLAIN": "FALSE",
-        "YAHOOFINANCE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +101,6 @@ def _ticker_basic_setup(extra):
     if env.get("YAHOOFINANCE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("YAHOOFINANCE_APIKEY"),
             },
             extra or {},
         ])

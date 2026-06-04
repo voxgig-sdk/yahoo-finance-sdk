@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'YAHOO_FINANCE_TEST_SCREENER_ENTID': idmap,
     'YAHOO_FINANCE_TEST_LIVE': 'FALSE',
     'YAHOO_FINANCE_TEST_EXPLAIN': 'FALSE',
-    'YAHOO_FINANCE_APIKEY': 'NONE',
   })
 
   idmap = env['YAHOO_FINANCE_TEST_SCREENER_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new YahooFinanceSDK(merge([
       {
-        apikey: env.YAHOO_FINANCE_APIKEY,
       },
       extra
     ]))

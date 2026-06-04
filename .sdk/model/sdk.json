@@ -26,7 +26,21 @@
         ],
         "termsOfService": "https://policies.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.htm",
         "title": "Yahoo Finance API",
-        "version": "1.1.0"
+        "version": "1.1.0",
+        "tagline": "Fetch current and historical stock, crypto, and market data from Yahoo Finance's public endpoints",
+        "homepage": "https://finance.yahoo.com",
+        "docs_url": "https://github.com/ranaroussi/yfinance",
+        "license_short": "Unofficial wrapper around Yahoo Finance public endpoints; SDK code Apache 2.0",
+        "license_md": "- SDK code is distributed under the Apache 2.0 licence.\n- The underlying endpoints at `query1.finance.yahoo.com` are unofficial and not covered by a published API agreement from Yahoo.\n- Yahoo Finance data is owned by Yahoo and its data providers; review Yahoo's Terms of Service before redistributing or using the data commercially.\n- Attribution to Yahoo Finance is recommended when displaying data sourced through this wrapper.",
+        "about_md": "This SDK is an unofficial wrapper around the public endpoints that power [Yahoo Finance](https://finance.yahoo.com), reached through the `query1.finance.yahoo.com` host. It mirrors the surface popularised by the open-source [yfinance](https://github.com/ranaroussi/yfinance) project, exposing the same routes used by the Yahoo Finance web app for quotes, charts, screening and search.\n\nWhat you get from the API:\n\n- Historical and intraday price charts for stocks, ETFs, indices and cryptocurrencies (for example `BTC-USD`).\n- Per-ticker fundamentals, quote data and related news.\n- Market-wide overviews and sector/industry context.\n- A screener for building queries that filter securities by criteria.\n- Search across symbols and news.\n\nOperational notes: the endpoints are unofficial, so behaviour, fields and availability can change without notice. CORS is disabled on `query1.finance.yahoo.com`, which means browser-side calls will be blocked and a server-side proxy is required. No API key is documented for these public chart and search routes, but Yahoo applies undocumented rate limiting and may require cookie/crumb handshakes for some endpoints.",
+        "entity_desc": {
+          "download": "Bulk download of historical market data for one or many ticker symbols at once.",
+          "market": "Broader market overview information beyond a single security, such as index summaries and market status.",
+          "screener": "Build and run queries that filter the universe of securities by configurable criteria.",
+          "search": "Look up symbols, quotes and related news from a free-text query.",
+          "ticker": "Detailed data for a single symbol, including quote, fundamentals and historical chart via `https://query1.finance.yahoo.com/v8/finance/chart/{symbol}`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -34,7 +48,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "download": {

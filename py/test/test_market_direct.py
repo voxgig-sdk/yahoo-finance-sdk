@@ -66,14 +66,12 @@ def _market_direct_setup(mockres):
     env = runner.env_override({
         "YAHOOFINANCE_TEST_MARKET_ENTID": {},
         "YAHOOFINANCE_TEST_LIVE": "FALSE",
-        "YAHOOFINANCE_APIKEY": "NONE",
     })
 
     live = env.get("YAHOOFINANCE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("YAHOOFINANCE_APIKEY"),
         }
         client = YahooFinanceSDK(merged_opts)
         return {

@@ -77,7 +77,6 @@ def screener_basic_setup(extra)
     "YAHOOFINANCE_TEST_SCREENER_ENTID" => idmap,
     "YAHOOFINANCE_TEST_LIVE" => "FALSE",
     "YAHOOFINANCE_TEST_EXPLAIN" => "FALSE",
-    "YAHOOFINANCE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -89,7 +88,6 @@ def screener_basic_setup(extra)
   if env["YAHOOFINANCE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["YAHOOFINANCE_APIKEY"],
       },
       extra || {},
     ])

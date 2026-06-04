@@ -92,7 +92,6 @@ function search_basic_setup(extra)
     ["YAHOOFINANCE_TEST_SEARCH_ENTID"] = idmap,
     ["YAHOOFINANCE_TEST_LIVE"] = "FALSE",
     ["YAHOOFINANCE_TEST_EXPLAIN"] = "FALSE",
-    ["YAHOOFINANCE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function search_basic_setup(extra)
   if env["YAHOOFINANCE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["YAHOOFINANCE_APIKEY"],
       },
       extra or {},
     })

@@ -110,14 +110,12 @@ func tickerDirectSetup(mockres any) *tickerDirectSetupResult {
 	env := envOverride(map[string]any{
 		"YAHOOFINANCE_TEST_TICKER_ENTID": map[string]any{},
 		"YAHOOFINANCE_TEST_LIVE":    "FALSE",
-		"YAHOOFINANCE_APIKEY":       "NONE",
 	})
 
 	live := env["YAHOOFINANCE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["YAHOOFINANCE_APIKEY"],
 		}
 		client := sdk.NewYahooFinanceSDK(mergedOpts)
 

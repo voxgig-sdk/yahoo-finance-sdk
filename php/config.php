@@ -20,9 +20,6 @@ class YahooFinanceConfig
             ],
             "options" => [
                 "base" => "https://query1.finance.yahoo.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

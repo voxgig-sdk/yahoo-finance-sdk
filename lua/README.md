@@ -10,7 +10,7 @@ The Lua SDK for the YahooFinance API — an entity-oriented client using Lua con
 
 ## Install
 ```bash
-luarocks install yahoo-finance-sdk
+luarocks install voxgig-sdk-yahoo-finance
 ```
 
 If the module is not yet published, add the source directory to

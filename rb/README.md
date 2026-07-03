@@ -10,13 +10,13 @@ The Ruby SDK for the YahooFinance API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install yahoo-finance-sdk
+gem install voxgig-sdk-yahoo-finance
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "yahoo-finance-sdk"
+gem "voxgig-sdk-yahoo-finance"
 ```
 
 Then run:

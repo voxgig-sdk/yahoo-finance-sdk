@@ -10,7 +10,7 @@ The TypeScript SDK for the YahooFinance API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install yahoo-finance
+npm install @voxgig-sdk/yahoo-finance
 ```
 ## Tutorial: your first API call
 

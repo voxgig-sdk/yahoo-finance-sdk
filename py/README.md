@@ -10,7 +10,7 @@ The Python SDK for the YahooFinance API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install yahoo-finance-sdk
+pip install voxgig-sdk-yahoo-finance
 ```
 
 Or install from source:

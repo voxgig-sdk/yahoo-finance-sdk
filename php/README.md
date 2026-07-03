@@ -10,7 +10,7 @@ The PHP SDK for the YahooFinance API — an entity-oriented client using PHP con
 
 ## Install
 ```bash
-composer require voxgig/yahoo-finance-sdk
+composer require voxgig-sdk/yahoo-finance
 ```
 
 

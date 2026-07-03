@@ -80,12 +80,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'YAHOOFINANCE_TEST_DOWNLOAD_ENTID': {},
     'YAHOOFINANCE_TEST_LIVE': 'FALSE',
+    'YAHOOFINANCE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.YAHOOFINANCE_TEST_LIVE
 
   if (live) {
     const client = new YahooFinanceSDK({
+      apikey: env.YAHOOFINANCE_APIKEY,
     })
 
     let idmap: any = env['YAHOOFINANCE_TEST_DOWNLOAD_ENTID']

@@ -62,12 +62,14 @@ def search_direct_setup(mockres)
   env = Runner.env_override({
     "YAHOOFINANCE_TEST_SEARCH_ENTID" => {},
     "YAHOOFINANCE_TEST_LIVE" => "FALSE",
+    "YAHOOFINANCE_APIKEY" => "NONE",
   })
 
   live = env["YAHOOFINANCE_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["YAHOOFINANCE_APIKEY"],
     }
     client = YahooFinanceSDK.new(merged_opts)
     return {

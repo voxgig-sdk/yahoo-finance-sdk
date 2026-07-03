@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -110,7 +110,7 @@ local download = client:Download(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Download(nil):load({ id = "download_id" }, nil)
+local result, err = client:Download():load({ id = "download_id" })
 ```
 
 ### Common Methods
@@ -162,7 +162,7 @@ local market = client:Market(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Market(nil):load({ id = "market_id" }, nil)
+local result, err = client:Market():load({ id = "market_id" })
 ```
 
 ### Common Methods
@@ -220,8 +220,8 @@ local screener = client:Screener(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Screener(nil):create({
-}, nil)
+local result, err = client:Screener():create({
+})
 ```
 
 ### Common Methods
@@ -274,7 +274,7 @@ local search = client:Search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Search(nil):list(nil, nil)
+local results, err = client:Search():list()
 ```
 
 ### Common Methods
@@ -331,7 +331,7 @@ local ticker = client:Ticker(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Ticker(nil):load({ id = "ticker_id" }, nil)
+local result, err = client:Ticker():load({ id = "ticker_id" })
 ```
 
 ### Common Methods

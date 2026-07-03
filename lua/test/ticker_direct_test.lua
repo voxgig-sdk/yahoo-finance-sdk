@@ -70,12 +70,14 @@ function ticker_direct_setup(mockres)
   local env = runner.env_override({
     ["YAHOOFINANCE_TEST_TICKER_ENTID"] = {},
     ["YAHOOFINANCE_TEST_LIVE"] = "FALSE",
+    ["YAHOOFINANCE_APIKEY"] = "NONE",
   })
 
   local live = env["YAHOOFINANCE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["YAHOOFINANCE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

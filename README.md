@@ -1,22 +1,8 @@
 # YahooFinance SDK
 
-Fetch current and historical stock, crypto, and market data from Yahoo Finance's public endpoints
+Yahoo Finance API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Yahoo Finance API
-
-This SDK is an unofficial wrapper around the public endpoints that power [Yahoo Finance](https://finance.yahoo.com), reached through the `query1.finance.yahoo.com` host. It mirrors the surface popularised by the open-source [yfinance](https://github.com/ranaroussi/yfinance) project, exposing the same routes used by the Yahoo Finance web app for quotes, charts, screening and search.
-
-What you get from the API:
-
-- Historical and intraday price charts for stocks, ETFs, indices and cryptocurrencies (for example `BTC-USD`).
-- Per-ticker fundamentals, quote data and related news.
-- Market-wide overviews and sector/industry context.
-- A screener for building queries that filter securities by criteria.
-- Search across symbols and news.
-
-Operational notes: the endpoints are unofficial, so behaviour, fields and availability can change without notice. CORS is disabled on `query1.finance.yahoo.com`, which means browser-side calls will be blocked and a server-side proxy is required. No API key is documented for these public chart and search routes, but Yahoo applies undocumented rate limiting and may require cookie/crumb handshakes for some endpoints.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install yahoo-finance-sdk
 luarocks install yahoo-finance-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { YahooFinanceSDK } from 'yahoo-finance'
 
-const client = new YahooFinanceSDK({})
+const client = new YahooFinanceSDK({
+  apikey: process.env.YAHOO-FINANCE_APIKEY,
+})
 
+// Load download data
+const download = await client.Download().load({})
+console.log(download.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,11 +90,11 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Download** | Bulk download of historical market data for one or many ticker symbols at once. | `/v7/finance/download/{symbol}` |
-| **Market** | Broader market overview information beyond a single security, such as index summaries and market status. | `/v1/finance/trending/{region}` |
-| **Screener** | Build and run queries that filter the universe of securities by configurable criteria. | `/v1/finance/screener` |
-| **Search** | Look up symbols, quotes and related news from a free-text query. | `/v1/finance/search` |
-| **Ticker** | Detailed data for a single symbol, including quote, fundamentals and historical chart via `https://query1.finance.yahoo.com/v8/finance/chart/{symbol}`. | `/v8/finance/chart/{symbol}` |
+| **Download** |  | `/v7/finance/download/{symbol}` |
+| **Market** |  | `/v1/finance/trending/{region}` |
+| **Screener** |  | `/v1/finance/screener` |
+| **Search** |  | `/v1/finance/search` |
+| **Ticker** |  | `/v8/finance/chart/{symbol}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,15 +104,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from yahoofinance_sdk import YahooFinanceSDK
 
-client = YahooFinanceSDK({})
+client = YahooFinanceSDK({
+    "apikey": os.environ.get("YAHOO-FINANCE_APIKEY"),
+})
 
 
 # Load a specific download
-download, err = client.Download(None).load(
-    {"id": "example_id"}, None
-)
+download, err = client.Download().load({"id": "example_id"})
+print(download)
 ```
 
 ### PHP
@@ -131,13 +123,14 @@ download, err = client.Download(None).load(
 <?php
 require_once 'yahoofinance_sdk.php';
 
-$client = new YahooFinanceSDK([]);
+$client = new YahooFinanceSDK([
+    "apikey" => getenv("YAHOO-FINANCE_APIKEY"),
+]);
 
 
 // Load a specific download
-[$download, $err] = $client->Download(null)->load(
-    ["id" => "example_id"], null
-);
+[$download, $err] = $client->Download()->load(["id" => "example_id"]);
+print_r($download);
 ```
 
 ### Golang
@@ -145,8 +138,13 @@ $client = new YahooFinanceSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/yahoo-finance-sdk/go"
 
-client := sdk.NewYahooFinanceSDK(map[string]any{})
+client := sdk.NewYahooFinanceSDK(map[string]any{
+    "apikey": os.Getenv("YAHOO-FINANCE_APIKEY"),
+})
 
+// Load download data
+download, err := client.Download(nil).Load(map[string]any{}, nil)
+fmt.Println(download)
 ```
 
 ### Ruby
@@ -154,13 +152,14 @@ client := sdk.NewYahooFinanceSDK(map[string]any{})
 ```ruby
 require_relative "YahooFinance_sdk"
 
-client = YahooFinanceSDK.new({})
+client = YahooFinanceSDK.new({
+  "apikey" => ENV["YAHOO-FINANCE_APIKEY"],
+})
 
 
 # Load a specific download
-download, err = client.Download(nil).load(
-  { "id" => "example_id" }, nil
-)
+download, err = client.Download().load({ "id" => "example_id" })
+puts download
 ```
 
 ### Lua
@@ -168,13 +167,14 @@ download, err = client.Download(nil).load(
 ```lua
 local sdk = require("yahoo-finance_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("YAHOO-FINANCE_APIKEY"),
+})
 
 
 -- Load a specific download
-local download, err = client:Download(nil):load(
-  { id = "example_id" }, nil
-)
+local download, err = client:Download():load({ id = "example_id" })
+print(download)
 ```
 
 ## Unit testing in offline mode
@@ -193,25 +193,21 @@ const result = await client.Download().load({ id: 'test01' })
 ### Python
 
 ```python
-client = YahooFinanceSDK.test(None, None)
-result, err = client.Download(None).load(
-    {"id": "test01"}, None
-)
+client = YahooFinanceSDK.test()
+result, err = client.Download().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = YahooFinanceSDK::test(null, null);
-[$result, $err] = $client->Download(null)->load(
-    ["id" => "test01"], null
-);
+$client = YahooFinanceSDK::test();
+[$result, $err] = $client->Download()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Download(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -220,19 +216,15 @@ result, err := client.Download(nil).Load(
 ### Ruby
 
 ```ruby
-client = YahooFinanceSDK.test(nil, nil)
-result, err = client.Download(nil).load(
-  { "id" => "test01" }, nil
-)
+client = YahooFinanceSDK.test
+result, err = client.Download().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Download(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Download():load({ id = "test01" })
 ```
 
 ## How it works
@@ -336,16 +328,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Yahoo Finance API
-
-- Upstream: [https://finance.yahoo.com](https://finance.yahoo.com)
-- API docs: [https://github.com/ranaroussi/yfinance](https://github.com/ranaroussi/yfinance)
-
-- SDK code is distributed under the Apache 2.0 licence.
-- The underlying endpoints at `query1.finance.yahoo.com` are unofficial and not covered by a published API agreement from Yahoo.
-- Yahoo Finance data is owned by Yahoo and its data providers; review Yahoo's Terms of Service before redistributing or using the data commercially.
-- Attribution to Yahoo Finance is recommended when displaying data sourced through this wrapper.
 
 ---
 

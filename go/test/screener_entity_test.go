@@ -110,6 +110,7 @@ func screenerBasicSetup(extra map[string]any) *entityTestSetup {
 		"YAHOOFINANCE_TEST_SCREENER_ENTID": idmap,
 		"YAHOOFINANCE_TEST_LIVE":      "FALSE",
 		"YAHOOFINANCE_TEST_EXPLAIN":   "FALSE",
+		"YAHOOFINANCE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["YAHOOFINANCE_TEST_SCREENER_ENTID"])
@@ -120,6 +121,7 @@ func screenerBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["YAHOOFINANCE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["YAHOOFINANCE_APIKEY"],
 			},
 			extra,
 		})

@@ -45,6 +45,7 @@ class ScreenerEntity
     end
   end
 
+  # @return [Screener, Hash] the current Screener data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ScreenerEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Screener fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class ScreenerEntity
   
 
   
+  # Create a new Screener.
+  #
+  # @param reqdata [ScreenerCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Screener, Hash] the created Screener; raises YahooFinanceError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

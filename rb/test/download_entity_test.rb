@@ -42,8 +42,7 @@ class DownloadEntityTest < Minitest::Test
     # LOAD
     download_ref01_ent = client.Download(nil)
     download_ref01_match_dt0 = {}
-    download_ref01_data_dt0_loaded, err = download_ref01_ent.load(download_ref01_match_dt0, nil)
-    assert_nil err
+    download_ref01_data_dt0_loaded = download_ref01_ent.load(download_ref01_match_dt0, nil)
     assert !download_ref01_data_dt0_loaded.nil?
 
   end

@@ -48,6 +48,7 @@ func MakeConfig() map[string]any {
 											"orig": "symbol",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -150,6 +151,7 @@ func MakeConfig() map[string]any {
 											"orig": "region",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 								},
@@ -413,6 +415,7 @@ func MakeConfig() map[string]any {
 											"orig": "symbol",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -546,6 +549,7 @@ func MakeConfig() map[string]any {
 											"orig": "symbol",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -590,6 +594,7 @@ func MakeConfig() map[string]any {
 											"orig": "symbol",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{

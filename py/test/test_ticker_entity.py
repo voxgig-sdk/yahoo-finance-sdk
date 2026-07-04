@@ -49,8 +49,7 @@ class TestTickerEntity:
         # LOAD
         ticker_ref01_ent = client.Ticker(None)
         ticker_ref01_match_dt0 = {}
-        ticker_ref01_data_dt0_loaded, err = ticker_ref01_ent.load(ticker_ref01_match_dt0, None)
-        assert err is None
+        ticker_ref01_data_dt0_loaded = ticker_ref01_ent.load(ticker_ref01_match_dt0, None)
         assert ticker_ref01_data_dt0_loaded is not None
 
 

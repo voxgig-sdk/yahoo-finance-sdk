@@ -245,26 +245,41 @@ func (sdk *YahooFinanceSDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// Download returns a Download entity bound to this client.
+// Idiomatic usage: client.Download(nil).List(nil, nil) or
+// client.Download(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *YahooFinanceSDK) Download(data map[string]any) YahooFinanceEntity {
 	return NewDownloadEntityFunc(sdk, data)
 }
 
 
+// Market returns a Market entity bound to this client.
+// Idiomatic usage: client.Market(nil).List(nil, nil) or
+// client.Market(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *YahooFinanceSDK) Market(data map[string]any) YahooFinanceEntity {
 	return NewMarketEntityFunc(sdk, data)
 }
 
 
+// Screener returns a Screener entity bound to this client.
+// Idiomatic usage: client.Screener(nil).List(nil, nil) or
+// client.Screener(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *YahooFinanceSDK) Screener(data map[string]any) YahooFinanceEntity {
 	return NewScreenerEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *YahooFinanceSDK) Search(data map[string]any) YahooFinanceEntity {
 	return NewSearchEntityFunc(sdk, data)
 }
 
 
+// Ticker returns a Ticker entity bound to this client.
+// Idiomatic usage: client.Ticker(nil).List(nil, nil) or
+// client.Ticker(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *YahooFinanceSDK) Ticker(data map[string]any) YahooFinanceEntity {
 	return NewTickerEntityFunc(sdk, data)
 }

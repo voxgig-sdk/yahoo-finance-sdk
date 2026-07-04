@@ -45,6 +45,7 @@ class MarketEntity
     end
   end
 
+  # @return [Market, Hash] the current Market data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class MarketEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Market fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Market.
+  #
+  # @param reqmatch [MarketLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Market, Hash] the loaded Market; raises YahooFinanceError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

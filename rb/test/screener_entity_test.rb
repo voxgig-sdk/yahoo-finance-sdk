@@ -36,8 +36,7 @@ class ScreenerEntityTest < Minitest::Test
     screener_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.screener"), "screener_ref01"))
 
-    screener_ref01_data_result, err = screener_ref01_ent.create(screener_ref01_data, nil)
-    assert_nil err
+    screener_ref01_data_result = screener_ref01_ent.create(screener_ref01_data, nil)
     screener_ref01_data = Helpers.to_map(screener_ref01_data_result)
     assert !screener_ref01_data.nil?
 

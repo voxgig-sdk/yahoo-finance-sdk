@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Download,
+  DownloadLoadMatch,
+} from '../YahooFinanceTypes'
 
 // TODO: needs Entity superclass
-class DownloadEntity extends YahooFinanceEntityBase {
+class DownloadEntity extends YahooFinanceEntityBase<Download> {
 
   constructor(client: YahooFinanceSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class DownloadEntity extends YahooFinanceEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: DownloadLoadMatch, ctrl?: Control): Promise<Download> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class DownloadEntity extends YahooFinanceEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Download> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

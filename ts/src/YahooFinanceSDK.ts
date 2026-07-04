@@ -6,6 +6,8 @@ import { ScreenerEntity } from './entity/ScreenerEntity'
 import { SearchEntity } from './entity/SearchEntity'
 import { TickerEntity } from './entity/TickerEntity'
 
+export type * from './YahooFinanceTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -206,30 +208,70 @@ class YahooFinanceSDK {
 
 
 
+  _download?: DownloadEntity
+
+  // Idiomatic facade: `client.download.list()` / `client.download.load({ id })`.
+  get download(): DownloadEntity {
+    return (this._download ??= new DownloadEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.download` instead. */
   Download(data?: any) {
     const self = this
     return new DownloadEntity(self,data)
   }
 
 
+  _market?: MarketEntity
+
+  // Idiomatic facade: `client.market.list()` / `client.market.load({ id })`.
+  get market(): MarketEntity {
+    return (this._market ??= new MarketEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.market` instead. */
   Market(data?: any) {
     const self = this
     return new MarketEntity(self,data)
   }
 
 
+  _screener?: ScreenerEntity
+
+  // Idiomatic facade: `client.screener.list()` / `client.screener.load({ id })`.
+  get screener(): ScreenerEntity {
+    return (this._screener ??= new ScreenerEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.screener` instead. */
   Screener(data?: any) {
     const self = this
     return new ScreenerEntity(self,data)
   }
 
 
+  _search?: SearchEntity
+
+  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
+  get search(): SearchEntity {
+    return (this._search ??= new SearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.search` instead. */
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)
   }
 
 
+  _ticker?: TickerEntity
+
+  // Idiomatic facade: `client.ticker.list()` / `client.ticker.load({ id })`.
+  get ticker(): TickerEntity {
+    return (this._ticker ??= new TickerEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.ticker` instead. */
   Ticker(data?: any) {
     const self = this
     return new TickerEntity(self,data)

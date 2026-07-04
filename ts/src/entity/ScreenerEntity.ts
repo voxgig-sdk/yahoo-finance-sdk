@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Screener,
+  ScreenerCreateData,
+} from '../YahooFinanceTypes'
 
 // TODO: needs Entity superclass
-class ScreenerEntity extends YahooFinanceEntityBase {
+class ScreenerEntity extends YahooFinanceEntityBase<Screener> {
 
   constructor(client: YahooFinanceSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class ScreenerEntity extends YahooFinanceEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: ScreenerCreateData, ctrl?: Control): Promise<Screener> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class ScreenerEntity extends YahooFinanceEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Screener> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

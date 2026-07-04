@@ -49,8 +49,7 @@ class TestDownloadEntity:
         # LOAD
         download_ref01_ent = client.Download(None)
         download_ref01_match_dt0 = {}
-        download_ref01_data_dt0_loaded, err = download_ref01_ent.load(download_ref01_match_dt0, None)
-        assert err is None
+        download_ref01_data_dt0_loaded = download_ref01_ent.load(download_ref01_match_dt0, None)
         assert download_ref01_data_dt0_loaded is not None
 
 

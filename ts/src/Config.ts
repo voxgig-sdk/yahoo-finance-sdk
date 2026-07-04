@@ -86,7 +86,8 @@ class Config {
                     "name": "id",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -188,7 +189,8 @@ class Config {
                     "name": "region",
                     "orig": "region",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -451,7 +453,8 @@ class Config {
                     "name": "symbol",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -584,7 +587,8 @@ class Config {
                     "name": "symbol",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -628,7 +632,8 @@ class Config {
                     "name": "symbol",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

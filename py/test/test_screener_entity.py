@@ -44,9 +44,7 @@ class TestScreenerEntity:
         screener_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.screener"), "screener_ref01"))
 
-        screener_ref01_data_result, err = screener_ref01_ent.create(screener_ref01_data, None)
-        assert err is None
-        screener_ref01_data = helpers.to_map(screener_ref01_data_result)
+        screener_ref01_data = helpers.to_map(screener_ref01_ent.create(screener_ref01_data, None))
         assert screener_ref01_data is not None
 
 

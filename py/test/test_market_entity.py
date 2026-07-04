@@ -49,8 +49,7 @@ class TestMarketEntity:
         # LOAD
         market_ref01_ent = client.Market(None)
         market_ref01_match_dt0 = {}
-        market_ref01_data_dt0_loaded, err = market_ref01_ent.load(market_ref01_match_dt0, None)
-        assert err is None
+        market_ref01_data_dt0_loaded = market_ref01_ent.load(market_ref01_match_dt0, None)
         assert market_ref01_data_dt0_loaded is not None
 
 

@@ -48,6 +48,7 @@ local function make_config()
                       ["orig"] = "symbol",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -150,6 +151,7 @@ local function make_config()
                       ["orig"] = "region",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },
@@ -413,6 +415,7 @@ local function make_config()
                       ["orig"] = "symbol",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -546,6 +549,7 @@ local function make_config()
                       ["orig"] = "symbol",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -590,6 +594,7 @@ local function make_config()
                       ["orig"] = "symbol",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {

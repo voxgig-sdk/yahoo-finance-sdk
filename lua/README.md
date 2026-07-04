@@ -9,12 +9,9 @@ The Lua SDK for the YahooFinance API — an entity-oriented client using Lua con
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-yahoo-finance
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("yahoo-finance_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("YAHOO-FINANCE_APIKEY"),
+  apikey = os.getenv("YAHOO_FINANCE_APIKEY"),
 })
 ```
 
 ### 3. Load a download
 
 ```lua
-local result, err = client:Download():load({ id = "example_id" })
+local result, err = client:download():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:YahooFinance():load({ id = "test01" })
+local result, err = client:download():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +117,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-YAHOO-FINANCE_TEST_LIVE=TRUE
-YAHOO-FINANCE_APIKEY=<your-key>
+YAHOO_FINANCE_TEST_LIVE=TRUE
+YAHOO_FINANCE_APIKEY=<your-key>
 ```
 
 Then run:
@@ -276,7 +273,7 @@ API path: `/v8/finance/chart/{symbol}`
 
 ### Download
 
-Create an instance: `const download = client.Download()`
+Create an instance: `const download = client.download`
 
 #### Operations
 
@@ -287,13 +284,13 @@ Create an instance: `const download = client.Download()`
 #### Example: Load
 
 ```ts
-const download = await client.Download().load({ id: 'download_id' })
+const download = await client.download.load({ id: 'download_id' })
 ```
 
 
 ### Market
 
-Create an instance: `const market = client.Market()`
+Create an instance: `const market = client.market`
 
 #### Operations
 
@@ -310,13 +307,13 @@ Create an instance: `const market = client.Market()`
 #### Example: Load
 
 ```ts
-const market = await client.Market().load({ id: 'market_id' })
+const market = await client.market.load({ id: 'market_id' })
 ```
 
 
 ### Screener
 
-Create an instance: `const screener = client.Screener()`
+Create an instance: `const screener = client.screener`
 
 #### Operations
 
@@ -339,14 +336,14 @@ Create an instance: `const screener = client.Screener()`
 #### Example: Create
 
 ```ts
-const screener = await client.Screener().create({
+const screener = await client.screener.create({
 })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -364,13 +361,13 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.Ticker()`
+Create an instance: `const ticker = client.ticker`
 
 #### Operations
 
@@ -392,7 +389,7 @@ Create an instance: `const ticker = client.Ticker()`
 #### Example: Load
 
 ```ts
-const ticker = await client.Ticker().load({ id: 'ticker_id' })
+const ticker = await client.ticker.load({ id: 'ticker_id' })
 ```
 
 
@@ -467,11 +464,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local download = client:download()
+download:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- download:data_get() now returns the loaded download data
+-- download:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

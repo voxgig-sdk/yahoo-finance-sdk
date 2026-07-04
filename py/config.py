@@ -49,6 +49,7 @@ def make_config():
                       "orig": "symbol",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -151,6 +152,7 @@ def make_config():
                       "orig": "region",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },
@@ -414,6 +416,7 @@ def make_config():
                       "orig": "symbol",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -547,6 +550,7 @@ def make_config():
                       "orig": "symbol",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -591,6 +595,7 @@ def make_config():
                       "orig": "symbol",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [

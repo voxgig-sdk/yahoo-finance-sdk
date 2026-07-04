@@ -9,9 +9,10 @@ The PHP SDK for the YahooFinance API — an entity-oriented client using PHP con
 
 
 ## Install
-```bash
-composer require voxgig-sdk/yahoo-finance
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/yahoo-finance-sdk/releases](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,16 +27,19 @@ loading a specific record.
 require_once 'yahoofinance_sdk.php';
 
 $client = new YahooFinanceSDK([
-    "apikey" => getenv("YAHOO-FINANCE_APIKEY"),
+    "apikey" => getenv("YAHOO_FINANCE_APIKEY"),
 ]);
 ```
 
 ### 3. Load a download
 
 ```php
-[$result, $err] = $client->Download()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->download()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +50,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = YahooFinanceSDK::test();
 
-[$result, $err] = $client->YahooFinance()->load(["id" => "test01"]);
+$result = $client->download()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +122,8 @@ $client = new YahooFinanceSDK([
 Create a `.env.local` file at the project root:
 
 ```
-YAHOO-FINANCE_TEST_LIVE=TRUE
-YAHOO-FINANCE_APIKEY=<your-key>
+YAHOO_FINANCE_TEST_LIVE=TRUE
+YAHOO_FINANCE_APIKEY=<your-key>
 ```
 
 Then run:
@@ -189,8 +196,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -271,7 +282,7 @@ API path: `/v8/finance/chart/{symbol}`
 
 ### Download
 
-Create an instance: `const download = client.Download()`
+Create an instance: `const download = client.download`
 
 #### Operations
 
@@ -282,13 +293,13 @@ Create an instance: `const download = client.Download()`
 #### Example: Load
 
 ```ts
-const download = await client.Download().load({ id: 'download_id' })
+const download = await client.download.load({ id: 'download_id' })
 ```
 
 
 ### Market
 
-Create an instance: `const market = client.Market()`
+Create an instance: `const market = client.market`
 
 #### Operations
 
@@ -305,13 +316,13 @@ Create an instance: `const market = client.Market()`
 #### Example: Load
 
 ```ts
-const market = await client.Market().load({ id: 'market_id' })
+const market = await client.market.load({ id: 'market_id' })
 ```
 
 
 ### Screener
 
-Create an instance: `const screener = client.Screener()`
+Create an instance: `const screener = client.screener`
 
 #### Operations
 
@@ -334,14 +345,14 @@ Create an instance: `const screener = client.Screener()`
 #### Example: Create
 
 ```ts
-const screener = await client.Screener().create({
+const screener = await client.screener.create({
 })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -359,13 +370,13 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.Ticker()`
+Create an instance: `const ticker = client.ticker`
 
 #### Operations
 
@@ -387,7 +398,7 @@ Create an instance: `const ticker = client.Ticker()`
 #### Example: Load
 
 ```ts
-const ticker = await client.Ticker().load({ id: 'ticker_id' })
+const ticker = await client.ticker.load({ id: 'ticker_id' })
 ```
 
 
@@ -462,11 +473,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$download = $client->download();
+$download->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $download->dataGet() now returns the loaded download data
+// $download->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

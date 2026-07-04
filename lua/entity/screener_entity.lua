@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata ScreenerCreateData
+---@param ctrl? table
+---@return Screener
+---@return string? err
 function ScreenerEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

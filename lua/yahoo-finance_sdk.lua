@@ -244,30 +244,95 @@ end
 
 
 
+-- Idiomatic facade: client:download():list() / client:download():load({ id = ... })
+function YahooFinanceSDK:download(data)
+  local EntityMod = require("entity.download_entity")
+  if data == nil then
+    if self._download == nil then
+      self._download = EntityMod.new(self, nil)
+    end
+    return self._download
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:download() instead.
 function YahooFinanceSDK:Download(data)
   local EntityMod = require("entity.download_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:market():list() / client:market():load({ id = ... })
+function YahooFinanceSDK:market(data)
+  local EntityMod = require("entity.market_entity")
+  if data == nil then
+    if self._market == nil then
+      self._market = EntityMod.new(self, nil)
+    end
+    return self._market
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:market() instead.
 function YahooFinanceSDK:Market(data)
   local EntityMod = require("entity.market_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:screener():list() / client:screener():load({ id = ... })
+function YahooFinanceSDK:screener(data)
+  local EntityMod = require("entity.screener_entity")
+  if data == nil then
+    if self._screener == nil then
+      self._screener = EntityMod.new(self, nil)
+    end
+    return self._screener
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:screener() instead.
 function YahooFinanceSDK:Screener(data)
   local EntityMod = require("entity.screener_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
+function YahooFinanceSDK:search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:search() instead.
 function YahooFinanceSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:ticker():list() / client:ticker():load({ id = ... })
+function YahooFinanceSDK:ticker(data)
+  local EntityMod = require("entity.ticker_entity")
+  if data == nil then
+    if self._ticker == nil then
+      self._ticker = EntityMod.new(self, nil)
+    end
+    return self._ticker
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:ticker() instead.
 function YahooFinanceSDK:Ticker(data)
   local EntityMod = require("entity.ticker_entity")
   return EntityMod.new(self, data)

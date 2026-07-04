@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Market,
+  MarketLoadMatch,
+} from '../YahooFinanceTypes'
 
 // TODO: needs Entity superclass
-class MarketEntity extends YahooFinanceEntityBase {
+class MarketEntity extends YahooFinanceEntityBase<Market> {
 
   constructor(client: YahooFinanceSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class MarketEntity extends YahooFinanceEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: MarketLoadMatch, ctrl?: Control): Promise<Market> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class MarketEntity extends YahooFinanceEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Market> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

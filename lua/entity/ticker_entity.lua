@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TickerLoadMatch
+---@param ctrl? table
+---@return Ticker
+---@return string? err
 function TickerEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

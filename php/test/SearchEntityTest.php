@@ -50,8 +50,7 @@ class SearchEntityTest extends TestCase
         $search_ref01_ent = $client->Search(null);
         $search_ref01_match = [];
 
-        [$search_ref01_list_result, $err] = $search_ref01_ent->list($search_ref01_match, null);
-        $this->assertNull($err);
+        $search_ref01_list_result = $search_ref01_ent->list($search_ref01_match, null);
         $this->assertIsArray($search_ref01_list_result);
 
     }

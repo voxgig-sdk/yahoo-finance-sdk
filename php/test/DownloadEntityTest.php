@@ -49,8 +49,7 @@ class DownloadEntityTest extends TestCase
         // LOAD
         $download_ref01_ent = $client->Download(null);
         $download_ref01_match_dt0 = [];
-        [$download_ref01_data_dt0_loaded, $err] = $download_ref01_ent->load($download_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $download_ref01_data_dt0_loaded = $download_ref01_ent->load($download_ref01_match_dt0, null);
         $this->assertNotNull($download_ref01_data_dt0_loaded);
 
     }

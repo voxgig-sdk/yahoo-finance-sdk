@@ -9,9 +9,12 @@ The TypeScript SDK for the YahooFinance API — a type-safe, entity-oriented cli
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/yahoo-finance
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/yahoo-finance-sdk/releases](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { YahooFinanceSDK } from 'yahoo-finance'
+import { YahooFinanceSDK } from '@voxgig-sdk/yahoo-finance'
 
 const client = new YahooFinanceSDK({
-  apikey: process.env.YAHOO-FINANCE_APIKEY,
+  apikey: process.env.YAHOO_FINANCE_APIKEY,
 })
 ```
 
 ### 3. Load a download
 
 ```ts
-const result = await client.Download().load({ id: 'example_id' })
+const result = await client.download.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = YahooFinanceSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.download.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.download
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new YahooFinanceSDK({
 Create a `.env.local` file at the project root:
 
 ```
-YAHOO-FINANCE_TEST_LIVE=TRUE
-YAHOO-FINANCE_APIKEY=<your-key>
+YAHOO_FINANCE_TEST_LIVE=TRUE
+YAHOO_FINANCE_APIKEY=<your-key>
 ```
 
 Then run:
@@ -321,7 +324,7 @@ API path: `/v8/finance/chart/{symbol}`
 
 ### Download
 
-Create an instance: `const download = client.Download()`
+Create an instance: `const download = client.download`
 
 #### Operations
 
@@ -332,13 +335,13 @@ Create an instance: `const download = client.Download()`
 #### Example: Load
 
 ```ts
-const download = await client.Download().load({ id: 'download_id' })
+const download = await client.download.load({ id: 'download_id' })
 ```
 
 
 ### Market
 
-Create an instance: `const market = client.Market()`
+Create an instance: `const market = client.market`
 
 #### Operations
 
@@ -355,13 +358,13 @@ Create an instance: `const market = client.Market()`
 #### Example: Load
 
 ```ts
-const market = await client.Market().load({ id: 'market_id' })
+const market = await client.market.load({ id: 'market_id' })
 ```
 
 
 ### Screener
 
-Create an instance: `const screener = client.Screener()`
+Create an instance: `const screener = client.screener`
 
 #### Operations
 
@@ -384,14 +387,14 @@ Create an instance: `const screener = client.Screener()`
 #### Example: Create
 
 ```ts
-const screener = await client.Screener().create({
+const screener = await client.screener.create({
 })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -409,13 +412,13 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.Ticker()`
+Create an instance: `const ticker = client.ticker`
 
 #### Operations
 
@@ -437,7 +440,7 @@ Create an instance: `const ticker = client.Ticker()`
 #### Example: Load
 
 ```ts
-const ticker = await client.Ticker().load({ id: 'ticker_id' })
+const ticker = await client.ticker.load({ id: 'ticker_id' })
 ```
 
 
@@ -498,7 +501,7 @@ yahoo-finance/
 Import the SDK from the package root:
 
 ```ts
-import { YahooFinanceSDK } from 'yahoo-finance'
+import { YahooFinanceSDK } from '@voxgig-sdk/yahoo-finance'
 ```
 
 ### Entity state
@@ -508,11 +511,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const download = client.download
+await download.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// download.data() now returns the loaded download data
+// download.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

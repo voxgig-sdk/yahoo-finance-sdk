@@ -43,8 +43,7 @@ class ScreenerEntityTest extends TestCase
         $screener_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.screener"), "screener_ref01"));
 
-        [$screener_ref01_data_result, $err] = $screener_ref01_ent->create($screener_ref01_data, null);
-        $this->assertNull($err);
+        $screener_ref01_data_result = $screener_ref01_ent->create($screener_ref01_data, null);
         $screener_ref01_data = Helpers::to_map($screener_ref01_data_result);
         $this->assertNotNull($screener_ref01_data);
 

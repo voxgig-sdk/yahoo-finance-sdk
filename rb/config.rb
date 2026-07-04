@@ -49,6 +49,7 @@ module YahooFinanceConfig
                         "orig" => "symbol",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -151,6 +152,7 @@ module YahooFinanceConfig
                         "orig" => "region",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -414,6 +416,7 @@ module YahooFinanceConfig
                         "orig" => "symbol",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -547,6 +550,7 @@ module YahooFinanceConfig
                         "orig" => "symbol",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -591,6 +595,7 @@ module YahooFinanceConfig
                         "orig" => "symbol",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [

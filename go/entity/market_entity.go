@@ -85,6 +85,27 @@ func (e *MarketEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Market; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *MarketEntity) DataTyped(data ...Market) Market {
+	if len(data) > 0 {
+		return typedFrom[Market](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Market](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Market (all fields
+// optional at the wire level).
+func (e *MarketEntity) MatchTyped(match ...Market) Market {
+	if len(match) > 0 {
+		return typedFrom[Market](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Market](e.Match())
+}
+
 
 func (e *MarketEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *MarketEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, 
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// MarketLoadMatch and returns an Market. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *MarketEntity) LoadTyped(reqmatch MarketLoadMatch, ctrl map[string]any) (Market, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Market{}, err
+	}
+	return typedFrom[Market](res), nil
 }
 
 

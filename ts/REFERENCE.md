@@ -158,7 +158,7 @@ Alias for `YahooFinanceSDK.test()`.
 ## DownloadEntity
 
 ```ts
-const download = client.download
+const download = client.Download()
 ```
 
 ### Operations
@@ -168,7 +168,7 @@ const download = client.download
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.download.load({ id: 'download_id' })
+const result = await client.Download().load({ id: 'download_id' })
 ```
 
 ### Common Methods
@@ -202,7 +202,7 @@ Return a copy of the entity options.
 ## MarketEntity
 
 ```ts
-const market = client.market
+const market = client.Market()
 ```
 
 ### Fields
@@ -218,7 +218,7 @@ const market = client.market
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.market.load({ id: 'market_id' })
+const result = await client.Market().load({ id: 'market_id' })
 ```
 
 ### Common Methods
@@ -252,7 +252,7 @@ Return a copy of the entity options.
 ## ScreenerEntity
 
 ```ts
-const screener = client.screener
+const screener = client.Screener()
 ```
 
 ### Fields
@@ -274,7 +274,7 @@ const screener = client.screener
 Create a new entity with the given data.
 
 ```ts
-const result = await client.screener.create({
+const result = await client.Screener().create({
 })
 ```
 
@@ -309,7 +309,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.search
+const search = client.Search()
 ```
 
 ### Fields
@@ -326,7 +326,7 @@ const search = client.search
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.search.list()
+const results = await client.Search().list()
 ```
 
 ### Common Methods
@@ -360,7 +360,7 @@ Return a copy of the entity options.
 ## TickerEntity
 
 ```ts
-const ticker = client.ticker
+const ticker = client.Ticker()
 ```
 
 ### Fields
@@ -381,7 +381,7 @@ const ticker = client.ticker
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ticker.load({ id: 'ticker_id' })
+const result = await client.Ticker().load({ id: 'ticker_id' })
 ```
 
 ### Common Methods

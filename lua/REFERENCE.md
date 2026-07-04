@@ -100,7 +100,7 @@ same parameters as `direct()`.
 ## DownloadEntity
 
 ```lua
-local download = client:download(nil)
+local download = client:Download(nil)
 ```
 
 ### Operations
@@ -110,7 +110,7 @@ local download = client:download(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:download():load({ id = "download_id" })
+local result, err = client:Download():load({ id = "download_id" })
 ```
 
 ### Common Methods
@@ -146,7 +146,7 @@ Return the entity name.
 ## MarketEntity
 
 ```lua
-local market = client:market(nil)
+local market = client:Market(nil)
 ```
 
 ### Fields
@@ -162,7 +162,7 @@ local market = client:market(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:market():load({ id = "market_id" })
+local result, err = client:Market():load({ id = "market_id" })
 ```
 
 ### Common Methods
@@ -198,7 +198,7 @@ Return the entity name.
 ## ScreenerEntity
 
 ```lua
-local screener = client:screener(nil)
+local screener = client:Screener(nil)
 ```
 
 ### Fields
@@ -220,7 +220,7 @@ local screener = client:screener(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:screener():create({
+local result, err = client:Screener():create({
 })
 ```
 
@@ -257,7 +257,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:search(nil)
+local search = client:Search(nil)
 ```
 
 ### Fields
@@ -274,7 +274,7 @@ local search = client:search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:search():list()
+local results, err = client:Search():list()
 ```
 
 ### Common Methods
@@ -310,7 +310,7 @@ Return the entity name.
 ## TickerEntity
 
 ```lua
-local ticker = client:ticker(nil)
+local ticker = client:Ticker(nil)
 ```
 
 ### Fields
@@ -331,7 +331,7 @@ local ticker = client:ticker(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ticker():load({ id = "ticker_id" })
+local result, err = client:Ticker():load({ id = "ticker_id" })
 ```
 
 ### Common Methods

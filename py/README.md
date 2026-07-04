@@ -36,10 +36,12 @@ client = YahooFinanceSDK({
 
 ### 3. Load a download
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.download.load({"id": "example_id"})
-    print(result)
+    download = client.Download().load({"id": "example_id"})
+    print(download)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -87,8 +89,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = YahooFinanceSDK.test()
 
-result = client.download.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+download = client.Download().load({"id": "test01"})
+# download contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -278,7 +281,7 @@ API path: `/v8/finance/chart/{symbol}`
 
 ### Download
 
-Create an instance: `const download = client.download`
+Create an instance: `download = client.Download()`
 
 #### Operations
 
@@ -288,14 +291,14 @@ Create an instance: `const download = client.download`
 
 #### Example: Load
 
-```ts
-const download = await client.download.load({ id: 'download_id' })
+```python
+download = client.Download().load({"id": "download_id"})
 ```
 
 
 ### Market
 
-Create an instance: `const market = client.market`
+Create an instance: `market = client.Market()`
 
 #### Operations
 
@@ -311,14 +314,14 @@ Create an instance: `const market = client.market`
 
 #### Example: Load
 
-```ts
-const market = await client.market.load({ id: 'market_id' })
+```python
+market = client.Market().load({"id": "market_id"})
 ```
 
 
 ### Screener
 
-Create an instance: `const screener = client.screener`
+Create an instance: `screener = client.Screener()`
 
 #### Operations
 
@@ -340,15 +343,15 @@ Create an instance: `const screener = client.screener`
 
 #### Example: Create
 
-```ts
-const screener = await client.screener.create({
+```python
+screener = client.Screener().create({
 })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search()`
 
 #### Operations
 
@@ -365,14 +368,14 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```python
+searchs = client.Search().list({})
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.ticker`
+Create an instance: `ticker = client.Ticker()`
 
 #### Operations
 
@@ -393,8 +396,8 @@ Create an instance: `const ticker = client.ticker`
 
 #### Example: Load
 
-```ts
-const ticker = await client.ticker.load({ id: 'ticker_id' })
+```python
+ticker = client.Ticker().load({"id": "ticker_id"})
 ```
 
 
@@ -468,7 +471,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-download = client.download
+download = client.Download()
 download.load({"id": "example_id"})
 
 # download.data_get() now returns the loaded download data

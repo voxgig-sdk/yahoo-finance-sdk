@@ -28,9 +28,9 @@ const client = new YahooFinanceSDK({
   apikey: process.env.YAHOO_FINANCE_APIKEY,
 })
 
-// Load download data
-const download = await client.download.load({})
-console.log(download.data)
+// Load download data (returns a Download)
+const download = await client.Download().load()
+console.log(download)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -93,8 +93,8 @@ client = YahooFinanceSDK({
 })
 
 
-# Load a specific download
-download = client.download.load({"id": "example_id"})
+# Load a specific download (returns the record, raises on error)
+download = client.Download().load({"id": "example_id"})
 print(download)
 ```
 
@@ -109,8 +109,8 @@ $client = new YahooFinanceSDK([
 ]);
 
 
-// Load a specific download
-$download = $client->download()->load(["id" => "example_id"]);
+// Load a specific download (returns the bare record; throws on error)
+$download = $client->Download()->load(["id" => "example_id"]);
 print_r($download);
 ```
 
@@ -138,8 +138,8 @@ client = YahooFinanceSDK.new({
 })
 
 
-# Load a specific download
-download = client.download.load({ "id" => "example_id" })
+# Load a specific download (returns the bare record; raises on error)
+download = client.Download.load({ "id" => "example_id" })
 puts download
 ```
 
@@ -154,7 +154,7 @@ local client = sdk.new({
 
 
 -- Load a specific download
-local download, err = client:download():load({ id = "example_id" })
+local download, err = client:Download():load({ id = "example_id" })
 print(download)
 ```
 
@@ -167,22 +167,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = YahooFinanceSDK.test()
-const result = await client.download.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const download = await client.Download().load({ id: 'test01' })
+// download is a bare Download populated with mock data
+console.log(download)
 ```
 
 ### Python
 
 ```python
 client = YahooFinanceSDK.test()
-result = client.download.load({"id": "test01"})
+download = client.Download().load({"id": "test01"})
+print(download)
 ```
 
 ### PHP
 
 ```php
-$client = YahooFinanceSDK::test();
-$result = $client->download()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = YahooFinanceSDK::test([
+    "entity" => ["download" => ["test01" => ["id" => "test01"]]],
+]);
+$download = $client->Download()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -197,15 +202,18 @@ result, err := client.Download(nil).Load(
 ### Ruby
 
 ```ruby
-client = YahooFinanceSDK.test
-result = client.download.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = YahooFinanceSDK.test({
+  "entity" => { "download" => { "test01" => { "id" => "test01" } } },
+})
+download = client.Download.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:download():load({ id = "test01" })
+local result, err = client:Download():load({ id = "test01" })
 ```
 
 ## How it works
@@ -253,6 +261,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

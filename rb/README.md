@@ -34,8 +34,9 @@ client = YahooFinanceSDK.new({
 
 ```ruby
 begin
-  result = client.download.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Download record (raises on error).
+  download = client.Download.load({ "id" => "example_id" })
+  puts download
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = YahooFinanceSDK.test
+client = YahooFinanceSDK.test({
+  "entity" => { "download" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.download.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+download = client.Download.load({ "id" => "test01" })
+puts download
 ```
 
 ### Use a custom fetch function
@@ -277,7 +282,7 @@ API path: `/v8/finance/chart/{symbol}`
 
 ### Download
 
-Create an instance: `const download = client.download`
+Create an instance: `download = client.Download`
 
 #### Operations
 
@@ -287,14 +292,15 @@ Create an instance: `const download = client.download`
 
 #### Example: Load
 
-```ts
-const download = await client.download.load({ id: 'download_id' })
+```ruby
+# load returns the bare Download record (raises on error).
+download = client.Download.load({ "id" => "download_id" })
 ```
 
 
 ### Market
 
-Create an instance: `const market = client.market`
+Create an instance: `market = client.Market`
 
 #### Operations
 
@@ -310,14 +316,15 @@ Create an instance: `const market = client.market`
 
 #### Example: Load
 
-```ts
-const market = await client.market.load({ id: 'market_id' })
+```ruby
+# load returns the bare Market record (raises on error).
+market = client.Market.load({ "id" => "market_id" })
 ```
 
 
 ### Screener
 
-Create an instance: `const screener = client.screener`
+Create an instance: `screener = client.Screener`
 
 #### Operations
 
@@ -339,15 +346,15 @@ Create an instance: `const screener = client.screener`
 
 #### Example: Create
 
-```ts
-const screener = await client.screener.create({
+```ruby
+screener = client.Screener.create({
 })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search`
 
 #### Operations
 
@@ -364,14 +371,15 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```ruby
+# list returns an Array of Search records (raises on error).
+searchs = client.Search.list
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.ticker`
+Create an instance: `ticker = client.Ticker`
 
 #### Operations
 
@@ -392,8 +400,9 @@ Create an instance: `const ticker = client.ticker`
 
 #### Example: Load
 
-```ts
-const ticker = await client.ticker.load({ id: 'ticker_id' })
+```ruby
+# load returns the bare Ticker record (raises on error).
+ticker = client.Ticker.load({ "id" => "ticker_id" })
 ```
 
 
@@ -468,7 +477,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-download = client.download
+download = client.Download
 download.load({ "id" => "example_id" })
 
 # download.data_get now returns the loaded download data

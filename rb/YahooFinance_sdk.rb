@@ -208,65 +208,35 @@ class YahooFinanceSDK
   end
 
 
-  # Idiomatic facade: client.download.list / client.download.load({ "id" => ... })
-  def download
-    require_relative 'entity/download_entity'
-    @download ||= DownloadEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.download instead.
+  # Canonical facade: client.Download.list / client.Download.load({ "id" => ... })
   def Download(data = nil)
     require_relative 'entity/download_entity'
     DownloadEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.market.list / client.market.load({ "id" => ... })
-  def market
-    require_relative 'entity/market_entity'
-    @market ||= MarketEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.market instead.
+  # Canonical facade: client.Market.list / client.Market.load({ "id" => ... })
   def Market(data = nil)
     require_relative 'entity/market_entity'
     MarketEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.screener.list / client.screener.load({ "id" => ... })
-  def screener
-    require_relative 'entity/screener_entity'
-    @screener ||= ScreenerEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.screener instead.
+  # Canonical facade: client.Screener.list / client.Screener.load({ "id" => ... })
   def Screener(data = nil)
     require_relative 'entity/screener_entity'
     ScreenerEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
-  def search
-    require_relative 'entity/search_entity'
-    @search ||= SearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.search instead.
+  # Canonical facade: client.Search.list / client.Search.load({ "id" => ... })
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.ticker.list / client.ticker.load({ "id" => ... })
-  def ticker
-    require_relative 'entity/ticker_entity'
-    @ticker ||= TickerEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.ticker instead.
+  # Canonical facade: client.Ticker.list / client.Ticker.load({ "id" => ... })
   def Ticker(data = nil)
     require_relative 'entity/ticker_entity'
     TickerEntity.new(self, data)

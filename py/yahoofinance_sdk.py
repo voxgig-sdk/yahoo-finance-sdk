@@ -220,89 +220,39 @@ class YahooFinanceSDK:
         }
 
 
-    @property
-    def download(self):
-        """Idiomatic facade: client.download.list() / client.download.load({"id": ...})."""
-        from entity.download_entity import DownloadEntity
-        cached = getattr(self, "_download", None)
-        if cached is None:
-            cached = DownloadEntity(self, None)
-            self._download = cached
-        return cached
-
-    def Download(self, data=None):
-        # Deprecated: use client.download instead.
+    def Download(self, data=None) -> "DownloadEntity":
+        """Entity factory: client.Download().list({}) / client.Download().load({"id": ...})."""
         from entity.download_entity import DownloadEntity
         return DownloadEntity(self, data)
 
 
-    @property
-    def market(self):
-        """Idiomatic facade: client.market.list() / client.market.load({"id": ...})."""
-        from entity.market_entity import MarketEntity
-        cached = getattr(self, "_market", None)
-        if cached is None:
-            cached = MarketEntity(self, None)
-            self._market = cached
-        return cached
-
-    def Market(self, data=None):
-        # Deprecated: use client.market instead.
+    def Market(self, data=None) -> "MarketEntity":
+        """Entity factory: client.Market().list({}) / client.Market().load({"id": ...})."""
         from entity.market_entity import MarketEntity
         return MarketEntity(self, data)
 
 
-    @property
-    def screener(self):
-        """Idiomatic facade: client.screener.list() / client.screener.load({"id": ...})."""
-        from entity.screener_entity import ScreenerEntity
-        cached = getattr(self, "_screener", None)
-        if cached is None:
-            cached = ScreenerEntity(self, None)
-            self._screener = cached
-        return cached
-
-    def Screener(self, data=None):
-        # Deprecated: use client.screener instead.
+    def Screener(self, data=None) -> "ScreenerEntity":
+        """Entity factory: client.Screener().list({}) / client.Screener().load({"id": ...})."""
         from entity.screener_entity import ScreenerEntity
         return ScreenerEntity(self, data)
 
 
-    @property
-    def search(self):
-        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
-        from entity.search_entity import SearchEntity
-        cached = getattr(self, "_search", None)
-        if cached is None:
-            cached = SearchEntity(self, None)
-            self._search = cached
-        return cached
-
-    def Search(self, data=None):
-        # Deprecated: use client.search instead.
+    def Search(self, data=None) -> "SearchEntity":
+        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
-    @property
-    def ticker(self):
-        """Idiomatic facade: client.ticker.list() / client.ticker.load({"id": ...})."""
-        from entity.ticker_entity import TickerEntity
-        cached = getattr(self, "_ticker", None)
-        if cached is None:
-            cached = TickerEntity(self, None)
-            self._ticker = cached
-        return cached
-
-    def Ticker(self, data=None):
-        # Deprecated: use client.ticker instead.
+    def Ticker(self, data=None) -> "TickerEntity":
+        """Entity factory: client.Ticker().list({}) / client.Ticker().load({"id": ...})."""
         from entity.ticker_entity import TickerEntity
         return TickerEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "YahooFinanceSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -322,3 +272,13 @@ class YahooFinanceSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.download_entity import DownloadEntity
+    from entity.market_entity import MarketEntity
+    from entity.screener_entity import ScreenerEntity
+    from entity.search_entity import SearchEntity
+    from entity.ticker_entity import TickerEntity

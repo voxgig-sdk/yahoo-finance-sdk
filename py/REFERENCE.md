@@ -97,7 +97,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## DownloadEntity
 
 ```python
-download = client.download
+download = client.Download()
 ```
 
 ### Operations
@@ -107,7 +107,7 @@ download = client.download
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.download.load({"id": "download_id"})
+result = client.Download().load({"id": "download_id"})
 ```
 
 ### Common Methods
@@ -142,7 +142,7 @@ Return the entity name.
 ## MarketEntity
 
 ```python
-market = client.market
+market = client.Market()
 ```
 
 ### Fields
@@ -158,7 +158,7 @@ market = client.market
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.market.load({"id": "market_id"})
+result = client.Market().load({"id": "market_id"})
 ```
 
 ### Common Methods
@@ -193,7 +193,7 @@ Return the entity name.
 ## ScreenerEntity
 
 ```python
-screener = client.screener
+screener = client.Screener()
 ```
 
 ### Fields
@@ -215,7 +215,7 @@ screener = client.screener
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.screener.create({
+result = client.Screener().create({
 })
 ```
 
@@ -251,7 +251,7 @@ Return the entity name.
 ## SearchEntity
 
 ```python
-search = client.search
+search = client.Search()
 ```
 
 ### Fields
@@ -268,7 +268,9 @@ search = client.search
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.search.list({})
+results = client.Search().list({})
+for search in results:
+    print(search)
 ```
 
 ### Common Methods
@@ -303,7 +305,7 @@ Return the entity name.
 ## TickerEntity
 
 ```python
-ticker = client.ticker
+ticker = client.Ticker()
 ```
 
 ### Fields
@@ -324,7 +326,7 @@ ticker = client.ticker
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ticker.load({"id": "ticker_id"})
+result = client.Ticker().load({"id": "ticker_id"})
 ```
 
 ### Common Methods

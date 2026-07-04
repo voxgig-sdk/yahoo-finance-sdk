@@ -233,10 +233,10 @@ class YahooFinanceSDK
 
     private $_download = null;
 
-    // Idiomatic facade: $client->download()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Download() (PHP method
-    // names are case-insensitive).
-    public function download($data = null)
+    // Canonical facade: $client->Download()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->download()
+    // resolves here too.
+    public function Download($data = null)
     {
         require_once __DIR__ . '/entity/download_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class YahooFinanceSDK
 
     private $_market = null;
 
-    // Idiomatic facade: $client->market()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Market() (PHP method
-    // names are case-insensitive).
-    public function market($data = null)
+    // Canonical facade: $client->Market()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->market()
+    // resolves here too.
+    public function Market($data = null)
     {
         require_once __DIR__ . '/entity/market_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class YahooFinanceSDK
 
     private $_screener = null;
 
-    // Idiomatic facade: $client->screener()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Screener() (PHP method
-    // names are case-insensitive).
-    public function screener($data = null)
+    // Canonical facade: $client->Screener()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->screener()
+    // resolves here too.
+    public function Screener($data = null)
     {
         require_once __DIR__ . '/entity/screener_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class YahooFinanceSDK
 
     private $_search = null;
 
-    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Search() (PHP method
-    // names are case-insensitive).
-    public function search($data = null)
+    // Canonical facade: $client->Search()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->search()
+    // resolves here too.
+    public function Search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class YahooFinanceSDK
 
     private $_ticker = null;
 
-    // Idiomatic facade: $client->ticker()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Ticker() (PHP method
-    // names are case-insensitive).
-    public function ticker($data = null)
+    // Canonical facade: $client->Ticker()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ticker()
+    // resolves here too.
+    public function Ticker($data = null)
     {
         require_once __DIR__ . '/entity/ticker_entity.php';
         if ($data === null) {

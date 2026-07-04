@@ -102,7 +102,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## DownloadEntity
 
 ```php
-$download = $client->download();
+$download = $client->Download();
 ```
 
 ### Operations
@@ -112,7 +112,7 @@ $download = $client->download();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->download()->load(["id" => "download_id"]);
+$result = $client->Download()->load(["id" => "download_id"]);
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## MarketEntity
 
 ```php
-$market = $client->market();
+$market = $client->Market();
 ```
 
 ### Fields
@@ -164,7 +164,7 @@ $market = $client->market();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->market()->load(["id" => "market_id"]);
+$result = $client->Market()->load(["id" => "market_id"]);
 ```
 
 ### Common Methods
@@ -200,7 +200,7 @@ Return the entity name.
 ## ScreenerEntity
 
 ```php
-$screener = $client->screener();
+$screener = $client->Screener();
 ```
 
 ### Fields
@@ -222,7 +222,7 @@ $screener = $client->screener();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->screener()->create([
+$result = $client->Screener()->create([
 ]);
 ```
 
@@ -259,7 +259,7 @@ Return the entity name.
 ## SearchEntity
 
 ```php
-$search = $client->search();
+$search = $client->Search();
 ```
 
 ### Fields
@@ -276,7 +276,7 @@ $search = $client->search();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->search()->list([]);
+$results = $client->Search()->list([]);
 ```
 
 ### Common Methods
@@ -312,7 +312,7 @@ Return the entity name.
 ## TickerEntity
 
 ```php
-$ticker = $client->ticker();
+$ticker = $client->Ticker();
 ```
 
 ### Fields
@@ -333,7 +333,7 @@ $ticker = $client->ticker();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->ticker()->load(["id" => "ticker_id"]);
+$result = $client->Ticker()->load(["id" => "ticker_id"]);
 ```
 
 ### Common Methods

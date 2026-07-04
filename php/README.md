@@ -35,9 +35,10 @@ $client = new YahooFinanceSDK([
 
 ```php
 try {
-    $result = $client->download()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Download record (throws on error).
+    $download = $client->Download()->load(["id" => "example_id"]);
+    print_r($download);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = YahooFinanceSDK::test();
+$client = YahooFinanceSDK::test([
+    "entity" => ["download" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->download()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$download = $client->Download()->load(["id" => "test01"]);
+print_r($download);
 ```
 
 ### Use a custom fetch function
@@ -282,7 +287,7 @@ API path: `/v8/finance/chart/{symbol}`
 
 ### Download
 
-Create an instance: `const download = client.download`
+Create an instance: `$download = $client->Download();`
 
 #### Operations
 
@@ -292,14 +297,15 @@ Create an instance: `const download = client.download`
 
 #### Example: Load
 
-```ts
-const download = await client.download.load({ id: 'download_id' })
+```php
+// load() returns the bare Download record (throws on error).
+$download = $client->Download()->load(["id" => "download_id"]);
 ```
 
 
 ### Market
 
-Create an instance: `const market = client.market`
+Create an instance: `$market = $client->Market();`
 
 #### Operations
 
@@ -315,14 +321,15 @@ Create an instance: `const market = client.market`
 
 #### Example: Load
 
-```ts
-const market = await client.market.load({ id: 'market_id' })
+```php
+// load() returns the bare Market record (throws on error).
+$market = $client->Market()->load(["id" => "market_id"]);
 ```
 
 
 ### Screener
 
-Create an instance: `const screener = client.screener`
+Create an instance: `$screener = $client->Screener();`
 
 #### Operations
 
@@ -344,15 +351,15 @@ Create an instance: `const screener = client.screener`
 
 #### Example: Create
 
-```ts
-const screener = await client.screener.create({
-})
+```php
+$screener = $client->Screener()->create([
+]);
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `$search = $client->Search();`
 
 #### Operations
 
@@ -369,14 +376,15 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```php
+// list() returns an array of Search records (throws on error).
+$searchs = $client->Search()->list();
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.ticker`
+Create an instance: `$ticker = $client->Ticker();`
 
 #### Operations
 
@@ -397,8 +405,9 @@ Create an instance: `const ticker = client.ticker`
 
 #### Example: Load
 
-```ts
-const ticker = await client.ticker.load({ id: 'ticker_id' })
+```php
+// load() returns the bare Ticker record (throws on error).
+$ticker = $client->Ticker()->load(["id" => "ticker_id"]);
 ```
 
 
@@ -473,7 +482,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$download = $client->download();
+$download = $client->Download();
 $download->load(["id" => "example_id"]);
 
 // $download->dataGet() now returns the loaded download data

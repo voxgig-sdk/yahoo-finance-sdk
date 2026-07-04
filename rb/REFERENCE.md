@@ -103,7 +103,7 @@ same parameters as `direct()`. Raises on error.
 ## DownloadEntity
 
 ```ruby
-download = client.download
+download = client.Download
 ```
 
 ### Operations
@@ -113,7 +113,7 @@ download = client.download
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.download.load({ "id" => "download_id" })
+result = client.Download.load({ "id" => "download_id" })
 ```
 
 ### Common Methods
@@ -149,7 +149,7 @@ Return the entity name.
 ## MarketEntity
 
 ```ruby
-market = client.market
+market = client.Market
 ```
 
 ### Fields
@@ -165,7 +165,7 @@ market = client.market
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.market.load({ "id" => "market_id" })
+result = client.Market.load({ "id" => "market_id" })
 ```
 
 ### Common Methods
@@ -201,7 +201,7 @@ Return the entity name.
 ## ScreenerEntity
 
 ```ruby
-screener = client.screener
+screener = client.Screener
 ```
 
 ### Fields
@@ -223,7 +223,7 @@ screener = client.screener
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.screener.create({
+result = client.Screener.create({
 })
 ```
 
@@ -260,7 +260,7 @@ Return the entity name.
 ## SearchEntity
 
 ```ruby
-search = client.search
+search = client.Search
 ```
 
 ### Fields
@@ -277,7 +277,7 @@ search = client.search
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.search.list(nil)
+results = client.Search.list(nil)
 ```
 
 ### Common Methods
@@ -313,7 +313,7 @@ Return the entity name.
 ## TickerEntity
 
 ```ruby
-ticker = client.ticker
+ticker = client.Ticker
 ```
 
 ### Fields
@@ -334,7 +334,7 @@ ticker = client.ticker
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ticker.load({ "id" => "ticker_id" })
+result = client.Ticker.load({ "id" => "ticker_id" })
 ```
 
 ### Common Methods

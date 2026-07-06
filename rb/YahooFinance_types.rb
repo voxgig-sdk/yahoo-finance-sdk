@@ -72,7 +72,7 @@ Screener = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Screener#create (any subset of Screener fields).
+# Request payload for Screener#create.
 #
 # @!attribute [rw] finance
 #   @return [Hash, nil]
@@ -118,7 +118,7 @@ Search = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Search#list (any subset of Search fields).
+# Request payload for Search#list.
 #
 # @!attribute [rw] new
 #   @return [Array, nil]

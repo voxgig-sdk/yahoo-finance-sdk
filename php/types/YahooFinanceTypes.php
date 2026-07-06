@@ -47,7 +47,7 @@ class Screener
     public ?string $sort_type = null;
 }
 
-/** Match filter for Screener#create (any subset of Screener fields). */
+/** Request payload for Screener#create. */
 class ScreenerCreateData
 {
     public ?array $finance = null;
@@ -66,7 +66,7 @@ class Search
     public ?array $quote = null;
 }
 
-/** Match filter for Search#list (any subset of Search fields). */
+/** Request payload for Search#list. */
 class SearchListMatch
 {
     public ?array $new = null;

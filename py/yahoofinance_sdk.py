@@ -221,31 +221,31 @@ class YahooFinanceSDK:
 
 
     def Download(self, data=None) -> "DownloadEntity":
-        """Entity factory: client.Download().list({}) / client.Download().load({"id": ...})."""
+        """Entity factory: client.Download().list() / client.Download().load({"id": ...})."""
         from entity.download_entity import DownloadEntity
         return DownloadEntity(self, data)
 
 
     def Market(self, data=None) -> "MarketEntity":
-        """Entity factory: client.Market().list({}) / client.Market().load({"id": ...})."""
+        """Entity factory: client.Market().list() / client.Market().load({"id": ...})."""
         from entity.market_entity import MarketEntity
         return MarketEntity(self, data)
 
 
     def Screener(self, data=None) -> "ScreenerEntity":
-        """Entity factory: client.Screener().list({}) / client.Screener().load({"id": ...})."""
+        """Entity factory: client.Screener().list() / client.Screener().load({"id": ...})."""
         from entity.screener_entity import ScreenerEntity
         return ScreenerEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
     def Ticker(self, data=None) -> "TickerEntity":
-        """Entity factory: client.Ticker().list({}) / client.Ticker().load({"id": ...})."""
+        """Entity factory: client.Ticker().list() / client.Ticker().load({"id": ...})."""
         from entity.ticker_entity import TickerEntity
         return TickerEntity(self, data)
 

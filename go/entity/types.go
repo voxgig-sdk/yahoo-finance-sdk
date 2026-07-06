@@ -38,8 +38,7 @@ type Screener struct {
 	SortType *string `json:"sort_type,omitempty"`
 }
 
-// ScreenerCreateData mirrors the screener fields as an all-optional match
-// filter (Go analog of Partial<Screener>).
+// ScreenerCreateData is the typed request payload for Screener.CreateTyped.
 type ScreenerCreateData struct {
 	Finance *map[string]any `json:"finance,omitempty"`
 	Offset *int `json:"offset,omitempty"`
@@ -56,8 +55,7 @@ type Search struct {
 	Quote *[]any `json:"quote,omitempty"`
 }
 
-// SearchListMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
 	New *[]any `json:"new,omitempty"`
 	Quote *[]any `json:"quote,omitempty"`

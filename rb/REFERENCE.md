@@ -8,7 +8,7 @@ Complete API reference for the YahooFinance Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'yahoo-finance_sdk'
+require_relative 'YahooFinance_sdk'
 
 client = YahooFinanceSDK.new(options)
 ```
@@ -156,7 +156,7 @@ market = client.Market
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
+| `finance` | `Hash` | No |  |
 
 ### Operations
 
@@ -165,7 +165,7 @@ market = client.Market
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Market.load({ "id" => "market_id" })
+result = client.Market.load()
 ```
 
 ### Common Methods
@@ -208,13 +208,13 @@ screener = client.Screener
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
-| `quote_type` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `sort_field` | ``$STRING`` | No |  |
-| `sort_type` | ``$STRING`` | No |  |
+| `finance` | `Hash` | No |  |
+| `offset` | `Integer` | No |  |
+| `query` | `Hash` | No |  |
+| `quote_type` | `String` | No |  |
+| `size` | `Integer` | No |  |
+| `sort_field` | `String` | No |  |
+| `sort_type` | `String` | No |  |
 
 ### Operations
 
@@ -267,17 +267,17 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | No |  |
-| `quote` | ``$ARRAY`` | No |  |
+| `new` | `Array` | No |  |
+| `quote` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Search.list(nil)
+results = client.Search.list
 ```
 
 ### Common Methods
@@ -320,12 +320,12 @@ ticker = client.Ticker
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | ``$OBJECT`` | No |  |
-| `finance` | ``$OBJECT`` | No |  |
-| `option_chain` | ``$OBJECT`` | No |  |
-| `quote_response` | ``$OBJECT`` | No |  |
-| `quote_summary` | ``$OBJECT`` | No |  |
-| `spark` | ``$OBJECT`` | No |  |
+| `chart` | `Hash` | No |  |
+| `finance` | `Hash` | No |  |
+| `option_chain` | `Hash` | No |  |
+| `quote_response` | `Hash` | No |  |
+| `quote_summary` | `Hash` | No |  |
+| `spark` | `Hash` | No |  |
 
 ### Operations
 
@@ -334,7 +334,7 @@ ticker = client.Ticker
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Ticker.load({ "id" => "ticker_id" })
+result = client.Ticker.load()
 ```
 
 ### Common Methods

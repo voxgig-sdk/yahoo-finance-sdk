@@ -30,14 +30,25 @@ export interface Screener {
   sort_type?: string
 }
 
-export type ScreenerCreateData = Partial<Screener>
+export interface ScreenerCreateData {
+  finance?: Record<string, any>
+  offset?: number
+  query?: Record<string, any>
+  quote_type?: string
+  size?: number
+  sort_field?: string
+  sort_type?: string
+}
 
 export interface Search {
   new?: any[]
   quote?: any[]
 }
 
-export type SearchListMatch = Partial<Search>
+export interface SearchListMatch {
+  new?: any[]
+  quote?: any[]
+}
 
 export interface Ticker {
   chart?: Record<string, any>

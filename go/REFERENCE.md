@@ -154,7 +154,7 @@ market := client.Market(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
+| `finance` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -163,7 +163,7 @@ market := client.Market(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Market(nil).Load(map[string]any{"id": "market_id"}, nil)
+result, err := client.Market(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -200,13 +200,13 @@ screener := client.Screener(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
-| `quote_type` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `sort_field` | ``$STRING`` | No |  |
-| `sort_type` | ``$STRING`` | No |  |
+| `finance` | `map[string]any` | No |  |
+| `offset` | `int` | No |  |
+| `query` | `map[string]any` | No |  |
+| `quote_type` | `string` | No |  |
+| `size` | `int` | No |  |
+| `sort_field` | `string` | No |  |
+| `sort_type` | `string` | No |  |
 
 ### Operations
 
@@ -253,8 +253,8 @@ search := client.Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | No |  |
-| `quote` | ``$ARRAY`` | No |  |
+| `new` | `[]any` | No |  |
+| `quote` | `[]any` | No |  |
 
 ### Operations
 
@@ -300,12 +300,12 @@ ticker := client.Ticker(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | ``$OBJECT`` | No |  |
-| `finance` | ``$OBJECT`` | No |  |
-| `option_chain` | ``$OBJECT`` | No |  |
-| `quote_response` | ``$OBJECT`` | No |  |
-| `quote_summary` | ``$OBJECT`` | No |  |
-| `spark` | ``$OBJECT`` | No |  |
+| `chart` | `map[string]any` | No |  |
+| `finance` | `map[string]any` | No |  |
+| `option_chain` | `map[string]any` | No |  |
+| `quote_response` | `map[string]any` | No |  |
+| `quote_summary` | `map[string]any` | No |  |
+| `spark` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -314,7 +314,7 @@ ticker := client.Ticker(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Ticker(nil).Load(map[string]any{"id": "ticker_id"}, nil)
+result, err := client.Ticker(nil).Load(nil, nil)
 ```
 
 ### Common Methods

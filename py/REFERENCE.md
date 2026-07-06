@@ -8,7 +8,7 @@ Complete API reference for the YahooFinance Python SDK.
 ### Constructor
 
 ```python
-from yahoo-finance_sdk import YahooFinanceSDK
+from yahoofinance_sdk import YahooFinanceSDK
 
 client = YahooFinanceSDK(options)
 ```
@@ -149,7 +149,7 @@ market = client.Market()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
+| `finance` | `dict` | No |  |
 
 ### Operations
 
@@ -158,7 +158,7 @@ market = client.Market()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Market().load({"id": "market_id"})
+result = client.Market().load()
 ```
 
 ### Common Methods
@@ -200,13 +200,13 @@ screener = client.Screener()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
-| `quote_type` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `sort_field` | ``$STRING`` | No |  |
-| `sort_type` | ``$STRING`` | No |  |
+| `finance` | `dict` | No |  |
+| `offset` | `int` | No |  |
+| `query` | `dict` | No |  |
+| `quote_type` | `str` | No |  |
+| `size` | `int` | No |  |
+| `sort_field` | `str` | No |  |
+| `sort_type` | `str` | No |  |
 
 ### Operations
 
@@ -258,17 +258,17 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | No |  |
-| `quote` | ``$ARRAY`` | No |  |
+| `new` | `list` | No |  |
+| `quote` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Search().list({})
+results = client.Search().list()
 for search in results:
     print(search)
 ```
@@ -312,12 +312,12 @@ ticker = client.Ticker()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | ``$OBJECT`` | No |  |
-| `finance` | ``$OBJECT`` | No |  |
-| `option_chain` | ``$OBJECT`` | No |  |
-| `quote_response` | ``$OBJECT`` | No |  |
-| `quote_summary` | ``$OBJECT`` | No |  |
-| `spark` | ``$OBJECT`` | No |  |
+| `chart` | `dict` | No |  |
+| `finance` | `dict` | No |  |
+| `option_chain` | `dict` | No |  |
+| `quote_response` | `dict` | No |  |
+| `quote_summary` | `dict` | No |  |
+| `spark` | `dict` | No |  |
 
 ### Operations
 
@@ -326,7 +326,7 @@ ticker = client.Ticker()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Ticker().load({"id": "ticker_id"})
+result = client.Ticker().load()
 ```
 
 ### Common Methods

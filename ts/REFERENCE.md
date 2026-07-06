@@ -209,7 +209,7 @@ const market = client.Market()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
+| `finance` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -218,7 +218,7 @@ const market = client.Market()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Market().load({ id: 'market_id' })
+const result = await client.Market().load()
 ```
 
 ### Common Methods
@@ -259,13 +259,13 @@ const screener = client.Screener()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
-| `quote_type` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `sort_field` | ``$STRING`` | No |  |
-| `sort_type` | ``$STRING`` | No |  |
+| `finance` | `Record<string, any>` | No |  |
+| `offset` | `number` | No |  |
+| `query` | `Record<string, any>` | No |  |
+| `quote_type` | `string` | No |  |
+| `size` | `number` | No |  |
+| `sort_field` | `string` | No |  |
+| `sort_type` | `string` | No |  |
 
 ### Operations
 
@@ -316,8 +316,8 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | No |  |
-| `quote` | ``$ARRAY`` | No |  |
+| `new` | `any[]` | No |  |
+| `quote` | `any[]` | No |  |
 
 ### Operations
 
@@ -367,12 +367,12 @@ const ticker = client.Ticker()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | ``$OBJECT`` | No |  |
-| `finance` | ``$OBJECT`` | No |  |
-| `option_chain` | ``$OBJECT`` | No |  |
-| `quote_response` | ``$OBJECT`` | No |  |
-| `quote_summary` | ``$OBJECT`` | No |  |
-| `spark` | ``$OBJECT`` | No |  |
+| `chart` | `Record<string, any>` | No |  |
+| `finance` | `Record<string, any>` | No |  |
+| `option_chain` | `Record<string, any>` | No |  |
+| `quote_response` | `Record<string, any>` | No |  |
+| `quote_summary` | `Record<string, any>` | No |  |
+| `spark` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -381,7 +381,7 @@ const ticker = client.Ticker()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Ticker().load({ id: 'ticker_id' })
+const result = await client.Ticker().load()
 ```
 
 ### Common Methods

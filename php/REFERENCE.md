@@ -8,7 +8,7 @@ Complete API reference for the YahooFinance PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/yahoo-finance_sdk.php';
+require_once __DIR__ . '/yahoofinance_sdk.php';
 
 $client = new YahooFinanceSDK($options);
 ```
@@ -62,11 +62,11 @@ Create a new `SearchEntity` instance. Pass `null` for no initial data.
 
 Create a new `TickerEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): YahooFinanceUtility`
 
 Return a copy of the SDK utility object.
 
@@ -117,19 +117,19 @@ $result = $client->Download()->load(["id" => "download_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -138,7 +138,7 @@ Set the entity match criteria.
 Create a new `DownloadEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -155,7 +155,7 @@ $market = $client->Market();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
+| `finance` | `array` | No |  |
 
 ### Operations
 
@@ -164,24 +164,24 @@ $market = $client->Market();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Market()->load(["id" => "market_id"]);
+$result = $client->Market()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -190,7 +190,7 @@ Set the entity match criteria.
 Create a new `MarketEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -207,13 +207,13 @@ $screener = $client->Screener();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
-| `quote_type` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `sort_field` | ``$STRING`` | No |  |
-| `sort_type` | ``$STRING`` | No |  |
+| `finance` | `array` | No |  |
+| `offset` | `int` | No |  |
+| `query` | `array` | No |  |
+| `quote_type` | `string` | No |  |
+| `size` | `int` | No |  |
+| `sort_field` | `string` | No |  |
+| `sort_type` | `string` | No |  |
 
 ### Operations
 
@@ -228,19 +228,19 @@ $result = $client->Screener()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -249,7 +249,7 @@ Set the entity match criteria.
 Create a new `ScreenerEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -266,34 +266,34 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | No |  |
-| `quote` | ``$ARRAY`` | No |  |
+| `new` | `array` | No |  |
+| `quote` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Search()->list([]);
+$results = $client->Search()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -302,7 +302,7 @@ Set the entity match criteria.
 Create a new `SearchEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -319,12 +319,12 @@ $ticker = $client->Ticker();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | ``$OBJECT`` | No |  |
-| `finance` | ``$OBJECT`` | No |  |
-| `option_chain` | ``$OBJECT`` | No |  |
-| `quote_response` | ``$OBJECT`` | No |  |
-| `quote_summary` | ``$OBJECT`` | No |  |
-| `spark` | ``$OBJECT`` | No |  |
+| `chart` | `array` | No |  |
+| `finance` | `array` | No |  |
+| `option_chain` | `array` | No |  |
+| `quote_response` | `array` | No |  |
+| `quote_summary` | `array` | No |  |
+| `spark` | `array` | No |  |
 
 ### Operations
 
@@ -333,24 +333,24 @@ $ticker = $client->Ticker();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Ticker()->load(["id" => "ticker_id"]);
+$result = $client->Ticker()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -359,7 +359,7 @@ Set the entity match criteria.
 Create a new `TickerEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

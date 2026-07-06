@@ -27,12 +27,21 @@
 ---@field sort_type? string
 
 ---@class ScreenerCreateData
+---@field finance? table
+---@field offset? number
+---@field query? table
+---@field quote_type? string
+---@field size? number
+---@field sort_field? string
+---@field sort_type? string
 
 ---@class Search
 ---@field new? table
 ---@field quote? table
 
 ---@class SearchListMatch
+---@field new? table
+---@field quote? table
 
 ---@class Ticker
 ---@field chart? table

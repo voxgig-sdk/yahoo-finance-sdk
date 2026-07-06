@@ -153,7 +153,7 @@ local market = client:Market(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
+| `finance` | `table` | No |  |
 
 ### Operations
 
@@ -162,7 +162,7 @@ local market = client:Market(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Market():load({ id = "market_id" })
+local result, err = client:Market():load()
 ```
 
 ### Common Methods
@@ -205,13 +205,13 @@ local screener = client:Screener(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | ``$OBJECT`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
-| `quote_type` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `sort_field` | ``$STRING`` | No |  |
-| `sort_type` | ``$STRING`` | No |  |
+| `finance` | `table` | No |  |
+| `offset` | `number` | No |  |
+| `query` | `table` | No |  |
+| `quote_type` | `string` | No |  |
+| `size` | `number` | No |  |
+| `sort_field` | `string` | No |  |
+| `sort_type` | `string` | No |  |
 
 ### Operations
 
@@ -264,8 +264,8 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | No |  |
-| `quote` | ``$ARRAY`` | No |  |
+| `new` | `table` | No |  |
+| `quote` | `table` | No |  |
 
 ### Operations
 
@@ -317,12 +317,12 @@ local ticker = client:Ticker(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | ``$OBJECT`` | No |  |
-| `finance` | ``$OBJECT`` | No |  |
-| `option_chain` | ``$OBJECT`` | No |  |
-| `quote_response` | ``$OBJECT`` | No |  |
-| `quote_summary` | ``$OBJECT`` | No |  |
-| `spark` | ``$OBJECT`` | No |  |
+| `chart` | `table` | No |  |
+| `finance` | `table` | No |  |
+| `option_chain` | `table` | No |  |
+| `quote_response` | `table` | No |  |
+| `quote_summary` | `table` | No |  |
+| `spark` | `table` | No |  |
 
 ### Operations
 
@@ -331,7 +331,7 @@ local ticker = client:Ticker(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Ticker():load({ id = "ticker_id" })
+local result, err = client:Ticker():load()
 ```
 
 ### Common Methods

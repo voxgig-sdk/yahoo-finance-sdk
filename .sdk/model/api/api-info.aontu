@@ -13,6 +13,13 @@ main: {
         name: "Apache 2.0"
         url: "https://www.apache.org/licenses/LICENSE-2.0.html"
       }
+      security: {
+        in: "cookie"
+        name: "Session"
+        prefix: ""
+        scheme: "cookieAuth"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Yahoo Finance API Server"
@@ -23,10 +30,10 @@ main: {
           url: "https://query2.finance.yahoo.com"
         }
       ]
+      summary: "Yahoo finance API to access current and historical crypto and finance data."
       termsOfService: "https://policies.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.htm"
       title: "Yahoo Finance API"
       version: "1.1.0"
+      website: "https://ranaroussi.github.io/yfinance"
     }
   }
-}
-

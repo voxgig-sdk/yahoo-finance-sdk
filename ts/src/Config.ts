@@ -39,7 +39,7 @@ class Config {
     base: 'https://query1.finance.yahoo.com',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

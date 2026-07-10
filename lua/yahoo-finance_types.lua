@@ -52,7 +52,7 @@
 ---@field spark? table
 
 ---@class TickerLoadMatch
----@field symbol string
+---@field symbol? string
 
 local M = {}
 

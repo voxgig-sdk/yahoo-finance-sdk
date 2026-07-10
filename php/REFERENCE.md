@@ -164,7 +164,7 @@ $market = $client->Market();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Market()->load();
+$result = $client->Market()->load(["region" => "region"]);
 ```
 
 ### Common Methods

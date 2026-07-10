@@ -39,14 +39,15 @@ client = YahooFinanceSDK({
 })
 ```
 
-### 3. Load a download
+### 3. Load a market
 
+Market is nested under region, so provide the `region`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    download = client.Download().load({"id": "example_id"})
-    print(download)
+    market = client.Market().load({"region": "example_region"})
+    print(market)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -349,7 +350,7 @@ Create an instance: `market = client.Market()`
 #### Example: Load
 
 ```python
-market = client.Market().load()
+market = client.Market().load({"region": "region"})
 ```
 
 

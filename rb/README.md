@@ -32,13 +32,15 @@ client = YahooFinanceSDK.new({
 })
 ```
 
-### 3. Load a download
+### 3. Load a market
+
+Market is nested under region, so provide the `region`.
 
 ```ruby
 begin
-  # load returns the bare Download record (raises on error).
-  download = client.Download.load({ "id" => "example_id" })
-  puts download
+  # load returns the bare Market record (raises on error).
+  market = client.Market.load({ "region" => "example_region" })
+  puts market
 rescue => err
   warn "load failed: #{err}"
 end
@@ -347,7 +349,7 @@ Create an instance: `market = client.Market`
 
 ```ruby
 # load returns the bare Market record (raises on error).
-market = client.Market.load()
+market = client.Market.load({ "region" => "region" })
 ```
 
 

@@ -33,13 +33,15 @@ $client = new YahooFinanceSDK([
 ]);
 ```
 
-### 3. Load a download
+### 3. Load a market
+
+Market is nested under region, so provide the `region`.
 
 ```php
 try {
-    // load() returns the bare Download record (throws on error).
-    $download = $client->Download()->load(["id" => "example_id"]);
-    print_r($download);
+    // load() returns the bare Market record (throws on error).
+    $market = $client->Market()->load(["region" => "example_region"]);
+    print_r($market);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -357,7 +359,7 @@ Create an instance: `$market = $client->Market();`
 
 ```php
 // load() returns the bare Market record (throws on error).
-$market = $client->Market()->load();
+$market = $client->Market()->load(["region" => "region"]);
 ```
 
 

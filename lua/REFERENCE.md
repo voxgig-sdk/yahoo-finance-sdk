@@ -162,7 +162,7 @@ local market = client:Market(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Market():load()
+local result, err = client:Market():load({ region = "region" })
 ```
 
 ### Common Methods

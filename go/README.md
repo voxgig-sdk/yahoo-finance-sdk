@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single download — the value is the loaded record.
-    download, err := client.Download(nil).Load(map[string]any{"id": "example"}, nil)
+    download, err := client.Download(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -372,7 +372,7 @@ Create an instance: `market := client.Market(nil)`
 #### Example: Load
 
 ```go
-market, err := client.Market(nil).Load(nil, nil)
+market, err := client.Market(nil).Load(map[string]any{"region": "region"}, nil)
 if err != nil {
     panic(err)
 }
@@ -407,6 +407,10 @@ Create an instance: `screener := client.Screener(nil)`
 ```go
 result, err := client.Screener(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

@@ -218,7 +218,7 @@ const market = client.Market()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Market().load()
+const result = await client.Market().load({ region: 'region' })
 ```
 
 ### Common Methods

@@ -71,5 +71,5 @@ class Ticker(TypedDict, total=False):
     spark: dict
 
 
-class TickerLoadMatch(TypedDict):
+class TickerLoadMatch(TypedDict, total=False):
     symbol: str

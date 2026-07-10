@@ -165,7 +165,7 @@ market = client.Market
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Market.load()
+result = client.Market.load({ "region" => "region" })
 ```
 
 ### Common Methods

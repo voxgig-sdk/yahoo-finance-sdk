@@ -108,6 +108,7 @@ same parameters as `Direct()`.
 
 ```go
 download := client.Download(nil)
+fmt.Println(download.GetName()) // "download"
 ```
 
 ### Operations
@@ -118,6 +119,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Download(nil).Load(map[string]any{"id": "download_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -148,6 +153,7 @@ Return the entity name.
 
 ```go
 market := client.Market(nil)
+fmt.Println(market.GetName()) // "market"
 ```
 
 ### Fields
@@ -163,7 +169,11 @@ market := client.Market(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Market(nil).Load(nil, nil)
+result, err := client.Market(nil).Load(map[string]any{"region": "region"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -194,6 +204,7 @@ Return the entity name.
 
 ```go
 screener := client.Screener(nil)
+fmt.Println(screener.GetName()) // "screener"
 ```
 
 ### Fields
@@ -217,6 +228,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.Screener(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -247,6 +262,7 @@ Return the entity name.
 
 ```go
 search := client.Search(nil)
+fmt.Println(search.GetName()) // "search"
 ```
 
 ### Fields
@@ -264,6 +280,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Search(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -294,6 +314,7 @@ Return the entity name.
 
 ```go
 ticker := client.Ticker(nil)
+fmt.Println(ticker.GetName()) // "ticker"
 ```
 
 ### Fields
@@ -315,6 +336,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Ticker(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

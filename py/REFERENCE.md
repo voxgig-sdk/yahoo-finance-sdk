@@ -158,7 +158,7 @@ market = client.Market()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Market().load()
+result = client.Market().load({"region": "region"})
 ```
 
 ### Common Methods

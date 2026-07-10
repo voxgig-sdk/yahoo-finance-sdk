@@ -35,12 +35,14 @@ local client = sdk.new({
 })
 ```
 
-### 3. Load a download
+### 3. Load a market
+
+Market is nested under region, so provide the `region`.
 
 ```lua
-local download, err = client:Download():load({ id = "example_id" })
+local market, err = client:Market():load({ region = "example_region" })
 if err then error(err) end
-print(download)
+print(market)
 ```
 
 
@@ -334,7 +336,7 @@ Create an instance: `local market = client:Market(nil)`
 #### Example: Load
 
 ```lua
-local market, err = client:Market():load()
+local market, err = client:Market():load({ region = "region" })
 ```
 
 

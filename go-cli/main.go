@@ -27,7 +27,20 @@ func main() {
 }
 
 func run(args []string, in io.Reader, out, errOut io.Writer) int {
-	client := sdk.NewYahooFinanceSDK(nil)
+	// Configure from the environment: YAHOO_FINANCE_APIKEY carries the API key and
+	// YAHOO_FINANCE_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("YAHOO_FINANCE_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("YAHOO_FINANCE_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewYahooFinanceSDK(opts)
 
 	r, err := eng.NewRegistry()
 	if err != nil {

@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- YahooFinance SDK exists test
 
 local sdk = require("yahoo-finance_sdk")
 

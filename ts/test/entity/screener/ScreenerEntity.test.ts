@@ -26,8 +26,8 @@ import {
 describe('ScreenerEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when YAHOOFINANCE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('YAHOOFINANCE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when YAHOO_FINANCE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('YAHOO_FINANCE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = YahooFinanceSDK.test()
@@ -62,7 +62,7 @@ describe('ScreenerEntity', async () => {
     const screener_ref01_ent = client.Screener()
     let screener_ref01_data = setup.data.new.screener['screener_ref01']
 
-    screener_ref01_data = await screener_ref01_ent.create(screener_ref01_data)
+    screener_ref01_data = (await screener_ref01_ent.create(screener_ref01_data)).data()
     assert(null != screener_ref01_data)
 
 

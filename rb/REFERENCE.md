@@ -156,7 +156,7 @@ market = client.Market
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `Hash` | No |  |
+| `result` | `Array` | No |  |
 
 ### Operations
 
@@ -208,13 +208,13 @@ screener = client.Screener
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `Hash` | No |  |
 | `offset` | `Integer` | No |  |
 | `query` | `Hash` | No |  |
-| `quote_type` | `String` | No |  |
+| `quoteType` | `String` | No |  |
+| `result` | `Array` | No |  |
 | `size` | `Integer` | No |  |
-| `sort_field` | `String` | No |  |
-| `sort_type` | `String` | No |  |
+| `sortField` | `String` | No |  |
+| `sortType` | `String` | No |  |
 
 ### Operations
 
@@ -267,8 +267,8 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `Array` | No |  |
-| `quote` | `Array` | No |  |
+| `news` | `Array` | No |  |
+| `quotes` | `Array` | No |  |
 
 ### Operations
 
@@ -320,12 +320,8 @@ ticker = client.Ticker
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | `Hash` | No |  |
-| `finance` | `Hash` | No |  |
-| `option_chain` | `Hash` | No |  |
-| `quote_response` | `Hash` | No |  |
-| `quote_summary` | `Hash` | No |  |
-| `spark` | `Hash` | No |  |
+| `error` | `NilClass` | No |  |
+| `result` | `Array` | No |  |
 
 ### Operations
 

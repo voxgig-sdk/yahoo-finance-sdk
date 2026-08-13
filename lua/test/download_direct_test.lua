@@ -70,16 +70,16 @@ function download_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["YAHOOFINANCE_TEST_DOWNLOAD_ENTID"] = {},
-    ["YAHOOFINANCE_TEST_LIVE"] = "FALSE",
-    ["YAHOOFINANCE_APIKEY"] = "NONE",
+    ["YAHOO_FINANCE_TEST_DOWNLOAD_ENTID"] = {},
+    ["YAHOO_FINANCE_TEST_LIVE"] = "FALSE",
+    ["YAHOO_FINANCE_APIKEY"] = "NONE",
   })
 
-  local live = env["YAHOOFINANCE_TEST_LIVE"] == "TRUE"
+  local live = env["YAHOO_FINANCE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["YAHOOFINANCE_APIKEY"],
+      apikey = env["YAHOO_FINANCE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ YahooFinanceUtility::setRegistrar(function (YahooFinanceUtility $u): void {
     $u->prepare_params = [YahooFinancePrepareParams::class, 'call'];
     $u->prepare_path = [YahooFinancePreparePath::class, 'call'];
     $u->prepare_query = [YahooFinancePrepareQuery::class, 'call'];
+    $u->graphql_body = [YahooFinanceGraphql::class, 'body'];
+    $u->graphql_errors = [YahooFinanceGraphql::class, 'errors'];
     $u->result_basic = [YahooFinanceResultBasic::class, 'call'];
     $u->result_body = [YahooFinanceResultBody::class, 'call'];
     $u->result_headers = [YahooFinanceResultHeaders::class, 'call'];

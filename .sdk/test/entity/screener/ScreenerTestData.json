@@ -2,33 +2,33 @@
   "existing": {
     "screener": {
       "SCREENER00": {
-        "finance": {},
-        "offset": "s47",
+        "offset": "s46",
         "query": {},
-        "quote_type": "s49",
+        "quoteType": "s48",
+        "result": [],
         "size": "s4a",
-        "sort_field": "s4b",
-        "sort_type": "s4c",
+        "sortField": "s4b",
+        "sortType": "s4c",
         "id": "SCREENER00"
       },
       "SCREENER01": {
-        "finance": {},
-        "offset": "s8d",
+        "offset": "s8c",
         "query": {},
-        "quote_type": "s8f",
+        "quoteType": "s8e",
+        "result": [],
         "size": "s90",
-        "sort_field": "s91",
-        "sort_type": "s92",
+        "sortField": "s91",
+        "sortType": "s92",
         "id": "SCREENER01"
       },
       "SCREENER02": {
-        "finance": {},
-        "offset": "sd3",
+        "offset": "sd2",
         "query": {},
-        "quote_type": "sd5",
+        "quoteType": "sd4",
+        "result": [],
         "size": "sd6",
-        "sort_field": "sd7",
-        "sort_type": "sd8",
+        "sortField": "sd7",
+        "sortType": "sd8",
         "id": "SCREENER02"
       }
     }
@@ -36,13 +36,13 @@
   "new": {
     "screener": {
       "screener_ref01": {
-        "finance": {},
-        "offset": "s119",
+        "offset": "s118",
         "query": {},
-        "quote_type": "s11b",
+        "quoteType": "s11a",
+        "result": [],
         "size": "s11c",
-        "sort_field": "s11d",
-        "sort_type": "s11e"
+        "sortField": "s11d",
+        "sortType": "s11e"
       }
     }
   }

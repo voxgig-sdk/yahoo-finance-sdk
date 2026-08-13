@@ -155,7 +155,7 @@ $market = $client->Market();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `array` | No |  |
+| `result` | `array` | No |  |
 
 ### Operations
 
@@ -207,13 +207,13 @@ $screener = $client->Screener();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `array` | No |  |
 | `offset` | `int` | No |  |
 | `query` | `array` | No |  |
-| `quote_type` | `string` | No |  |
+| `quoteType` | `string` | No |  |
+| `result` | `array` | No |  |
 | `size` | `int` | No |  |
-| `sort_field` | `string` | No |  |
-| `sort_type` | `string` | No |  |
+| `sortField` | `string` | No |  |
+| `sortType` | `string` | No |  |
 
 ### Operations
 
@@ -266,8 +266,8 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `array` | No |  |
-| `quote` | `array` | No |  |
+| `news` | `array` | No |  |
+| `quotes` | `array` | No |  |
 
 ### Operations
 
@@ -319,12 +319,8 @@ $ticker = $client->Ticker();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | `array` | No |  |
-| `finance` | `array` | No |  |
-| `option_chain` | `array` | No |  |
-| `quote_response` | `array` | No |  |
-| `quote_summary` | `array` | No |  |
-| `spark` | `array` | No |  |
+| `error` | `null` | No |  |
+| `result` | `array` | No |  |
 
 ### Operations
 

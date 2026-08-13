@@ -6,9 +6,9 @@ main: kit: entity: market: {
 
   fields: [
     {
-      name: "finance"
+      name: "result"
       req: false
-      type: "`$OBJECT`"
+      type: "`$ARRAY`"
     }
   ]
 
@@ -45,7 +45,7 @@ main: kit: entity: market: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.finance`"
           }
         }
       ]

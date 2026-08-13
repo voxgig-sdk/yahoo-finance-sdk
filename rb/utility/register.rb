@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ YahooFinanceUtility.registrar = ->(u) {
   u.prepare_params = YahooFinanceUtilities::PrepareParams
   u.prepare_path = YahooFinanceUtilities::PreparePath
   u.prepare_query = YahooFinanceUtilities::PrepareQuery
+  u.graphql_body = YahooFinanceUtilities::GraphqlBody
+  u.graphql_errors = YahooFinanceUtilities::GraphqlErrors
   u.result_basic = YahooFinanceUtilities::ResultBasic
   u.result_body = YahooFinanceUtilities::ResultBody
   u.result_headers = YahooFinanceUtilities::ResultHeaders

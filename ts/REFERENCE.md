@@ -209,7 +209,7 @@ const market = client.Market()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `Record<string, any>` | No |  |
+| `result` | `any[]` | No |  |
 
 ### Operations
 
@@ -259,13 +259,13 @@ const screener = client.Screener()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `Record<string, any>` | No |  |
 | `offset` | `number` | No |  |
 | `query` | `Record<string, any>` | No |  |
-| `quote_type` | `string` | No |  |
+| `quoteType` | `string` | No |  |
+| `result` | `any[]` | No |  |
 | `size` | `number` | No |  |
-| `sort_field` | `string` | No |  |
-| `sort_type` | `string` | No |  |
+| `sortField` | `string` | No |  |
+| `sortType` | `string` | No |  |
 
 ### Operations
 
@@ -316,8 +316,8 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `any[]` | No |  |
-| `quote` | `any[]` | No |  |
+| `news` | `any[]` | No |  |
+| `quotes` | `any[]` | No |  |
 
 ### Operations
 
@@ -367,12 +367,8 @@ const ticker = client.Ticker()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | `Record<string, any>` | No |  |
-| `finance` | `Record<string, any>` | No |  |
-| `option_chain` | `Record<string, any>` | No |  |
-| `quote_response` | `Record<string, any>` | No |  |
-| `quote_summary` | `Record<string, any>` | No |  |
-| `spark` | `Record<string, any>` | No |  |
+| `error` | `null` | No |  |
+| `result` | `any[]` | No |  |
 
 ### Operations
 

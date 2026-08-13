@@ -38,7 +38,7 @@ Market is nested under region, so provide the `region`.
 
 ```ruby
 begin
-  # load returns the bare Market record (raises on error).
+  # load returns the ENTITY — call data_get for the Market record (raises on error).
   market = client.Market.load({ "region" => "example_region" })
   puts market
 rescue => err
@@ -53,7 +53,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  download = client.Download.load({ "id" => "example_id" })
+  market = client.Market.load({ "region" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -116,17 +116,15 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = YahooFinanceSDK.test({
-  "entity" => { "download" => { "test01" => { "id" => "test01" } } },
-})
+client = YahooFinanceSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-download = client.Download.load({ "id" => "test01" })
-puts download
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+market = client.Market.load({ "region" => "example" })
+puts market
 ```
 
 ### Use a custom fetch function
@@ -258,7 +256,7 @@ API path: `/v7/finance/download/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
+| `result` |  |
 
 Operations: Load.
 
@@ -268,13 +266,13 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
 | `offset` |  |
 | `query` |  |
-| `quote_type` |  |
+| `quoteType` |  |
+| `result` |  |
 | `size` |  |
-| `sort_field` |  |
-| `sort_type` |  |
+| `sortField` |  |
+| `sortType` |  |
 
 Operations: Create.
 
@@ -284,8 +282,8 @@ API path: `/v1/finance/screener`
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
-| `quote` |  |
+| `news` |  |
+| `quotes` |  |
 
 Operations: List.
 
@@ -295,12 +293,8 @@ API path: `/v1/finance/search`
 
 | Field | Description |
 | --- | --- |
-| `chart` |  |
-| `finance` |  |
-| `option_chain` |  |
-| `quote_response` |  |
-| `quote_summary` |  |
-| `spark` |  |
+| `error` |  |
+| `result` |  |
 
 Operations: Load.
 
@@ -324,7 +318,7 @@ Create an instance: `download = client.Download`
 #### Example: Load
 
 ```ruby
-# load returns the bare Download record (raises on error).
+# load returns the ENTITY — call data_get for the Download record (raises on error).
 download = client.Download.load({ "id" => "download_id" })
 ```
 
@@ -343,12 +337,12 @@ Create an instance: `market = client.Market`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `Hash` |  |
+| `result` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Market record (raises on error).
+# load returns the ENTITY — call data_get for the Market record (raises on error).
 market = client.Market.load({ "region" => "region" })
 ```
 
@@ -367,13 +361,13 @@ Create an instance: `screener = client.Screener`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `Hash` |  |
 | `offset` | `Integer` |  |
 | `query` | `Hash` |  |
-| `quote_type` | `String` |  |
+| `quoteType` | `String` |  |
+| `result` | `Array` |  |
 | `size` | `Integer` |  |
-| `sort_field` | `String` |  |
-| `sort_type` | `String` |  |
+| `sortField` | `String` |  |
+| `sortType` | `String` |  |
 
 #### Example: Create
 
@@ -397,8 +391,8 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `Array` |  |
-| `quote` | `Array` |  |
+| `news` | `Array` |  |
+| `quotes` | `Array` |  |
 
 #### Example: List
 
@@ -422,17 +416,13 @@ Create an instance: `ticker = client.Ticker`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chart` | `Hash` |  |
-| `finance` | `Hash` |  |
-| `option_chain` | `Hash` |  |
-| `quote_response` | `Hash` |  |
-| `quote_summary` | `Hash` |  |
-| `spark` | `Hash` |  |
+| `error` | `NilClass` |  |
+| `result` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Ticker record (raises on error).
+# load returns the ENTITY — call data_get for the Ticker record (raises on error).
 ticker = client.Ticker.load()
 ```
 
@@ -513,11 +503,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-download = client.Download
-download.load({ "id" => "example_id" })
+market = client.Market
+market.load({ "region" => "example" })
 
-# download.data_get now returns the download data from the last load
-# download.match_get returns the last match criteria
+# market.data_get now returns the market data from the last load
+# market.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

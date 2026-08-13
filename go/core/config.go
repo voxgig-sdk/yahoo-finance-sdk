@@ -87,6 +87,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/v7/finance/download/{symbol}",
 								"parts": []any{
@@ -116,7 +117,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -127,9 +127,9 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "finance",
+						"name": "result",
 						"req": false,
-						"type": "`$OBJECT`",
+						"type": "`$ARRAY`",
 						"index$": 0,
 					},
 				},
@@ -155,6 +155,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/trending/{region}",
 								"parts": []any{
@@ -170,12 +171,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.finance`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -190,30 +190,30 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "finance",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 0,
-					},
-					map[string]any{
-						"active": true,
 						"name": "offset",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 1,
+						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
 						"name": "query",
 						"req": false,
 						"type": "`$OBJECT`",
+						"index$": 1,
+					},
+					map[string]any{
+						"active": true,
+						"name": "quoteType",
+						"req": false,
+						"type": "`$STRING`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "quote_type",
+						"name": "result",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ARRAY`",
 						"index$": 3,
 					},
 					map[string]any{
@@ -225,14 +225,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "sort_field",
+						"name": "sortField",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "sort_type",
+						"name": "sortType",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 6,
@@ -247,6 +247,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/v1/finance/screener",
 								"parts": []any{
@@ -257,12 +258,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.finance`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 				},
 				"relations": map[string]any{
@@ -273,14 +273,14 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "new",
+						"name": "news",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "quote",
+						"name": "quotes",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 1,
@@ -324,6 +324,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/search",
 								"parts": []any{
@@ -345,7 +346,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -356,45 +356,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "chart",
+						"name": "error",
 						"req": false,
-						"type": "`$OBJECT`",
+						"type": "`$NULL`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "finance",
+						"name": "result",
 						"req": false,
-						"type": "`$OBJECT`",
+						"type": "`$ARRAY`",
 						"index$": 1,
-					},
-					map[string]any{
-						"active": true,
-						"name": "option_chain",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 2,
-					},
-					map[string]any{
-						"active": true,
-						"name": "quote_response",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 3,
-					},
-					map[string]any{
-						"active": true,
-						"name": "quote_summary",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 4,
-					},
-					map[string]any{
-						"active": true,
-						"name": "spark",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 5,
 					},
 				},
 				"name": "ticker",
@@ -462,6 +434,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/v8/finance/chart/{symbol}",
 								"parts": []any{
@@ -482,7 +455,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.chart`",
 								},
 								"index$": 0,
 							},
@@ -518,6 +491,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/spark",
 								"parts": []any{
@@ -534,7 +508,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.spark`",
 								},
 								"index$": 1,
 							},
@@ -563,6 +537,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/v7/finance/options/{symbol}",
 								"parts": []any{
@@ -579,7 +554,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.optionChain`",
 								},
 								"index$": 2,
 							},
@@ -609,6 +584,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/v10/finance/quoteSummary/{symbol}",
 								"parts": []any{
@@ -625,7 +601,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.quoteSummary`",
 								},
 								"index$": 3,
 							},
@@ -644,6 +620,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/v6/finance/quote",
 								"parts": []any{
@@ -658,7 +635,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.quoteResponse`",
 								},
 								"index$": 4,
 							},
@@ -676,6 +653,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/ws/insights/v1/finance/insights",
 								"parts": []any{
@@ -692,12 +670,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.finance`",
 								},
 								"index$": 5,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

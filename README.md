@@ -23,7 +23,7 @@ support (`list`, `load`, `create`):
 
 ```ts
 const client = new YahooFinanceSDK()
-const download = await client.Download().load()
+const download = await client.Download().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = YahooFinanceSDK.test()
-const download = await client.Download().load({ id: 'test01' })
-// download is a bare Download populated with mock data
-console.log(download)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = YahooFinanceSDK.test({
+  entity: {
+    market: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const market = await client.Market().load({ region: 'example_region' })
+// market is the Market entity, populated with mock data
+// — call market.data() for the record itself
+console.log(market)
 ```
 
 ### Python
 
 ```python
 client = YahooFinanceSDK.test()
-download = client.Download().load({"id": "test01"})
-print(download)
+market = client.Market().load({"region": "example"})
+print(market)
 ```
 
 ### PHP
@@ -57,17 +66,17 @@ print(download)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = YahooFinanceSDK::test([
-    "entity" => ["download" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["market" => ["test01" => []]],
 ]);
-$download = $client->Download()->load(["id" => "test01"]);
+$market = $client->Market()->load(["region" => "example"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Download(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+result, err := client.Market(nil).Load(
+    nil, nil,
 )
 ```
 
@@ -76,16 +85,16 @@ result, err := client.Download(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = YahooFinanceSDK.test({
-  "entity" => { "download" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "market" => { "test01" => {} } },
 })
-download = client.Download.load({ "id" => "test01" })
+market = client.Market.load({ "region" => "example" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Download():load({ id = "test01" })
+local result, err = client:Market():load({ region = "example" })
 ```
 
 ## Packages
@@ -196,7 +205,7 @@ $client = new YahooFinanceSDK([
 ]);
 
 
-// Load a specific download (returns the bare record; throws on error)
+// Load a specific download (returns the ENTITY; call data_get() for the record; throws on error)
 $download = $client->Download()->load(["id" => "example_id"]);
 print_r($download);
 ```
@@ -231,7 +240,7 @@ client = YahooFinanceSDK.new({
 })
 
 
-# Load a specific download (returns the bare record; raises on error)
+# Load a specific download (returns the ENTITY; call data_get for the record)
 download = client.Download.load({ "id" => "example_id" })
 puts download
 ```
@@ -367,6 +376,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/ranaroussi/yfinance](https://github.com/ranaroussi/yfinance)
 

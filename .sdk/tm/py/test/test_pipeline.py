@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import YahooFinanceSDK
-from core.error import YahooFinanceError
-from core.result import YahooFinanceResult
-from core.response import YahooFinanceResponse
-from core.spec import YahooFinanceSpec
-from feature.base_feature import YahooFinanceBaseFeature
+from projectname_sdk.core.error import YahooFinanceError
+from projectname_sdk.core.result import YahooFinanceResult
+from projectname_sdk.core.response import YahooFinanceResponse
+from projectname_sdk.core.spec import YahooFinanceSpec
+from projectname_sdk.feature.base_feature import YahooFinanceBaseFeature
 
 
 def _client():

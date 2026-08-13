@@ -153,7 +153,7 @@ local market = client:Market(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `table` | No |  |
+| `result` | `table` | No |  |
 
 ### Operations
 
@@ -205,13 +205,13 @@ local screener = client:Screener(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `table` | No |  |
 | `offset` | `number` | No |  |
 | `query` | `table` | No |  |
-| `quote_type` | `string` | No |  |
+| `quoteType` | `string` | No |  |
+| `result` | `table` | No |  |
 | `size` | `number` | No |  |
-| `sort_field` | `string` | No |  |
-| `sort_type` | `string` | No |  |
+| `sortField` | `string` | No |  |
+| `sortType` | `string` | No |  |
 
 ### Operations
 
@@ -264,8 +264,8 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `table` | No |  |
-| `quote` | `table` | No |  |
+| `news` | `table` | No |  |
+| `quotes` | `table` | No |  |
 
 ### Operations
 
@@ -317,12 +317,8 @@ local ticker = client:Ticker(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | `table` | No |  |
-| `finance` | `table` | No |  |
-| `option_chain` | `table` | No |  |
-| `quote_response` | `table` | No |  |
-| `quote_summary` | `table` | No |  |
-| `spark` | `table` | No |  |
+| `error` | `nil` | No |  |
+| `result` | `table` | No |  |
 
 ### Operations
 

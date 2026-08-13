@@ -52,7 +52,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local download, err = client:Download():load({ id = "example_id" })
+local market, err = client:Market():load({ region = "example" })
 if err then error(err) end
 ```
 
@@ -110,7 +110,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Download():load({ id = "test01" })
+local result, err = client:Market():load({ region = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -247,7 +247,7 @@ API path: `/v7/finance/download/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
+| `result` |  |
 
 Operations: Load.
 
@@ -257,13 +257,13 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
 | `offset` |  |
 | `query` |  |
-| `quote_type` |  |
+| `quoteType` |  |
+| `result` |  |
 | `size` |  |
-| `sort_field` |  |
-| `sort_type` |  |
+| `sortField` |  |
+| `sortType` |  |
 
 Operations: Create.
 
@@ -273,8 +273,8 @@ API path: `/v1/finance/screener`
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
-| `quote` |  |
+| `news` |  |
+| `quotes` |  |
 
 Operations: List.
 
@@ -284,12 +284,8 @@ API path: `/v1/finance/search`
 
 | Field | Description |
 | --- | --- |
-| `chart` |  |
-| `finance` |  |
-| `option_chain` |  |
-| `quote_response` |  |
-| `quote_summary` |  |
-| `spark` |  |
+| `error` |  |
+| `result` |  |
 
 Operations: Load.
 
@@ -331,7 +327,7 @@ Create an instance: `local market = client:Market(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `table` |  |
+| `result` | `table` |  |
 
 #### Example: Load
 
@@ -354,13 +350,13 @@ Create an instance: `local screener = client:Screener(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `table` |  |
 | `offset` | `number` |  |
 | `query` | `table` |  |
-| `quote_type` | `string` |  |
+| `quoteType` | `string` |  |
+| `result` | `table` |  |
 | `size` | `number` |  |
-| `sort_field` | `string` |  |
-| `sort_type` | `string` |  |
+| `sortField` | `string` |  |
+| `sortType` | `string` |  |
 
 #### Example: Create
 
@@ -384,8 +380,8 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `table` |  |
-| `quote` | `table` |  |
+| `news` | `table` |  |
+| `quotes` | `table` |  |
 
 #### Example: List
 
@@ -408,12 +404,8 @@ Create an instance: `local ticker = client:Ticker(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chart` | `table` |  |
-| `finance` | `table` |  |
-| `option_chain` | `table` |  |
-| `quote_response` | `table` |  |
-| `quote_summary` | `table` |  |
-| `spark` | `table` |  |
+| `error` | `nil` |  |
+| `result` | `table` |  |
 
 #### Example: Load
 
@@ -498,11 +490,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local download = client:Download()
-download:load({ id = "example_id" })
+local market = client:Market()
+market:load({ region = "example" })
 
--- download:data_get() now returns the download data from the last load
--- download:match_get() returns the last match criteria
+-- market:data_get() now returns the market data from the last load
+-- market:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

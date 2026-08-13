@@ -6,34 +6,14 @@ main: kit: entity: ticker: {
 
   fields: [
     {
-      name: "chart"
+      name: "error"
       req: false
-      type: "`$OBJECT`"
+      type: "`$NULL`"
     }
     {
-      name: "finance"
+      name: "result"
       req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "option_chain"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "quote_response"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "quote_summary"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "spark"
-      req: false
-      type: "`$OBJECT`"
+      type: "`$ARRAY`"
     }
   ]
 
@@ -113,7 +93,7 @@ main: kit: entity: ticker: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.chart`"
           }
         }
         {
@@ -160,7 +140,7 @@ main: kit: entity: ticker: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.spark`"
           }
         }
         {
@@ -200,7 +180,7 @@ main: kit: entity: ticker: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.optionChain`"
           }
         }
         {
@@ -241,7 +221,7 @@ main: kit: entity: ticker: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.quoteSummary`"
           }
         }
         {
@@ -271,7 +251,7 @@ main: kit: entity: ticker: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.quoteResponse`"
           }
         }
         {
@@ -302,7 +282,7 @@ main: kit: entity: ticker: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.finance`"
           }
         }
       ]

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from yahoofinance_sdk.utility.voxgig_struct import voxgig_struct as vs
 from yahoofinance_sdk import YahooFinanceSDK
-from core import helpers
+from yahoofinance_sdk.core import helpers
 from test import runner
 
 
@@ -63,16 +63,16 @@ def _ticker_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "YAHOOFINANCE_TEST_TICKER_ENTID": {},
-        "YAHOOFINANCE_TEST_LIVE": "FALSE",
-        "YAHOOFINANCE_APIKEY": "NONE",
+        "YAHOO_FINANCE_TEST_TICKER_ENTID": {},
+        "YAHOO_FINANCE_TEST_LIVE": "FALSE",
+        "YAHOO_FINANCE_APIKEY": "NONE",
     })
 
-    live = env.get("YAHOOFINANCE_TEST_LIVE") == "TRUE"
+    live = env.get("YAHOO_FINANCE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("YAHOOFINANCE_APIKEY"),
+            "apikey": env.get("YAHOO_FINANCE_APIKEY"),
         }
         client = YahooFinanceSDK(merged_opts)
         return {

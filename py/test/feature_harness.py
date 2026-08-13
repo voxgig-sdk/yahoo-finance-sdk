@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import YahooFinanceControl
-from core.error import YahooFinanceError
-from core.result import YahooFinanceResult
-from core.spec import YahooFinanceSpec
+from yahoofinance_sdk.config import make_config
+from yahoofinance_sdk.features import _make_feature
+from yahoofinance_sdk.core.control import YahooFinanceControl
+from yahoofinance_sdk.core.error import YahooFinanceError
+from yahoofinance_sdk.core.result import YahooFinanceResult
+from yahoofinance_sdk.core.spec import YahooFinanceSpec
 
 
 # True when this SDK was generated with the named feature.

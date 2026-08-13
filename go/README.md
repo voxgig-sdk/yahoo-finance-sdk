@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-download, err := client.Download(nil).Load(map[string]any{"id": "example_id"}, nil)
+market, err := client.Market(nil).Load(map[string]any{"region": "example"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = download
+_ = market
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-download, err := client.Download(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+market, err := client.Market(nil).Load(
+    map[string]any{"region": "example"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(download) // the returned mock data
+fmt.Println(market) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -279,7 +279,7 @@ API path: `/v7/finance/download/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `"finance"` |  |
+| `"result"` |  |
 
 Operations: Load.
 
@@ -289,13 +289,13 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `"finance"` |  |
 | `"offset"` |  |
 | `"query"` |  |
-| `"quote_type"` |  |
+| `"quoteType"` |  |
+| `"result"` |  |
 | `"size"` |  |
-| `"sort_field"` |  |
-| `"sort_type"` |  |
+| `"sortField"` |  |
+| `"sortType"` |  |
 
 Operations: Create.
 
@@ -305,8 +305,8 @@ API path: `/v1/finance/screener`
 
 | Field | Description |
 | --- | --- |
-| `"new"` |  |
-| `"quote"` |  |
+| `"news"` |  |
+| `"quotes"` |  |
 
 Operations: List.
 
@@ -316,12 +316,8 @@ API path: `/v1/finance/search`
 
 | Field | Description |
 | --- | --- |
-| `"chart"` |  |
-| `"finance"` |  |
-| `"option_chain"` |  |
-| `"quote_response"` |  |
-| `"quote_summary"` |  |
-| `"spark"` |  |
+| `"error"` |  |
+| `"result"` |  |
 
 Operations: Load.
 
@@ -367,7 +363,7 @@ Create an instance: `market := client.Market(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `map[string]any` |  |
+| `result` | `[]any` |  |
 
 #### Example: Load
 
@@ -394,13 +390,13 @@ Create an instance: `screener := client.Screener(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `map[string]any` |  |
 | `offset` | `int` |  |
 | `query` | `map[string]any` |  |
-| `quote_type` | `string` |  |
+| `quoteType` | `string` |  |
+| `result` | `[]any` |  |
 | `size` | `int` |  |
-| `sort_field` | `string` |  |
-| `sort_type` | `string` |  |
+| `sortField` | `string` |  |
+| `sortType` | `string` |  |
 
 #### Example: Create
 
@@ -428,8 +424,8 @@ Create an instance: `search := client.Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `[]any` |  |
-| `quote` | `[]any` |  |
+| `news` | `[]any` |  |
+| `quotes` | `[]any` |  |
 
 #### Example: List
 
@@ -456,12 +452,8 @@ Create an instance: `ticker := client.Ticker(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chart` | `map[string]any` |  |
-| `finance` | `map[string]any` |  |
-| `option_chain` | `map[string]any` |  |
-| `quote_response` | `map[string]any` |  |
-| `quote_summary` | `map[string]any` |  |
-| `spark` | `map[string]any` |  |
+| `error` | `any` |  |
+| `result` | `[]any` |  |
 
 #### Example: Load
 
@@ -547,11 +539,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-download := client.Download(nil)
-download.Load(map[string]any{"id": "example_id"}, nil)
+market := client.Market(nil)
+market.Load(map[string]any{"region": "example"}, nil)
 
-// download.Data() now returns the download data from the last load
-// download.Match() returns the last match criteria
+// market.Data() now returns the market data from the last load
+// market.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

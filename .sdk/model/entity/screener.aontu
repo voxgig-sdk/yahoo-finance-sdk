@@ -6,11 +6,6 @@ main: kit: entity: screener: {
 
   fields: [
     {
-      name: "finance"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "offset"
       req: false
       type: "`$INTEGER`"
@@ -21,9 +16,14 @@ main: kit: entity: screener: {
       type: "`$OBJECT`"
     }
     {
-      name: "quote_type"
+      name: "quoteType"
       req: false
       type: "`$STRING`"
+    }
+    {
+      name: "result"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "size"
@@ -31,12 +31,12 @@ main: kit: entity: screener: {
       type: "`$INTEGER`"
     }
     {
-      name: "sort_field"
+      name: "sortField"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "sort_type"
+      name: "sortType"
       req: false
       type: "`$STRING`"
     }
@@ -57,7 +57,7 @@ main: kit: entity: screener: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.finance`"
           }
         }
       ]

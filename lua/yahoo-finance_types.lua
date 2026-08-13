@@ -12,44 +12,40 @@
 ---@field id string
 
 ---@class Market
----@field finance? table
+---@field result? table
 
 ---@class MarketLoadMatch
 ---@field region string
 
 ---@class Screener
----@field finance? table
 ---@field offset? number
 ---@field query? table
----@field quote_type? string
+---@field quoteType? string
+---@field result? table
 ---@field size? number
----@field sort_field? string
----@field sort_type? string
+---@field sortField? string
+---@field sortType? string
 
 ---@class ScreenerCreateData
----@field finance? table
 ---@field offset? number
 ---@field query? table
----@field quote_type? string
+---@field quoteType? string
+---@field result? table
 ---@field size? number
----@field sort_field? string
----@field sort_type? string
+---@field sortField? string
+---@field sortType? string
 
 ---@class Search
----@field new? table
----@field quote? table
+---@field news? table
+---@field quotes? table
 
 ---@class SearchListMatch
----@field new? table
----@field quote? table
+---@field news? table
+---@field quotes? table
 
 ---@class Ticker
----@field chart? table
----@field finance? table
----@field option_chain? table
----@field quote_response? table
----@field quote_summary? table
----@field spark? table
+---@field error? nil
+---@field result? table
 
 ---@class TickerLoadMatch
 ---@field symbol? string

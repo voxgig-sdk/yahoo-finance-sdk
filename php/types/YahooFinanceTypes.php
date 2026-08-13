@@ -26,7 +26,7 @@ class DownloadLoadMatch
 /** Market entity data model. */
 class Market
 {
-    public ?array $finance = null;
+    public ?array $result = null;
 }
 
 /** Request payload for Market#load. */
@@ -38,50 +38,46 @@ class MarketLoadMatch
 /** Screener entity data model. */
 class Screener
 {
-    public ?array $finance = null;
     public ?int $offset = null;
     public ?array $query = null;
-    public ?string $quote_type = null;
+    public ?string $quoteType = null;
+    public ?array $result = null;
     public ?int $size = null;
-    public ?string $sort_field = null;
-    public ?string $sort_type = null;
+    public ?string $sortField = null;
+    public ?string $sortType = null;
 }
 
 /** Request payload for Screener#create. */
 class ScreenerCreateData
 {
-    public ?array $finance = null;
     public ?int $offset = null;
     public ?array $query = null;
-    public ?string $quote_type = null;
+    public ?string $quoteType = null;
+    public ?array $result = null;
     public ?int $size = null;
-    public ?string $sort_field = null;
-    public ?string $sort_type = null;
+    public ?string $sortField = null;
+    public ?string $sortType = null;
 }
 
 /** Search entity data model. */
 class Search
 {
-    public ?array $new = null;
-    public ?array $quote = null;
+    public ?array $news = null;
+    public ?array $quotes = null;
 }
 
 /** Request payload for Search#list. */
 class SearchListMatch
 {
-    public ?array $new = null;
-    public ?array $quote = null;
+    public ?array $news = null;
+    public ?array $quotes = null;
 }
 
 /** Ticker entity data model. */
 class Ticker
 {
-    public ?array $chart = null;
-    public ?array $finance = null;
-    public ?array $option_chain = null;
-    public ?array $quote_response = null;
-    public ?array $quote_summary = null;
-    public ?array $spark = null;
+    public mixed $error = null;
+    public ?array $result = null;
 }
 
 /** Request payload for Ticker#load. */

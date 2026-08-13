@@ -160,7 +160,7 @@ fmt.Println(market.GetName()) // "market"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `map[string]any` | No |  |
+| `result` | `[]any` | No |  |
 
 ### Operations
 
@@ -211,13 +211,13 @@ fmt.Println(screener.GetName()) // "screener"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `map[string]any` | No |  |
 | `offset` | `int` | No |  |
 | `query` | `map[string]any` | No |  |
-| `quote_type` | `string` | No |  |
+| `quoteType` | `string` | No |  |
+| `result` | `[]any` | No |  |
 | `size` | `int` | No |  |
-| `sort_field` | `string` | No |  |
-| `sort_type` | `string` | No |  |
+| `sortField` | `string` | No |  |
+| `sortType` | `string` | No |  |
 
 ### Operations
 
@@ -269,8 +269,8 @@ fmt.Println(search.GetName()) // "search"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `[]any` | No |  |
-| `quote` | `[]any` | No |  |
+| `news` | `[]any` | No |  |
+| `quotes` | `[]any` | No |  |
 
 ### Operations
 
@@ -321,12 +321,8 @@ fmt.Println(ticker.GetName()) // "ticker"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | `map[string]any` | No |  |
-| `finance` | `map[string]any` | No |  |
-| `option_chain` | `map[string]any` | No |  |
-| `quote_response` | `map[string]any` | No |  |
-| `quote_summary` | `map[string]any` | No |  |
-| `spark` | `map[string]any` | No |  |
+| `error` | `any` | No |  |
+| `result` | `[]any` | No |  |
 
 ### Operations
 

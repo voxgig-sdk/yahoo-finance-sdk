@@ -66,16 +66,16 @@ function search_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "YAHOOFINANCE_TEST_SEARCH_ENTID" => [],
-        "YAHOOFINANCE_TEST_LIVE" => "FALSE",
-        "YAHOOFINANCE_APIKEY" => "NONE",
+        "YAHOO_FINANCE_TEST_SEARCH_ENTID" => [],
+        "YAHOO_FINANCE_TEST_LIVE" => "FALSE",
+        "YAHOO_FINANCE_APIKEY" => "NONE",
     ]);
 
-    $live = $env["YAHOOFINANCE_TEST_LIVE"] === "TRUE";
+    $live = $env["YAHOO_FINANCE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["YAHOOFINANCE_APIKEY"],
+            "apikey" => $env["YAHOO_FINANCE_APIKEY"],
         ];
         $client = new YahooFinanceSDK($merged_opts);
         return [

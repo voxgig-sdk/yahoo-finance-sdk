@@ -39,7 +39,7 @@ Market is nested under region, so provide the `region`.
 
 ```php
 try {
-    // load() returns the bare Market record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Market record (throws on error).
     $market = $client->Market()->load(["region" => "example_region"]);
     print_r($market);
 } catch (\Throwable $err) {
@@ -55,7 +55,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $download = $client->Download()->load(["id" => "example_id"]);
+    $market = $client->Market()->load(["region" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -122,17 +122,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = YahooFinanceSDK::test([
-    "entity" => ["download" => ["test01" => ["id" => "test01"]]],
-]);
+$client = YahooFinanceSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$download = $client->Download()->load(["id" => "test01"]);
-print_r($download);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$market = $client->Market()->load(["region" => "example"]);
+print_r($market);
 ```
 
 ### Use a custom fetch function
@@ -237,7 +235,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -268,7 +266,7 @@ API path: `/v7/finance/download/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
+| `result` |  |
 
 Operations: Load.
 
@@ -278,13 +276,13 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
 | `offset` |  |
 | `query` |  |
-| `quote_type` |  |
+| `quoteType` |  |
+| `result` |  |
 | `size` |  |
-| `sort_field` |  |
-| `sort_type` |  |
+| `sortField` |  |
+| `sortType` |  |
 
 Operations: Create.
 
@@ -294,8 +292,8 @@ API path: `/v1/finance/screener`
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
-| `quote` |  |
+| `news` |  |
+| `quotes` |  |
 
 Operations: List.
 
@@ -305,12 +303,8 @@ API path: `/v1/finance/search`
 
 | Field | Description |
 | --- | --- |
-| `chart` |  |
-| `finance` |  |
-| `option_chain` |  |
-| `quote_response` |  |
-| `quote_summary` |  |
-| `spark` |  |
+| `error` |  |
+| `result` |  |
 
 Operations: Load.
 
@@ -334,7 +328,7 @@ Create an instance: `$download = $client->Download();`
 #### Example: Load
 
 ```php
-// load() returns the bare Download record (throws on error).
+// load() returns the ENTITY — call data_get() for the Download record (throws on error).
 $download = $client->Download()->load(["id" => "download_id"]);
 ```
 
@@ -353,12 +347,12 @@ Create an instance: `$market = $client->Market();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `array` |  |
+| `result` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Market record (throws on error).
+// load() returns the ENTITY — call data_get() for the Market record (throws on error).
 $market = $client->Market()->load(["region" => "region"]);
 ```
 
@@ -377,13 +371,13 @@ Create an instance: `$screener = $client->Screener();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `array` |  |
 | `offset` | `int` |  |
 | `query` | `array` |  |
-| `quote_type` | `string` |  |
+| `quoteType` | `string` |  |
+| `result` | `array` |  |
 | `size` | `int` |  |
-| `sort_field` | `string` |  |
-| `sort_type` | `string` |  |
+| `sortField` | `string` |  |
+| `sortType` | `string` |  |
 
 #### Example: Create
 
@@ -407,8 +401,8 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `array` |  |
-| `quote` | `array` |  |
+| `news` | `array` |  |
+| `quotes` | `array` |  |
 
 #### Example: List
 
@@ -432,17 +426,13 @@ Create an instance: `$ticker = $client->Ticker();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chart` | `array` |  |
-| `finance` | `array` |  |
-| `option_chain` | `array` |  |
-| `quote_response` | `array` |  |
-| `quote_summary` | `array` |  |
-| `spark` | `array` |  |
+| `error` | `null` |  |
+| `result` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Ticker record (throws on error).
+// load() returns the ENTITY — call data_get() for the Ticker record (throws on error).
 $ticker = $client->Ticker()->load();
 ```
 
@@ -523,11 +513,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$download = $client->Download();
-$download->load(["id" => "example_id"]);
+$market = $client->Market();
+$market->load(["region" => "example"]);
 
-// $download->data_get() now returns the download data from the last load
-// $download->match_get() returns the last match criteria
+// $market->data_get() now returns the market data from the last load
+// $market->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -2,32 +2,20 @@
   "existing": {
     "ticker": {
       "TICKER00": {
-        "chart": {},
-        "finance": {},
-        "option_chain": {},
-        "quote_response": {},
-        "quote_summary": {},
-        "spark": {},
+        "error": "s14",
+        "result": [],
         "symbol": "SYMBOL01",
         "id": "TICKER00"
       },
       "TICKER01": {
-        "chart": {},
-        "finance": {},
-        "option_chain": {},
-        "quote_response": {},
-        "quote_summary": {},
-        "spark": {},
+        "error": "s28",
+        "result": [],
         "symbol": "SYMBOL01",
         "id": "TICKER01"
       },
       "TICKER02": {
-        "chart": {},
-        "finance": {},
-        "option_chain": {},
-        "quote_response": {},
-        "quote_summary": {},
-        "spark": {},
+        "error": "s3c",
+        "result": [],
         "symbol": "SYMBOL01",
         "id": "TICKER02"
       }
@@ -36,12 +24,8 @@
   "new": {
     "ticker": {
       "ticker_ref01": {
-        "chart": {},
-        "finance": {},
-        "option_chain": {},
-        "quote_response": {},
-        "quote_summary": {},
-        "spark": {}
+        "error": "s50",
+        "result": []
       }
     }
   }

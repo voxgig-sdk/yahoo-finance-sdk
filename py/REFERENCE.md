@@ -149,7 +149,7 @@ market = client.Market()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `dict` | No |  |
+| `result` | `list` | No |  |
 
 ### Operations
 
@@ -200,13 +200,13 @@ screener = client.Screener()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `finance` | `dict` | No |  |
 | `offset` | `int` | No |  |
 | `query` | `dict` | No |  |
-| `quote_type` | `str` | No |  |
+| `quoteType` | `str` | No |  |
+| `result` | `list` | No |  |
 | `size` | `int` | No |  |
-| `sort_field` | `str` | No |  |
-| `sort_type` | `str` | No |  |
+| `sortField` | `str` | No |  |
+| `sortType` | `str` | No |  |
 
 ### Operations
 
@@ -258,8 +258,8 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `list` | No |  |
-| `quote` | `list` | No |  |
+| `news` | `list` | No |  |
+| `quotes` | `list` | No |  |
 
 ### Operations
 
@@ -312,12 +312,8 @@ ticker = client.Ticker()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chart` | `dict` | No |  |
-| `finance` | `dict` | No |  |
-| `option_chain` | `dict` | No |  |
-| `quote_response` | `dict` | No |  |
-| `quote_summary` | `dict` | No |  |
-| `spark` | `dict` | No |  |
+| `error` | `None` | No |  |
+| `result` | `list` | No |  |
 
 ### Operations
 

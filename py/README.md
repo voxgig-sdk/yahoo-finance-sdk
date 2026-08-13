@@ -42,7 +42,7 @@ client = YahooFinanceSDK({
 ### 3. Load a market
 
 Market is nested under region, so provide the `region`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -59,8 +59,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    download = client.Download().load({"id": "example_id"})
-    print(download)
+    market = client.Market().load({"region": "example"})
+    print(market)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -126,9 +126,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = YahooFinanceSDK.test()
 
-# Entity ops return the bare record and raise on error.
-download = client.Download().load({"id": "test01"})
-# download contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+market = client.Market().load({"region": "example"})
+# market contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -230,7 +231,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -261,7 +262,7 @@ API path: `/v7/finance/download/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
+| `result` |  |
 
 Operations: Load.
 
@@ -271,13 +272,13 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
 | `offset` |  |
 | `query` |  |
-| `quote_type` |  |
+| `quoteType` |  |
+| `result` |  |
 | `size` |  |
-| `sort_field` |  |
-| `sort_type` |  |
+| `sortField` |  |
+| `sortType` |  |
 
 Operations: Create.
 
@@ -287,8 +288,8 @@ API path: `/v1/finance/screener`
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
-| `quote` |  |
+| `news` |  |
+| `quotes` |  |
 
 Operations: List.
 
@@ -298,12 +299,8 @@ API path: `/v1/finance/search`
 
 | Field | Description |
 | --- | --- |
-| `chart` |  |
-| `finance` |  |
-| `option_chain` |  |
-| `quote_response` |  |
-| `quote_summary` |  |
-| `spark` |  |
+| `error` |  |
+| `result` |  |
 
 Operations: Load.
 
@@ -345,7 +342,7 @@ Create an instance: `market = client.Market()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `dict` |  |
+| `result` | `list` |  |
 
 #### Example: Load
 
@@ -368,13 +365,13 @@ Create an instance: `screener = client.Screener()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `dict` |  |
 | `offset` | `int` |  |
 | `query` | `dict` |  |
-| `quote_type` | `str` |  |
+| `quoteType` | `str` |  |
+| `result` | `list` |  |
 | `size` | `int` |  |
-| `sort_field` | `str` |  |
-| `sort_type` | `str` |  |
+| `sortField` | `str` |  |
+| `sortType` | `str` |  |
 
 #### Example: Create
 
@@ -398,8 +395,8 @@ Create an instance: `search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `list` |  |
-| `quote` | `list` |  |
+| `news` | `list` |  |
+| `quotes` | `list` |  |
 
 #### Example: List
 
@@ -422,12 +419,8 @@ Create an instance: `ticker = client.Ticker()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chart` | `dict` |  |
-| `finance` | `dict` |  |
-| `option_chain` | `dict` |  |
-| `quote_response` | `dict` |  |
-| `quote_summary` | `dict` |  |
-| `spark` | `dict` |  |
+| `error` | `None` |  |
+| `result` | `list` |  |
 
 #### Example: Load
 
@@ -511,11 +504,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-download = client.Download()
-download.load({"id": "example_id"})
+market = client.Market()
+market.load({"region": "example"})
 
-# download.data_get() now returns the download data from the last load
-# download.match_get() returns the last match criteria
+# market.data_get() now returns the market data from the last load
+# market.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -43,7 +43,8 @@ func TestMarketDirect(t *testing.T) {
 		if setup.live {
 			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
 			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap.
+			// the IDs we can construct from setup.idmap — unless the model
+			// sets main.kit.test.live.strict.
 			if err != nil {
 				t.Skipf("load call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -108,21 +109,21 @@ func marketDirectSetup(mockres any) *marketDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"YAHOOFINANCE_TEST_MARKET_ENTID": map[string]any{},
-		"YAHOOFINANCE_TEST_LIVE":    "FALSE",
-		"YAHOOFINANCE_APIKEY":       "NONE",
+		"YAHOO_FINANCE_TEST_MARKET_ENTID": map[string]any{},
+		"YAHOO_FINANCE_TEST_LIVE":    "FALSE",
+		"YAHOO_FINANCE_APIKEY":       "NONE",
 	})
 
-	live := env["YAHOOFINANCE_TEST_LIVE"] == "TRUE"
+	live := env["YAHOO_FINANCE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["YAHOOFINANCE_APIKEY"],
+			"apikey": env["YAHOO_FINANCE_APIKEY"],
 		}
 		client := sdk.NewYahooFinanceSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["YAHOOFINANCE_TEST_MARKET_ENTID"]; ok {
+		if entidRaw, ok := env["YAHOO_FINANCE_TEST_MARKET_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

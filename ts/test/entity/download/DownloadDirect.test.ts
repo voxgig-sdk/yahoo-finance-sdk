@@ -19,11 +19,15 @@ import {
 describe('DownloadDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when YAHOOFINANCE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('YAHOOFINANCE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when YAHOO_FINANCE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('YAHOO_FINANCE_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new YahooFinanceSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -78,19 +82,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'YAHOOFINANCE_TEST_DOWNLOAD_ENTID': {},
-    'YAHOOFINANCE_TEST_LIVE': 'FALSE',
-    'YAHOOFINANCE_APIKEY': 'NONE',
+    'YAHOO_FINANCE_TEST_DOWNLOAD_ENTID': {},
+    'YAHOO_FINANCE_TEST_LIVE': 'FALSE',
+    'YAHOO_FINANCE_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.YAHOOFINANCE_TEST_LIVE
+  const live = 'TRUE' === env.YAHOO_FINANCE_TEST_LIVE
 
   if (live) {
     const client = new YahooFinanceSDK({
-      apikey: env.YAHOOFINANCE_APIKEY,
+      apikey: env.YAHOO_FINANCE_APIKEY,
     })
 
-    let idmap: any = env['YAHOOFINANCE_TEST_DOWNLOAD_ENTID']
+    let idmap: any = env['YAHOO_FINANCE_TEST_DOWNLOAD_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

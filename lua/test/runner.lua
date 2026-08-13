@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("YAHOOFINANCE_TEST_LIVE")
-  local override = runner.getenv("YAHOOFINANCE_TEST_OVERRIDE")
+  local live = runner.getenv("YAHOO_FINANCE_TEST_LIVE")
+  local override = runner.getenv("YAHOO_FINANCE_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("YAHOOFINANCE_TEST_EXPLAIN")
+  local explain = runner.getenv("YAHOO_FINANCE_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["YAHOOFINANCE_TEST_EXPLAIN"] = explain
+    m["YAHOO_FINANCE_TEST_EXPLAIN"] = explain
   end
 
   return m

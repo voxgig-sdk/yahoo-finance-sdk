@@ -26,8 +26,8 @@ import {
 describe('TickerEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when YAHOOFINANCE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('YAHOOFINANCE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when YAHOO_FINANCE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('YAHOO_FINANCE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = YahooFinanceSDK.test()

@@ -2,24 +2,24 @@
   "existing": {
     "search": {
       "SEARCH00": {
-        "new": [],
-        "quote": []
+        "news": [],
+        "quotes": []
       },
       "SEARCH01": {
-        "new": [],
-        "quote": []
+        "news": [],
+        "quotes": []
       },
       "SEARCH02": {
-        "new": [],
-        "quote": []
+        "news": [],
+        "quotes": []
       }
     }
   },
   "new": {
     "search": {
       "search_ref01": {
-        "new": [],
-        "quote": []
+        "news": [],
+        "quotes": []
       }
     }
   }

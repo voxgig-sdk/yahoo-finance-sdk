@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# YahooFinance SDK exists test
 
 import pytest
 from yahoofinance_sdk import YahooFinanceSDK

@@ -13,7 +13,7 @@ export interface DownloadLoadMatch {
 }
 
 export interface Market {
-  finance?: Record<string, any>
+  result?: any[]
 }
 
 export interface MarketLoadMatch {
@@ -21,42 +21,38 @@ export interface MarketLoadMatch {
 }
 
 export interface Screener {
-  finance?: Record<string, any>
   offset?: number
   query?: Record<string, any>
-  quote_type?: string
+  quoteType?: string
+  result?: any[]
   size?: number
-  sort_field?: string
-  sort_type?: string
+  sortField?: string
+  sortType?: string
 }
 
 export interface ScreenerCreateData {
-  finance?: Record<string, any>
   offset?: number
   query?: Record<string, any>
-  quote_type?: string
+  quoteType?: string
+  result?: any[]
   size?: number
-  sort_field?: string
-  sort_type?: string
+  sortField?: string
+  sortType?: string
 }
 
 export interface Search {
-  new?: any[]
-  quote?: any[]
+  news?: any[]
+  quotes?: any[]
 }
 
 export interface SearchListMatch {
-  new?: any[]
-  quote?: any[]
+  news?: any[]
+  quotes?: any[]
 }
 
 export interface Ticker {
-  chart?: Record<string, any>
-  finance?: Record<string, any>
-  option_chain?: Record<string, any>
-  quote_response?: Record<string, any>
-  quote_summary?: Record<string, any>
-  spark?: Record<string, any>
+  error?: null
+  result?: any[]
 }
 
 export interface TickerLoadMatch {

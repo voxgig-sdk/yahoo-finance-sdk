@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "download": {
           "active": true,
@@ -80,6 +85,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v7/finance/download/{symbol}",
                   "parts": [
@@ -122,9 +128,9 @@
           "fields": [
             {
               "active": true,
-              "name": "finance",
+              "name": "result",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$ARRAY`"
             }
           ],
           "name": "market",
@@ -148,6 +154,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v1/finance/trending/{region}",
                   "parts": [
@@ -163,7 +170,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.finance`"
                   }
                 }
               ]
@@ -185,12 +192,6 @@
           "fields": [
             {
               "active": true,
-              "name": "finance",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
               "name": "offset",
               "req": false,
               "type": "`$INTEGER`"
@@ -203,9 +204,15 @@
             },
             {
               "active": true,
-              "name": "quote_type",
+              "name": "quoteType",
               "req": false,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "result",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -215,13 +222,13 @@
             },
             {
               "active": true,
-              "name": "sort_field",
+              "name": "sortField",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "sort_type",
+              "name": "sortType",
               "req": false,
               "type": "`$STRING`"
             }
@@ -235,6 +242,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/v1/finance/screener",
                   "parts": [
@@ -245,7 +253,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.finance`"
                   }
                 }
               ]
@@ -263,13 +271,13 @@
           "fields": [
             {
               "active": true,
-              "name": "new",
+              "name": "news",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "quote",
+              "name": "quotes",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -312,6 +320,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v1/finance/search",
                   "parts": [
@@ -346,39 +355,15 @@
           "fields": [
             {
               "active": true,
-              "name": "chart",
+              "name": "error",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$NULL`"
             },
             {
               "active": true,
-              "name": "finance",
+              "name": "result",
               "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "option_chain",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "quote_response",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "quote_summary",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "spark",
-              "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$ARRAY`"
             }
           ],
           "name": "ticker",
@@ -445,6 +430,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v8/finance/chart/{symbol}",
                   "parts": [
@@ -465,7 +451,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.chart`"
                   }
                 },
                 {
@@ -500,6 +486,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v1/finance/spark",
                   "parts": [
@@ -516,7 +503,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.spark`"
                   }
                 },
                 {
@@ -543,6 +530,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v7/finance/options/{symbol}",
                   "parts": [
@@ -559,7 +547,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.optionChain`"
                   }
                 },
                 {
@@ -587,6 +575,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v10/finance/quoteSummary/{symbol}",
                   "parts": [
@@ -603,7 +592,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.quoteSummary`"
                   }
                 },
                 {
@@ -621,6 +610,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v6/finance/quote",
                   "parts": [
@@ -635,7 +625,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.quoteResponse`"
                   }
                 },
                 {
@@ -652,6 +642,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/ws/insights/v1/finance/insights",
                   "parts": [
@@ -668,7 +659,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.finance`"
                   }
                 }
               ]
@@ -960,18 +951,41 @@
         "website": "https://ranaroussi.github.io/yfinance"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "yahoo-finance"
+            "goversion": "",
+            "name": "yahoo-finance",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -993,22 +1007,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "yahoo-finance"
+            "goversion": "",
+            "name": "yahoo-finance",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1047,21 +1079,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "yahoo-finance"
+            "goversion": "",
+            "name": "yahoo-finance",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1100,12 +1150,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -1117,10 +1172,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "yahoo-finance"
+            "goversion": "",
+            "name": "yahoo-finance",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1142,22 +1210,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "yahoo-finance"
+            "goversion": "",
+            "name": "yahoo-finance",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1179,13 +1265,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1197,10 +1288,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "yahoo-finance"
+            "goversion": "",
+            "name": "yahoo-finance",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1222,13 +1326,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1245,10 +1354,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "yahoo-finance"
+            "goversion": "",
+            "name": "yahoo-finance",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1270,13 +1392,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1299,10 +1426,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "yahoo-finance"
+            "goversion": "",
+            "name": "yahoo-finance",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1324,9 +1464,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

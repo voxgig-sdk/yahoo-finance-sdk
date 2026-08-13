@@ -23,10 +23,10 @@ DownloadLoadMatch = Struct.new(
 
 # Market entity data model.
 #
-# @!attribute [rw] finance
-#   @return [Hash, nil]
+# @!attribute [rw] result
+#   @return [Array, nil]
 Market = Struct.new(
-  :finance,
+  :result,
   keyword_init: true
 )
 
@@ -41,122 +41,106 @@ MarketLoadMatch = Struct.new(
 
 # Screener entity data model.
 #
-# @!attribute [rw] finance
-#   @return [Hash, nil]
-#
 # @!attribute [rw] offset
 #   @return [Integer, nil]
 #
 # @!attribute [rw] query
 #   @return [Hash, nil]
 #
-# @!attribute [rw] quote_type
+# @!attribute [rw] quoteType
 #   @return [String, nil]
+#
+# @!attribute [rw] result
+#   @return [Array, nil]
 #
 # @!attribute [rw] size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] sort_field
+# @!attribute [rw] sortField
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_type
+# @!attribute [rw] sortType
 #   @return [String, nil]
 Screener = Struct.new(
-  :finance,
   :offset,
   :query,
-  :quote_type,
+  :quoteType,
+  :result,
   :size,
-  :sort_field,
-  :sort_type,
+  :sortField,
+  :sortType,
   keyword_init: true
 )
 
 # Request payload for Screener#create.
 #
-# @!attribute [rw] finance
-#   @return [Hash, nil]
-#
 # @!attribute [rw] offset
 #   @return [Integer, nil]
 #
 # @!attribute [rw] query
 #   @return [Hash, nil]
 #
-# @!attribute [rw] quote_type
+# @!attribute [rw] quoteType
 #   @return [String, nil]
+#
+# @!attribute [rw] result
+#   @return [Array, nil]
 #
 # @!attribute [rw] size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] sort_field
+# @!attribute [rw] sortField
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_type
+# @!attribute [rw] sortType
 #   @return [String, nil]
 ScreenerCreateData = Struct.new(
-  :finance,
   :offset,
   :query,
-  :quote_type,
+  :quoteType,
+  :result,
   :size,
-  :sort_field,
-  :sort_type,
+  :sortField,
+  :sortType,
   keyword_init: true
 )
 
 # Search entity data model.
 #
-# @!attribute [rw] new
+# @!attribute [rw] news
 #   @return [Array, nil]
 #
-# @!attribute [rw] quote
+# @!attribute [rw] quotes
 #   @return [Array, nil]
 Search = Struct.new(
-  :new,
-  :quote,
+  :news,
+  :quotes,
   keyword_init: true
 )
 
 # Request payload for Search#list.
 #
-# @!attribute [rw] new
+# @!attribute [rw] news
 #   @return [Array, nil]
 #
-# @!attribute [rw] quote
+# @!attribute [rw] quotes
 #   @return [Array, nil]
 SearchListMatch = Struct.new(
-  :new,
-  :quote,
+  :news,
+  :quotes,
   keyword_init: true
 )
 
 # Ticker entity data model.
 #
-# @!attribute [rw] chart
-#   @return [Hash, nil]
+# @!attribute [rw] error
+#   @return [NilClass, nil]
 #
-# @!attribute [rw] finance
-#   @return [Hash, nil]
-#
-# @!attribute [rw] option_chain
-#   @return [Hash, nil]
-#
-# @!attribute [rw] quote_response
-#   @return [Hash, nil]
-#
-# @!attribute [rw] quote_summary
-#   @return [Hash, nil]
-#
-# @!attribute [rw] spark
-#   @return [Hash, nil]
+# @!attribute [rw] result
+#   @return [Array, nil]
 Ticker = Struct.new(
-  :chart,
-  :finance,
-  :option_chain,
-  :quote_response,
-  :quote_summary,
-  :spark,
+  :error,
+  :result,
   keyword_init: true
 )
 

@@ -2,17 +2,17 @@
   "existing": {
     "market": {
       "MARKET00": {
-        "finance": {},
+        "result": [],
         "region": "REGION01",
         "id": "MARKET00"
       },
       "MARKET01": {
-        "finance": {},
+        "result": [],
         "region": "REGION01",
         "id": "MARKET01"
       },
       "MARKET02": {
-        "finance": {},
+        "result": [],
         "region": "REGION01",
         "id": "MARKET02"
       }
@@ -21,7 +21,7 @@
   "new": {
     "market": {
       "market_ref01": {
-        "finance": {}
+        "result": []
       }
     }
   }

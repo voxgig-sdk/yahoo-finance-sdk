@@ -58,8 +58,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const download = await client.Download().load({ id: "example_id" })
-  console.log(download)
+  const market = await client.Market().load({ region: "example" })
+  console.log(market)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = YahooFinanceSDK.test()
 
-const download = await client.Download().load({ id: 'test01' })
-// download is a bare entity populated with mock response data
-console.log(download)
+const market = await client.Market().load({ region: 'example_region' })
+// market is the entity, populated with mock response data
+// — call market.data() for the record itself
+console.log(market)
 ```
 
 You can also use the instance method:
@@ -142,10 +143,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Download()
+const entity = client.Market()
 
 // First call runs the operation and stores its result
-await entity.load({ id: 'example' })
+await entity.load({ region: 'example_region' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -310,7 +311,7 @@ API path: `/v7/finance/download/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
+| `result` |  |
 
 Operations: load.
 
@@ -320,13 +321,13 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `finance` |  |
 | `offset` |  |
 | `query` |  |
-| `quote_type` |  |
+| `quoteType` |  |
+| `result` |  |
 | `size` |  |
-| `sort_field` |  |
-| `sort_type` |  |
+| `sortField` |  |
+| `sortType` |  |
 
 Operations: create.
 
@@ -336,8 +337,8 @@ API path: `/v1/finance/screener`
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
-| `quote` |  |
+| `news` |  |
+| `quotes` |  |
 
 Operations: list.
 
@@ -347,12 +348,8 @@ API path: `/v1/finance/search`
 
 | Field | Description |
 | --- | --- |
-| `chart` |  |
-| `finance` |  |
-| `option_chain` |  |
-| `quote_response` |  |
-| `quote_summary` |  |
-| `spark` |  |
+| `error` |  |
+| `result` |  |
 
 Operations: load.
 
@@ -394,7 +391,7 @@ Create an instance: `const market = client.Market()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `Record<string, any>` |  |
+| `result` | `any[]` |  |
 
 #### Example: Load
 
@@ -417,13 +414,13 @@ Create an instance: `const screener = client.Screener()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `finance` | `Record<string, any>` |  |
 | `offset` | `number` |  |
 | `query` | `Record<string, any>` |  |
-| `quote_type` | `string` |  |
+| `quoteType` | `string` |  |
+| `result` | `any[]` |  |
 | `size` | `number` |  |
-| `sort_field` | `string` |  |
-| `sort_type` | `string` |  |
+| `sortField` | `string` |  |
+| `sortType` | `string` |  |
 
 #### Example: Create
 
@@ -447,8 +444,8 @@ Create an instance: `const search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `any[]` |  |
-| `quote` | `any[]` |  |
+| `news` | `any[]` |  |
+| `quotes` | `any[]` |  |
 
 #### Example: List
 
@@ -471,12 +468,8 @@ Create an instance: `const ticker = client.Ticker()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chart` | `Record<string, any>` |  |
-| `finance` | `Record<string, any>` |  |
-| `option_chain` | `Record<string, any>` |  |
-| `quote_response` | `Record<string, any>` |  |
-| `quote_summary` | `Record<string, any>` |  |
-| `spark` | `Record<string, any>` |  |
+| `error` | `null` |  |
+| `result` | `any[]` |  |
 
 #### Example: Load
 
@@ -554,11 +547,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const download = client.Download()
-await download.load({ id: "example_id" })
+const market = client.Market()
+await market.load({ region: "example" })
 
-// download.data() now returns the download data from the last `load`
-// download.match() returns { id: "example_id" }
+// market.data() now returns the market data from the last `load`
+// market.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

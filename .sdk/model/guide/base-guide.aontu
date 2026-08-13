@@ -15,12 +15,14 @@ guide: {
   entity: market: {
     path: "/v1/finance/trending/{region}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.finance`")|top
     }
   }
 
   entity: screener: {
     path: "/v1/finance/screener": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.finance`")|top
     }
   }
 
@@ -33,21 +35,27 @@ guide: {
   entity: ticker: {
     path: "/v1/finance/spark": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.spark`")|top
     }
     path: "/v10/finance/quoteSummary/{symbol}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.quoteSummary`")|top
     }
     path: "/v6/finance/quote": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.quoteResponse`")|top
     }
     path: "/v7/finance/options/{symbol}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.optionChain`")|top
     }
     path: "/v8/finance/chart/{symbol}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.chart`")|top
     }
     path: "/ws/insights/v1/finance/insights": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.finance`")|top
     }
   }
 

@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class YahooFinanceConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -44,39 +67,31 @@ class YahooFinanceConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'symbol',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'event',
                         'orig' => 'event',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '1d',
                         'kind' => 'query',
                         'name' => 'interval',
                         'orig' => 'interval',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'period1',
                         'orig' => 'period1',
@@ -84,7 +99,6 @@ class YahooFinanceConfig
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'period2',
                         'orig' => 'period2',
@@ -120,10 +134,8 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -133,11 +145,8 @@ class YahooFinanceConfig
         'market' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'result',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
           ],
           'name' => 'market',
@@ -147,18 +156,15 @@ class YahooFinanceConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'US',
                         'kind' => 'param',
                         'name' => 'region',
                         'orig' => 'region',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -180,10 +186,8 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body.finance`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -197,53 +201,32 @@ class YahooFinanceConfig
         'screener' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'offset',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'query',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'quoteType',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'result',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'size',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'sortField',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'sortType',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
           ],
           'name' => 'screener',
@@ -253,7 +236,6 @@ class YahooFinanceConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -268,10 +250,8 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body.finance`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -281,18 +261,12 @@ class YahooFinanceConfig
         'search' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'news',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'quotes',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
           ],
           'name' => 'search',
@@ -302,20 +276,16 @@ class YahooFinanceConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 4,
                         'kind' => 'query',
                         'name' => 'news_count',
                         'orig' => 'news_count',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'q',
                         'orig' => 'q',
@@ -323,12 +293,10 @@ class YahooFinanceConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 6,
                         'kind' => 'query',
                         'name' => 'quotes_count',
                         'orig' => 'quotes_count',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -352,10 +320,8 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -365,18 +331,12 @@ class YahooFinanceConfig
         'ticker' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'error',
-              'req' => false,
               'type' => '`$NULL`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'result',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
           ],
           'name' => 'ticker',
@@ -386,60 +346,47 @@ class YahooFinanceConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'AAPL',
                         'kind' => 'param',
                         'name' => 'symbol',
                         'orig' => 'symbol',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'event',
                         'orig' => 'event',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '1d',
                         'kind' => 'query',
                         'name' => 'interval',
                         'orig' => 'interval',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'period1',
                         'orig' => 'period1',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'period2',
                         'orig' => 'period2',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'range',
                         'orig' => 'range',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -467,32 +414,25 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body.chart`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => '5m',
                         'kind' => 'query',
                         'name' => 'interval',
                         'orig' => 'interval',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '1d',
                         'kind' => 'query',
                         'name' => 'range',
                         'orig' => 'range',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'symbol',
                         'orig' => 'symbol',
@@ -520,29 +460,23 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body.spark`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'symbol',
                         'orig' => 'symbol',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date',
                         'orig' => 'date',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -566,30 +500,24 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body.optionChain`',
                   ],
-                  'index$' => 2,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'symbol',
                         'orig' => 'symbol',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'assetProfile,financialData,defaultKeyStatistics',
                         'kind' => 'query',
                         'name' => 'module',
                         'orig' => 'module',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -613,14 +541,11 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body.quoteSummary`',
                   ],
-                  'index$' => 3,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'AAPL,MSFT,GOOGL',
                         'kind' => 'query',
                         'name' => 'symbol',
@@ -647,14 +572,11 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body.quoteResponse`',
                   ],
-                  'index$' => 4,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'symbol',
                         'orig' => 'symbol',
@@ -682,10 +604,8 @@ class YahooFinanceConfig
                     'req' => '`reqdata`',
                     'res' => '`body.finance`',
                   ],
-                  'index$' => 5,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [

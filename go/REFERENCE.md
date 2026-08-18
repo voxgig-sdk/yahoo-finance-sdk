@@ -331,7 +331,7 @@ fmt.Println(ticker.GetName()) // "ticker"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Ticker(nil).Load(nil, nil)
+result, err := client.Ticker(nil).Load(map[string]any{"symbol": "symbol"}, nil)
 if err != nil {
     panic(err)
 }

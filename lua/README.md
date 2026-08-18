@@ -410,7 +410,7 @@ Create an instance: `local ticker = client:Ticker(nil)`
 #### Example: Load
 
 ```lua
-local ticker, err = client:Ticker():load()
+local ticker, err = client:Ticker():load({ symbol = "symbol" })
 ```
 
 

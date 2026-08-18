@@ -458,7 +458,7 @@ Create an instance: `ticker := client.Ticker(nil)`
 #### Example: Load
 
 ```go
-ticker, err := client.Ticker(nil).Load(nil, nil)
+ticker, err := client.Ticker(nil).Load(map[string]any{"symbol": "symbol"}, nil)
 if err != nil {
     panic(err)
 }

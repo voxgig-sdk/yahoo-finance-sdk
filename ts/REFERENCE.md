@@ -377,7 +377,7 @@ const ticker = client.Ticker()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Ticker().load()
+const result = await client.Ticker().load({ symbol: 'symbol' })
 ```
 
 ### Common Methods

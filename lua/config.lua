@@ -1,5 +1,8 @@
 -- YahooFinance SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -38,39 +41,31 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "symbol",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "event",
                       ["orig"] = "event",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "1d",
                       ["kind"] = "query",
                       ["name"] = "interval",
                       ["orig"] = "interval",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "period1",
                       ["orig"] = "period1",
@@ -78,7 +73,6 @@ local function make_config()
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "period2",
                       ["orig"] = "period2",
@@ -114,10 +108,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -127,11 +119,8 @@ local function make_config()
       ["market"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "result",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 0,
           },
         },
         ["name"] = "market",
@@ -141,18 +130,15 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "US",
                       ["kind"] = "param",
                       ["name"] = "region",
                       ["orig"] = "region",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                 },
@@ -174,10 +160,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.finance`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -191,53 +175,32 @@ local function make_config()
       ["screener"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "offset",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "query",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "quoteType",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "result",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "size",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "sortField",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "sortType",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
           },
         },
         ["name"] = "screener",
@@ -247,7 +210,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
@@ -262,10 +224,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.finance`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "create",
           },
         },
         ["relations"] = {
@@ -275,18 +235,12 @@ local function make_config()
       ["search"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "news",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "quotes",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 1,
           },
         },
         ["name"] = "search",
@@ -296,20 +250,16 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = 4,
                       ["kind"] = "query",
                       ["name"] = "news_count",
                       ["orig"] = "news_count",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "q",
                       ["orig"] = "q",
@@ -317,12 +267,10 @@ local function make_config()
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = 6,
                       ["kind"] = "query",
                       ["name"] = "quotes_count",
                       ["orig"] = "quotes_count",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                   },
@@ -346,10 +294,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -359,18 +305,12 @@ local function make_config()
       ["ticker"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "error",
-            ["req"] = false,
             ["type"] = "`$NULL`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "result",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 1,
           },
         },
         ["name"] = "ticker",
@@ -380,60 +320,47 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "AAPL",
                       ["kind"] = "param",
                       ["name"] = "symbol",
                       ["orig"] = "symbol",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "event",
                       ["orig"] = "event",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "1d",
                       ["kind"] = "query",
                       ["name"] = "interval",
                       ["orig"] = "interval",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "period1",
                       ["orig"] = "period1",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "period2",
                       ["orig"] = "period2",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "range",
                       ["orig"] = "range",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -461,32 +388,25 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.chart`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "5m",
                       ["kind"] = "query",
                       ["name"] = "interval",
                       ["orig"] = "interval",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "1d",
                       ["kind"] = "query",
                       ["name"] = "range",
                       ["orig"] = "range",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "symbol",
                       ["orig"] = "symbol",
@@ -514,29 +434,23 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.spark`",
                 },
-                ["index$"] = 1,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "symbol",
                       ["orig"] = "symbol",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "date",
                       ["orig"] = "date",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                   },
@@ -560,30 +474,24 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.optionChain`",
                 },
-                ["index$"] = 2,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "symbol",
                       ["orig"] = "symbol",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "assetProfile,financialData,defaultKeyStatistics",
                       ["kind"] = "query",
                       ["name"] = "module",
                       ["orig"] = "module",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -607,14 +515,11 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.quoteSummary`",
                 },
-                ["index$"] = 3,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "AAPL,MSFT,GOOGL",
                       ["kind"] = "query",
                       ["name"] = "symbol",
@@ -641,14 +546,11 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.quoteResponse`",
                 },
-                ["index$"] = 4,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "symbol",
                       ["orig"] = "symbol",
@@ -676,10 +578,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.finance`",
                 },
-                ["index$"] = 5,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {

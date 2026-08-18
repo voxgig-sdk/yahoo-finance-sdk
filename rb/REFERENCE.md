@@ -330,7 +330,7 @@ ticker = client.Ticker
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Ticker.load()
+result = client.Ticker.load({ "symbol" => "symbol" })
 ```
 
 ### Common Methods

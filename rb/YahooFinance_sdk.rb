@@ -28,7 +28,7 @@ class YahooFinanceSDK
     utility = YahooFinanceUtility.new
     @_utility = utility
 
-    config = YahooFinanceConfig.make_config
+    config = YahooFinanceConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

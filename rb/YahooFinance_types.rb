@@ -147,7 +147,7 @@ Ticker = Struct.new(
 # Request payload for Ticker#load.
 #
 # @!attribute [rw] symbol
-#   @return [String, nil]
+#   @return [String]
 TickerLoadMatch = Struct.new(
   :symbol,
   keyword_init: true

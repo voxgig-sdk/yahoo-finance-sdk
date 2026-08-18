@@ -425,7 +425,7 @@ Create an instance: `ticker = client.Ticker()`
 #### Example: Load
 
 ```python
-ticker = client.Ticker().load()
+ticker = client.Ticker().load({"symbol": "symbol"})
 ```
 
 

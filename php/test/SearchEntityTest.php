@@ -40,7 +40,7 @@ class SearchEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = YahooFinanceConfig::make_config();
+        $cfg = YahooFinanceConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = YahooFinanceSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

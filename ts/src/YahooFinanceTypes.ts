@@ -56,6 +56,6 @@ export interface Ticker {
 }
 
 export interface TickerLoadMatch {
-  symbol?: string
+  symbol: string
 }
 

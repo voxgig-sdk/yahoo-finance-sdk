@@ -1,7 +1,30 @@
 # YahooFinance SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "YahooFinance",
@@ -39,39 +62,31 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "id",
                       "orig": "symbol",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "event",
                       "orig": "event",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "1d",
                       "kind": "query",
                       "name": "interval",
                       "orig": "interval",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "period1",
                       "orig": "period1",
@@ -79,7 +94,6 @@ def make_config():
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "period2",
                       "orig": "period2",
@@ -115,10 +129,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -128,11 +140,8 @@ def make_config():
       "market": {
         "fields": [
           {
-            "active": True,
             "name": "result",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
         ],
         "name": "market",
@@ -142,18 +151,15 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "example": "US",
                       "kind": "param",
                       "name": "region",
                       "orig": "region",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                 },
@@ -175,10 +181,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.finance`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -192,53 +196,32 @@ def make_config():
       "screener": {
         "fields": [
           {
-            "active": True,
             "name": "offset",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "query",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "quoteType",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "result",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "size",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "sortField",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 5,
           },
           {
-            "active": True,
             "name": "sortType",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 6,
           },
         ],
         "name": "screener",
@@ -248,7 +231,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "active": True,
                 "args": {},
                 "kind": "http",
                 "method": "POST",
@@ -263,10 +245,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.finance`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "create",
           },
         },
         "relations": {
@@ -276,18 +256,12 @@ def make_config():
       "search": {
         "fields": [
           {
-            "active": True,
             "name": "news",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "quotes",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 1,
           },
         ],
         "name": "search",
@@ -297,20 +271,16 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": 4,
                       "kind": "query",
                       "name": "news_count",
                       "orig": "news_count",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "q",
                       "orig": "q",
@@ -318,12 +288,10 @@ def make_config():
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": 6,
                       "kind": "query",
                       "name": "quotes_count",
                       "orig": "quotes_count",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -347,10 +315,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -360,18 +326,12 @@ def make_config():
       "ticker": {
         "fields": [
           {
-            "active": True,
             "name": "error",
-            "req": False,
             "type": "`$NULL`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "result",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 1,
           },
         ],
         "name": "ticker",
@@ -381,60 +341,47 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "example": "AAPL",
                       "kind": "param",
                       "name": "symbol",
                       "orig": "symbol",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "event",
                       "orig": "event",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "1d",
                       "kind": "query",
                       "name": "interval",
                       "orig": "interval",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "period1",
                       "orig": "period1",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "period2",
                       "orig": "period2",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "range",
                       "orig": "range",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -462,32 +409,25 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.chart`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "5m",
                       "kind": "query",
                       "name": "interval",
                       "orig": "interval",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "1d",
                       "kind": "query",
                       "name": "range",
                       "orig": "range",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "symbol",
                       "orig": "symbol",
@@ -515,29 +455,23 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.spark`",
                 },
-                "index$": 1,
               },
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "symbol",
                       "orig": "symbol",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "date",
                       "orig": "date",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -561,30 +495,24 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.optionChain`",
                 },
-                "index$": 2,
               },
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "symbol",
                       "orig": "symbol",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "example": "assetProfile,financialData,defaultKeyStatistics",
                       "kind": "query",
                       "name": "module",
                       "orig": "module",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -608,14 +536,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.quoteSummary`",
                 },
-                "index$": 3,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "AAPL,MSFT,GOOGL",
                       "kind": "query",
                       "name": "symbol",
@@ -642,14 +567,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.quoteResponse`",
                 },
-                "index$": 4,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "symbol",
                       "orig": "symbol",
@@ -677,10 +599,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.finance`",
                 },
-                "index$": 5,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {

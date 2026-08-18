@@ -83,6 +83,6 @@ class Ticker
 /** Request payload for Ticker#load. */
 class TickerLoadMatch
 {
-    public ?string $symbol = null;
+    public string $symbol;
 }
 

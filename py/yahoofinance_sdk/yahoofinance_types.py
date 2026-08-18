@@ -67,5 +67,5 @@ class Ticker(TypedDict, total=False):
     result: list
 
 
-class TickerLoadMatch(TypedDict, total=False):
+class TickerLoadMatch(TypedDict):
     symbol: str

@@ -474,7 +474,7 @@ Create an instance: `const ticker = client.Ticker()`
 #### Example: Load
 
 ```ts
-const ticker = await client.Ticker().load()
+const ticker = await client.Ticker().load({ symbol: 'symbol' })
 ```
 
 

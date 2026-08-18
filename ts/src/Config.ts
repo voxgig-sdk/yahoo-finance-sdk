@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://query1.finance.yahoo.com',
+    base: "https://query1.finance.yahoo.com",
 
     auth: {
       prefix: '',
@@ -77,39 +77,31 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "event",
                     "orig": "event",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "1d",
                     "kind": "query",
                     "name": "interval",
                     "orig": "interval",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "period1",
                     "orig": "period1",
@@ -117,7 +109,6 @@ class Config {
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "period2",
                     "orig": "period2",
@@ -152,11 +143,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -166,11 +155,8 @@ class Config {
     "market": {
       "fields": [
         {
-          "active": true,
           "name": "result",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         }
       ],
       "name": "market",
@@ -180,18 +166,15 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "example": "US",
                     "kind": "param",
                     "name": "region",
                     "orig": "region",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -212,11 +195,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.finance`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -230,53 +211,32 @@ class Config {
     "screener": {
       "fields": [
         {
-          "active": true,
           "name": "offset",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "query",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "quoteType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "result",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 3
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "size",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "sortField",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sortType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         }
       ],
       "name": "screener",
@@ -286,7 +246,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -300,11 +259,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.finance`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -314,18 +271,12 @@ class Config {
     "search": {
       "fields": [
         {
-          "active": true,
           "name": "news",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "quotes",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         }
       ],
       "name": "search",
@@ -335,20 +286,16 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": 4,
                     "kind": "query",
                     "name": "news_count",
                     "orig": "news_count",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
@@ -356,12 +303,10 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 6,
                     "kind": "query",
                     "name": "quotes_count",
                     "orig": "quotes_count",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -384,11 +329,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -398,18 +341,12 @@ class Config {
     "ticker": {
       "fields": [
         {
-          "active": true,
           "name": "error",
-          "req": false,
-          "type": "`$NULL`",
-          "index$": 0
+          "type": "`$NULL`"
         },
         {
-          "active": true,
           "name": "result",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         }
       ],
       "name": "ticker",
@@ -419,60 +356,47 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "example": "AAPL",
                     "kind": "param",
                     "name": "symbol",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "event",
                     "orig": "event",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "1d",
                     "kind": "query",
                     "name": "interval",
                     "orig": "interval",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "period1",
                     "orig": "period1",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "period2",
                     "orig": "period2",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "range",
                     "orig": "range",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -499,33 +423,26 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.chart`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "5m",
                     "kind": "query",
                     "name": "interval",
                     "orig": "interval",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "1d",
                     "kind": "query",
                     "name": "range",
                     "orig": "range",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "symbol",
                     "orig": "symbol",
@@ -552,30 +469,24 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.spark`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "symbol",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "date",
                     "orig": "date",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -598,31 +509,25 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.optionChain`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "symbol",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "assetProfile,financialData,defaultKeyStatistics",
                     "kind": "query",
                     "name": "module",
                     "orig": "module",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -645,15 +550,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.quoteSummary`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "AAPL,MSFT,GOOGL",
                     "kind": "query",
                     "name": "symbol",
@@ -679,15 +581,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.quoteResponse`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "symbol",
                     "orig": "symbol",
@@ -714,11 +613,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.finance`"
-              },
-              "index$": 5
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {

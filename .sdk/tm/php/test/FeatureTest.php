@@ -149,7 +149,7 @@ class FtHarness
     public static function hasFeature(string $name): bool
     {
         if (self::$feature_config === null) {
-            $config = YahooFinanceConfig::make_config();
+            $config = YahooFinanceConfig::shared_config();
             $f = $config['feature'] ?? [];
             self::$feature_config = is_array($f) ? $f : [];
         }

@@ -40,7 +40,7 @@ class YahooFinanceSDK
         $utility = new YahooFinanceUtility();
         $this->_utility = $utility;
 
-        $config = YahooFinanceConfig::make_config();
+        $config = YahooFinanceConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

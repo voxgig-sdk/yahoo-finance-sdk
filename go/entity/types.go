@@ -73,7 +73,7 @@ type Ticker struct {
 
 // TickerLoadMatch is the typed request payload for Ticker.LoadTyped.
 type TickerLoadMatch struct {
-	Symbol *string `json:"symbol,omitempty"`
+	Symbol string `json:"symbol"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

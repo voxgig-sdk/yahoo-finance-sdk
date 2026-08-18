@@ -433,7 +433,7 @@ Create an instance: `$ticker = $client->Ticker();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Ticker record (throws on error).
-$ticker = $client->Ticker()->load();
+$ticker = $client->Ticker()->load(["symbol" => "symbol"]);
 ```
 
 

@@ -327,7 +327,7 @@ local ticker = client:Ticker(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Ticker():load()
+local result, err = client:Ticker():load({ symbol = "symbol" })
 ```
 
 ### Common Methods

@@ -23,6 +23,7 @@ build = {
   modules = {
     ["yahoo-finance_sdk"] = "yahoo-finance_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

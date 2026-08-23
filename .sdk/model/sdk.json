@@ -196,12 +196,14 @@
               "active": true,
               "name": "offset",
               "req": false,
+              "short": "Offset for pagination",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "query",
               "req": false,
+              "short": "Query criteria",
               "type": "`$OBJECT`"
             },
             {
@@ -220,12 +222,14 @@
               "active": true,
               "name": "size",
               "req": false,
+              "short": "Number of results to return",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "sortField",
               "req": false,
+              "short": "Field to sort by",
               "type": "`$STRING`"
             },
             {

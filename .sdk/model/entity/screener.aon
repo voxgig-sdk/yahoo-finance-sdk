@@ -8,11 +8,13 @@ main: kit: entity: screener: {
     {
       name: "offset"
       req: false
+      short: "Offset for pagination"
       type: "`$INTEGER`"
     }
     {
       name: "query"
       req: false
+      short: "Query criteria"
       type: "`$OBJECT`"
     }
     {
@@ -28,11 +30,13 @@ main: kit: entity: screener: {
     {
       name: "size"
       req: false
+      short: "Number of results to return"
       type: "`$INTEGER`"
     }
     {
       name: "sortField"
       req: false
+      short: "Field to sort by"
       type: "`$STRING`"
     }
     {

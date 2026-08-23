@@ -205,12 +205,12 @@ local screener = client:Screener(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `offset` | `number` | No |  |
-| `query` | `table` | No |  |
+| `offset` | `number` | No | Offset for pagination |
+| `query` | `table` | No | Query criteria |
 | `quoteType` | `string` | No |  |
 | `result` | `table` | No |  |
-| `size` | `number` | No |  |
-| `sortField` | `string` | No |  |
+| `size` | `number` | No | Number of results to return |
+| `sortField` | `string` | No | Field to sort by |
 | `sortType` | `string` | No |  |
 
 ### Operations

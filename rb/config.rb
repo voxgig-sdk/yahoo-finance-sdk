@@ -19,6 +19,9 @@ module YahooFinanceConfig
     {
       "main" => {
         "name" => "YahooFinance",
+        "slug" => "yahoo-finance",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -188,10 +191,12 @@ module YahooFinanceConfig
           "fields" => [
             {
               "name" => "offset",
+              "short" => "Offset for pagination",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "query",
+              "short" => "Query criteria",
               "type" => "`$OBJECT`",
             },
             {
@@ -204,10 +209,12 @@ module YahooFinanceConfig
             },
             {
               "name" => "size",
+              "short" => "Number of results to return",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "sortField",
+              "short" => "Field to sort by",
               "type" => "`$STRING`",
             },
             {

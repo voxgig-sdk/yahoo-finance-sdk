@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "YahooFinance",
+      slug = "yahoo-finance",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -176,10 +179,12 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "offset",
+            ["short"] = "Offset for pagination",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "query",
+            ["short"] = "Query criteria",
             ["type"] = "`$OBJECT`",
           },
           {
@@ -192,10 +197,12 @@ local function make_config()
           },
           {
             ["name"] = "size",
+            ["short"] = "Number of results to return",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "sortField",
+            ["short"] = "Field to sort by",
             ["type"] = "`$STRING`",
           },
           {

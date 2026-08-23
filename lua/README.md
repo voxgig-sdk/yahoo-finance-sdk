@@ -257,12 +257,12 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `offset` |  |
-| `query` |  |
+| `offset` | Offset for pagination |
+| `query` | Query criteria |
 | `quoteType` |  |
 | `result` |  |
-| `size` |  |
-| `sortField` |  |
+| `size` | Number of results to return |
+| `sortField` | Field to sort by |
 | `sortType` |  |
 
 Operations: Create.
@@ -350,12 +350,12 @@ Create an instance: `local screener = client:Screener(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `offset` | `number` |  |
-| `query` | `table` |  |
+| `offset` | `number` | Offset for pagination |
+| `query` | `table` | Query criteria |
 | `quoteType` | `string` |  |
 | `result` | `table` |  |
-| `size` | `number` |  |
-| `sortField` | `string` |  |
+| `size` | `number` | Number of results to return |
+| `sortField` | `string` | Field to sort by |
 | `sortType` | `string` |  |
 
 #### Example: Create

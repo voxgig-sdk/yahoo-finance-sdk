@@ -276,12 +276,12 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `offset` |  |
-| `query` |  |
+| `offset` | Offset for pagination |
+| `query` | Query criteria |
 | `quoteType` |  |
 | `result` |  |
-| `size` |  |
-| `sortField` |  |
+| `size` | Number of results to return |
+| `sortField` | Field to sort by |
 | `sortType` |  |
 
 Operations: Create.
@@ -371,12 +371,12 @@ Create an instance: `$screener = $client->Screener();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `offset` | `int` |  |
-| `query` | `array` |  |
+| `offset` | `int` | Offset for pagination |
+| `query` | `array` | Query criteria |
 | `quoteType` | `string` |  |
 | `result` | `array` |  |
-| `size` | `int` |  |
-| `sortField` | `string` |  |
+| `size` | `int` | Number of results to return |
+| `sortField` | `string` | Field to sort by |
 | `sortType` | `string` |  |
 
 #### Example: Create

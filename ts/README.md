@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -321,12 +321,12 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `offset` |  |
-| `query` |  |
+| `offset` | Offset for pagination |
+| `query` | Query criteria |
 | `quoteType` |  |
 | `result` |  |
-| `size` |  |
-| `sortField` |  |
+| `size` | Number of results to return |
+| `sortField` | Field to sort by |
 | `sortType` |  |
 
 Operations: create.
@@ -414,12 +414,12 @@ Create an instance: `const screener = client.Screener()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `offset` | `number` |  |
-| `query` | `Record<string, any>` |  |
+| `offset` | `number` | Offset for pagination |
+| `query` | `Record<string, any>` | Query criteria |
 | `quoteType` | `string` |  |
 | `result` | `any[]` |  |
-| `size` | `number` |  |
-| `sortField` | `string` |  |
+| `size` | `number` | Number of results to return |
+| `sortField` | `string` | Field to sort by |
 | `sortType` | `string` |  |
 
 #### Example: Create

@@ -207,12 +207,12 @@ $screener = $client->Screener();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `offset` | `int` | No |  |
-| `query` | `array` | No |  |
+| `offset` | `int` | No | Offset for pagination |
+| `query` | `array` | No | Query criteria |
 | `quoteType` | `string` | No |  |
 | `result` | `array` | No |  |
-| `size` | `int` | No |  |
-| `sortField` | `string` | No |  |
+| `size` | `int` | No | Number of results to return |
+| `sortField` | `string` | No | Field to sort by |
 | `sortType` | `string` | No |  |
 
 ### Operations

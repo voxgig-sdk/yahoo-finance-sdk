@@ -259,12 +259,12 @@ const screener = client.Screener()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `offset` | `number` | No |  |
-| `query` | `Record<string, any>` | No |  |
+| `offset` | `number` | No | Offset for pagination |
+| `query` | `Record<string, any>` | No | Query criteria |
 | `quoteType` | `string` | No |  |
 | `result` | `any[]` | No |  |
-| `size` | `number` | No |  |
-| `sortField` | `string` | No |  |
+| `size` | `number` | No | Number of results to return |
+| `sortField` | `string` | No | Field to sort by |
 | `sortType` | `string` | No |  |
 
 ### Operations

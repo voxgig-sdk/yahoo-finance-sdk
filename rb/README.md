@@ -266,12 +266,12 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `offset` |  |
-| `query` |  |
+| `offset` | Offset for pagination |
+| `query` | Query criteria |
 | `quoteType` |  |
 | `result` |  |
-| `size` |  |
-| `sortField` |  |
+| `size` | Number of results to return |
+| `sortField` | Field to sort by |
 | `sortType` |  |
 
 Operations: Create.
@@ -361,12 +361,12 @@ Create an instance: `screener = client.Screener`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `offset` | `Integer` |  |
-| `query` | `Hash` |  |
+| `offset` | `Integer` | Offset for pagination |
+| `query` | `Hash` | Query criteria |
 | `quoteType` | `String` |  |
 | `result` | `Array` |  |
-| `size` | `Integer` |  |
-| `sortField` | `String` |  |
+| `size` | `Integer` | Number of results to return |
+| `sortField` | `String` | Field to sort by |
 | `sortType` | `String` |  |
 
 #### Example: Create

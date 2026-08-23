@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "YahooFinance",
+			"slug": "yahoo-finance",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -180,10 +183,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "offset",
+						"short": "Offset for pagination",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "query",
+						"short": "Query criteria",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
@@ -196,10 +201,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "size",
+						"short": "Number of results to return",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "sortField",
+						"short": "Field to sort by",
 						"type": "`$STRING`",
 					},
 					map[string]any{

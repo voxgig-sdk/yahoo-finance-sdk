@@ -200,12 +200,12 @@ screener = client.Screener()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `offset` | `int` | No |  |
-| `query` | `dict` | No |  |
+| `offset` | `int` | No | Offset for pagination |
+| `query` | `dict` | No | Query criteria |
 | `quoteType` | `str` | No |  |
 | `result` | `list` | No |  |
-| `size` | `int` | No |  |
-| `sortField` | `str` | No |  |
+| `size` | `int` | No | Number of results to return |
+| `sortField` | `str` | No | Field to sort by |
 | `sortType` | `str` | No |  |
 
 ### Operations

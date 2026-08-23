@@ -6,7 +6,7 @@ The Golang SDK for the YahooFinance API — an entity-oriented client using stan
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Download(nil)` — each with the same small set of operations (`List`, `Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -289,12 +289,12 @@ API path: `/v1/finance/trending/{region}`
 
 | Field | Description |
 | --- | --- |
-| `"offset"` |  |
-| `"query"` |  |
+| `"offset"` | Offset for pagination |
+| `"query"` | Query criteria |
 | `"quoteType"` |  |
 | `"result"` |  |
-| `"size"` |  |
-| `"sortField"` |  |
+| `"size"` | Number of results to return |
+| `"sortField"` | Field to sort by |
 | `"sortType"` |  |
 
 Operations: Create.
@@ -390,12 +390,12 @@ Create an instance: `screener := client.Screener(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `offset` | `int` |  |
-| `query` | `map[string]any` |  |
+| `offset` | `int` | Offset for pagination |
+| `query` | `map[string]any` | Query criteria |
 | `quoteType` | `string` |  |
 | `result` | `[]any` |  |
-| `size` | `int` |  |
-| `sortField` | `string` |  |
+| `size` | `int` | Number of results to return |
+| `sortField` | `string` | Field to sort by |
 | `sortType` | `string` |  |
 
 #### Example: Create

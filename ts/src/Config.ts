@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'YahooFinance',
+        slug: "yahoo-finance",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -212,10 +223,12 @@ class Config {
       "fields": [
         {
           "name": "offset",
+          "short": "Offset for pagination",
           "type": "`$INTEGER`"
         },
         {
           "name": "query",
+          "short": "Query criteria",
           "type": "`$OBJECT`"
         },
         {
@@ -228,10 +241,12 @@ class Config {
         },
         {
           "name": "size",
+          "short": "Number of results to return",
           "type": "`$INTEGER`"
         },
         {
           "name": "sortField",
+          "short": "Field to sort by",
           "type": "`$STRING`"
         },
         {

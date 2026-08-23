@@ -33,6 +33,9 @@ class YahooFinanceConfig
         return [
             "main" => [
                 "name" => "YahooFinance",
+                "slug" => "yahoo-finance",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -202,10 +205,12 @@ class YahooFinanceConfig
           'fields' => [
             [
               'name' => 'offset',
+              'short' => 'Offset for pagination',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'query',
+              'short' => 'Query criteria',
               'type' => '`$OBJECT`',
             ],
             [
@@ -218,10 +223,12 @@ class YahooFinanceConfig
             ],
             [
               'name' => 'size',
+              'short' => 'Number of results to return',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'sortField',
+              'short' => 'Field to sort by',
               'type' => '`$STRING`',
             ],
             [

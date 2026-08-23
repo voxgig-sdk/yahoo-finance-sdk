@@ -208,12 +208,12 @@ screener = client.Screener
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `offset` | `Integer` | No |  |
-| `query` | `Hash` | No |  |
+| `offset` | `Integer` | No | Offset for pagination |
+| `query` | `Hash` | No | Query criteria |
 | `quoteType` | `String` | No |  |
 | `result` | `Array` | No |  |
-| `size` | `Integer` | No |  |
-| `sortField` | `String` | No |  |
+| `size` | `Integer` | No | Number of results to return |
+| `sortField` | `String` | No | Field to sort by |
 | `sortType` | `String` | No |  |
 
 ### Operations

@@ -211,12 +211,12 @@ fmt.Println(screener.GetName()) // "screener"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `offset` | `int` | No |  |
-| `query` | `map[string]any` | No |  |
+| `offset` | `int` | No | Offset for pagination |
+| `query` | `map[string]any` | No | Query criteria |
 | `quoteType` | `string` | No |  |
 | `result` | `[]any` | No |  |
-| `size` | `int` | No |  |
-| `sortField` | `string` | No |  |
+| `size` | `int` | No | Number of results to return |
+| `sortField` | `string` | No | Field to sort by |
 | `sortType` | `string` | No |  |
 
 ### Operations

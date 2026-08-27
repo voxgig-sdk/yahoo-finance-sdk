@@ -44,10 +44,14 @@ describe("DownloadEntity", function()
 
     -- LOAD
     local download_ref01_ent = client:Download(nil)
-    local download_ref01_match_dt0 = {}
+    local download_ref01_match_dt0 = {
+      id = download_ref01_data["id"],
+    }
     local download_ref01_data_dt0_loaded, err = download_ref01_ent:load(download_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(download_ref01_data_dt0_loaded)
+    local download_ref01_data_dt0_load_result = helpers.to_map(type(download_ref01_data_dt0_loaded) == 'table' and download_ref01_data_dt0_loaded.data_get and download_ref01_data_dt0_loaded:data_get() or download_ref01_data_dt0_loaded)
+    assert.is_not_nil(download_ref01_data_dt0_load_result)
+    assert.are.equal(download_ref01_data_dt0_load_result["id"], download_ref01_data["id"])
 
   end)
 end)

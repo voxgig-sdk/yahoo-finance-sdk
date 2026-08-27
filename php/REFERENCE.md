@@ -105,6 +105,12 @@ Prepare a fetch definition without sending the request. Returns the
 $download = $client->Download();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`

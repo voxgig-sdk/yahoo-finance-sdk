@@ -61,13 +61,19 @@ func TestDownloadEntity(t *testing.T) {
 
 		// LOAD
 		downloadRef01Ent := client.Download(nil)
-		downloadRef01MatchDt0 := map[string]any{}
+		downloadRef01MatchDt0 := map[string]any{
+			"id": downloadRef01Data["id"],
+		}
 		downloadRef01DataDt0Loaded, err := downloadRef01Ent.Load(downloadRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if downloadRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		downloadRef01DataDt0LoadResult := core.ToMapAny(entityData(downloadRef01DataDt0Loaded))
+		if downloadRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if downloadRef01DataDt0LoadResult["id"] != downloadRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

@@ -7,6 +7,7 @@
 -- edit by hand.
 
 ---@class Download
+---@field id? string
 
 ---@class DownloadLoadMatch
 ---@field id string

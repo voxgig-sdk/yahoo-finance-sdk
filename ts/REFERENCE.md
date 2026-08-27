@@ -161,6 +161,12 @@ Alias for `YahooFinanceSDK.test()`.
 const download = client.Download()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`

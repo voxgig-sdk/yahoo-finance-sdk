@@ -48,9 +48,13 @@ class DownloadEntityTest extends TestCase
 
         // LOAD
         $download_ref01_ent = $client->Download(null);
-        $download_ref01_match_dt0 = [];
+        $download_ref01_match_dt0 = [
+            "id" => $download_ref01_data["id"],
+        ];
         $download_ref01_data_dt0_loaded = $download_ref01_ent->load($download_ref01_match_dt0, null);
-        $this->assertNotNull($download_ref01_data_dt0_loaded);
+        $download_ref01_data_dt0_load_result = Helpers::to_map(is_object($download_ref01_data_dt0_loaded) && method_exists($download_ref01_data_dt0_loaded, 'data_get') ? $download_ref01_data_dt0_loaded->data_get() : $download_ref01_data_dt0_loaded);
+        $this->assertNotNull($download_ref01_data_dt0_load_result);
+        $this->assertEquals($download_ref01_data_dt0_load_result["id"], $download_ref01_data["id"]);
 
     }
 }

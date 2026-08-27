@@ -16,8 +16,8 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class Download(TypedDict):
-    pass
+class Download(TypedDict, total=False):
+    id: str
 
 
 class DownloadLoadMatch(TypedDict):

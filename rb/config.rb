@@ -28,6 +28,7 @@ module YahooFinanceConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -48,7 +49,12 @@ module YahooFinanceConfig
       },
       "entity" => {
         "download" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "download",
           "op" => {
             "load" => {

@@ -100,6 +100,12 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 download = client.Download()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`

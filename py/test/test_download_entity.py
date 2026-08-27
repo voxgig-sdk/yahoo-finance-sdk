@@ -48,9 +48,13 @@ class TestDownloadEntity:
 
         # LOAD
         download_ref01_ent = client.Download(None)
-        download_ref01_match_dt0 = {}
+        download_ref01_match_dt0 = {
+            "id": download_ref01_data["id"],
+        }
         download_ref01_data_dt0_loaded = download_ref01_ent.load(download_ref01_match_dt0, None)
-        assert download_ref01_data_dt0_loaded is not None
+        download_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(download_ref01_data_dt0_loaded))
+        assert download_ref01_data_dt0_load_result is not None
+        assert download_ref01_data_dt0_load_result["id"] == download_ref01_data["id"]
 
 
 

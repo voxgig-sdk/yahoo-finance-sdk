@@ -9,8 +9,13 @@
 # annotations document the shapes. Do not edit by hand.
 
 # Download entity data model.
-class Download
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+Download = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for Download#load.
 #

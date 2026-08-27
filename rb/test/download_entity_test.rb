@@ -41,9 +41,13 @@ class DownloadEntityTest < Minitest::Test
 
     # LOAD
     download_ref01_ent = client.Download(nil)
-    download_ref01_match_dt0 = {}
+    download_ref01_match_dt0 = {
+      "id" => download_ref01_data["id"],
+    }
     download_ref01_data_dt0_loaded = download_ref01_ent.load(download_ref01_match_dt0, nil)
-    assert !download_ref01_data_dt0_loaded.nil?
+    download_ref01_data_dt0_load_result = Helpers.to_map(download_ref01_data_dt0_loaded.respond_to?(:data_get) ? download_ref01_data_dt0_loaded.data_get : download_ref01_data_dt0_loaded)
+    assert !download_ref01_data_dt0_load_result.nil?
+    assert_equal download_ref01_data_dt0_load_result["id"], download_ref01_data["id"]
 
   end
 end

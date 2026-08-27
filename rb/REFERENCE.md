@@ -106,6 +106,12 @@ same parameters as `direct()`. Raises on error.
 download = client.Download
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `String` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl = nil) -> result`

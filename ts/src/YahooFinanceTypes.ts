@@ -11,6 +11,10 @@ export interface Download {
 
 export interface DownloadLoadMatch {
   id: string
+  event?: string
+  interval?: string
+  period1: number
+  period2: number
 }
 
 export interface Market {
@@ -47,8 +51,9 @@ export interface Search {
 }
 
 export interface SearchListMatch {
-  news?: any[]
-  quotes?: any[]
+  news_count?: number
+  q: string
+  quotes_count?: number
 }
 
 export interface Ticker {
@@ -58,5 +63,12 @@ export interface Ticker {
 
 export interface TickerLoadMatch {
   symbol: string
+  event?: string
+  interval?: string
+  period1?: number
+  period2?: number
+  range?: string
+  date?: number
+  module?: string
 }
 

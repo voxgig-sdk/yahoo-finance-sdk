@@ -21,8 +21,24 @@ Download = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] event
+#   @return [String, nil]
+#
+# @!attribute [rw] interval
+#   @return [String, nil]
+#
+# @!attribute [rw] period1
+#   @return [Integer]
+#
+# @!attribute [rw] period2
+#   @return [Integer]
 DownloadLoadMatch = Struct.new(
   :id,
+  :event,
+  :interval,
+  :period1,
+  :period2,
   keyword_init: true
 )
 
@@ -125,14 +141,18 @@ Search = Struct.new(
 
 # Request payload for Search#list.
 #
-# @!attribute [rw] news
-#   @return [Array, nil]
+# @!attribute [rw] news_count
+#   @return [Integer, nil]
 #
-# @!attribute [rw] quotes
-#   @return [Array, nil]
+# @!attribute [rw] q
+#   @return [String]
+#
+# @!attribute [rw] quotes_count
+#   @return [Integer, nil]
 SearchListMatch = Struct.new(
-  :news,
-  :quotes,
+  :news_count,
+  :q,
+  :quotes_count,
   keyword_init: true
 )
 
@@ -153,8 +173,36 @@ Ticker = Struct.new(
 #
 # @!attribute [rw] symbol
 #   @return [String]
+#
+# @!attribute [rw] event
+#   @return [String, nil]
+#
+# @!attribute [rw] interval
+#   @return [String, nil]
+#
+# @!attribute [rw] period1
+#   @return [Integer, nil]
+#
+# @!attribute [rw] period2
+#   @return [Integer, nil]
+#
+# @!attribute [rw] range
+#   @return [String, nil]
+#
+# @!attribute [rw] date
+#   @return [Integer, nil]
+#
+# @!attribute [rw] module
+#   @return [String, nil]
 TickerLoadMatch = Struct.new(
   :symbol,
+  :event,
+  :interval,
+  :period1,
+  :period2,
+  :range,
+  :date,
+  :module,
   keyword_init: true
 )
 

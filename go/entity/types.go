@@ -20,6 +20,10 @@ type Download struct {
 // DownloadLoadMatch is the typed request payload for Download.LoadTyped.
 type DownloadLoadMatch struct {
 	Id string `json:"id"`
+	Event *string `json:"event,omitempty"`
+	Interval *string `json:"interval,omitempty"`
+	Period1 int `json:"period1"`
+	Period2 int `json:"period2"`
 }
 
 // Market is the typed data model for the market entity.
@@ -62,8 +66,9 @@ type Search struct {
 
 // SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
-	News *[]any `json:"news,omitempty"`
-	Quotes *[]any `json:"quotes,omitempty"`
+	NewsCount *int `json:"news_count,omitempty"`
+	Q string `json:"q"`
+	QuotesCount *int `json:"quotes_count,omitempty"`
 }
 
 // Ticker is the typed data model for the ticker entity.
@@ -75,6 +80,13 @@ type Ticker struct {
 // TickerLoadMatch is the typed request payload for Ticker.LoadTyped.
 type TickerLoadMatch struct {
 	Symbol string `json:"symbol"`
+	Event *string `json:"event,omitempty"`
+	Interval *string `json:"interval,omitempty"`
+	Period1 *int `json:"period1,omitempty"`
+	Period2 *int `json:"period2,omitempty"`
+	Range *string `json:"range,omitempty"`
+	Date *int `json:"date,omitempty"`
+	Module *string `json:"module,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

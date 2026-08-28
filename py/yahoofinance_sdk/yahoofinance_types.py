@@ -20,8 +20,15 @@ class Download(TypedDict, total=False):
     id: str
 
 
-class DownloadLoadMatch(TypedDict):
+class DownloadLoadMatchRequired(TypedDict):
     id: str
+    period1: int
+    period2: int
+
+
+class DownloadLoadMatch(DownloadLoadMatchRequired, total=False):
+    event: str
+    interval: str
 
 
 class Market(TypedDict, total=False):
@@ -57,9 +64,13 @@ class Search(TypedDict, total=False):
     quotes: list
 
 
-class SearchListMatch(TypedDict, total=False):
-    news: list
-    quotes: list
+class SearchListMatchRequired(TypedDict):
+    q: str
+
+
+class SearchListMatch(SearchListMatchRequired, total=False):
+    news_count: int
+    quotes_count: int
 
 
 class Ticker(TypedDict, total=False):
@@ -67,5 +78,15 @@ class Ticker(TypedDict, total=False):
     result: list
 
 
-class TickerLoadMatch(TypedDict):
+class TickerLoadMatchRequired(TypedDict):
     symbol: str
+
+
+class TickerLoadMatch(TickerLoadMatchRequired, total=False):
+    event: str
+    interval: str
+    period1: int
+    period2: int
+    range: str
+    date: int
+    module: str

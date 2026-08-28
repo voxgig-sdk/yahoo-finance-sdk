@@ -331,7 +331,7 @@ Create an instance: `download = client.Download()`
 #### Example: Load
 
 ```python
-download = client.Download().load({"id": "download_id"})
+download = client.Download().load({"id": "download_id", "period1": 1, "period2": 1})
 ```
 
 
@@ -408,7 +408,7 @@ Create an instance: `search = client.Search()`
 #### Example: List
 
 ```python
-searchs = client.Search().list()
+searchs = client.Search().list({"q": "example"})
 ```
 
 
@@ -434,6 +434,29 @@ Create an instance: `ticker = client.Ticker()`
 ```python
 ticker = client.Ticker().load({"symbol": "symbol"})
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

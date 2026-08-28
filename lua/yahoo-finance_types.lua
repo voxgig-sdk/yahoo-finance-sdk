@@ -11,6 +11,10 @@
 
 ---@class DownloadLoadMatch
 ---@field id string
+---@field event? string
+---@field interval? string
+---@field period1 number
+---@field period2 number
 
 ---@class Market
 ---@field result? table
@@ -41,8 +45,9 @@
 ---@field quotes? table
 
 ---@class SearchListMatch
----@field news? table
----@field quotes? table
+---@field news_count? number
+---@field q string
+---@field quotes_count? number
 
 ---@class Ticker
 ---@field error? nil
@@ -50,6 +55,13 @@
 
 ---@class TickerLoadMatch
 ---@field symbol string
+---@field event? string
+---@field interval? string
+---@field period1? number
+---@field period2? number
+---@field range? string
+---@field date? number
+---@field module? string
 
 local M = {}
 

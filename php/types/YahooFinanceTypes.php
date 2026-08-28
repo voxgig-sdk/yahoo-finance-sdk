@@ -22,6 +22,10 @@ class Download
 class DownloadLoadMatch
 {
     public string $id;
+    public ?string $event = null;
+    public ?string $interval = null;
+    public int $period1;
+    public int $period2;
 }
 
 /** Market entity data model. */
@@ -70,8 +74,9 @@ class Search
 /** Request payload for Search#list. */
 class SearchListMatch
 {
-    public ?array $news = null;
-    public ?array $quotes = null;
+    public ?int $news_count = null;
+    public string $q;
+    public ?int $quotes_count = null;
 }
 
 /** Ticker entity data model. */
@@ -85,5 +90,12 @@ class Ticker
 class TickerLoadMatch
 {
     public string $symbol;
+    public ?string $event = null;
+    public ?string $interval = null;
+    public ?int $period1 = null;
+    public ?int $period2 = null;
+    public ?string $range = null;
+    public ?int $date = null;
+    public ?string $module = null;
 }
 

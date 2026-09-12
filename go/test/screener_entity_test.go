@@ -52,7 +52,7 @@ func TestScreenerEntity(t *testing.T) {
 		// CREATE
 		screenerRef01Ent := client.Screener(nil)
 		screenerRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "screener"}, setup.data), "screener_ref01"))
+			vs.GetPath(setup.data, []any{"new", "screener"}), "screener_ref01"))
 
 		screenerRef01DataResult, err := screenerRef01Ent.Create(screenerRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func screenerBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"screener01", "screener02", "screener03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -110,7 +110,7 @@ func screenerBasicSetup(extra map[string]any) *entityTestSetup {
 		"YAHOO_FINANCE_TEST_SCREENER_ENTID": idmap,
 		"YAHOO_FINANCE_TEST_LIVE":      "FALSE",
 		"YAHOO_FINANCE_TEST_EXPLAIN":   "FALSE",
-		"YAHOO_FINANCE_APIKEY":         "NONE",
+		"YAHOO_FINANCE_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["YAHOO_FINANCE_TEST_SCREENER_ENTID"])
@@ -119,11 +119,23 @@ func screenerBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["YAHOO_FINANCE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["YAHOO_FINANCE_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewYahooFinanceSDK(core.ToMapAny(mergedOpts))
 	}

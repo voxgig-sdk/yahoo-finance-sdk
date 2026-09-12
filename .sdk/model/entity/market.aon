@@ -32,11 +32,19 @@ main: kit: entity: market: {
           }
           method: "GET"
           orig: "/v1/finance/trending/{region}"
-          parts: [
-            "v1"
-            "finance"
-            "trending"
-            "{region}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "trending"
+            }
+            {
+              var: "region"
+            }
           ]
           select: {
             exist: [

@@ -76,7 +76,7 @@ def screener_basic_setup(extra)
     "YAHOO_FINANCE_TEST_SCREENER_ENTID" => idmap,
     "YAHOO_FINANCE_TEST_LIVE" => "FALSE",
     "YAHOO_FINANCE_TEST_EXPLAIN" => "FALSE",
-    "YAHOO_FINANCE_APIKEY" => "NONE",
+    "YAHOO_FINANCE_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -87,6 +87,9 @@ def screener_basic_setup(extra)
 
   if env["YAHOO_FINANCE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["YAHOO_FINANCE_APIKEY"],
       },

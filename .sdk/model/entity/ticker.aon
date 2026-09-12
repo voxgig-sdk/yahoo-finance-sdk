@@ -75,11 +75,19 @@ main: kit: entity: ticker: {
           }
           method: "GET"
           orig: "/v8/finance/chart/{symbol}"
-          parts: [
-            "v8"
-            "finance"
-            "chart"
-            "{symbol}"
+          segments: [
+            {
+              lit: "v8"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "chart"
+            }
+            {
+              var: "symbol"
+            }
           ]
           select: {
             exist: [
@@ -126,10 +134,16 @@ main: kit: entity: ticker: {
           }
           method: "GET"
           orig: "/v1/finance/spark"
-          parts: [
-            "v1"
-            "finance"
-            "spark"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "spark"
+            }
           ]
           select: {
             exist: [
@@ -166,11 +180,19 @@ main: kit: entity: ticker: {
           }
           method: "GET"
           orig: "/v7/finance/options/{symbol}"
-          parts: [
-            "v7"
-            "finance"
-            "options"
-            "{symbol}"
+          segments: [
+            {
+              lit: "v7"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "options"
+            }
+            {
+              var: "symbol"
+            }
           ]
           select: {
             exist: [
@@ -207,11 +229,19 @@ main: kit: entity: ticker: {
           }
           method: "GET"
           orig: "/v10/finance/quoteSummary/{symbol}"
-          parts: [
-            "v10"
-            "finance"
-            "quoteSummary"
-            "{symbol}"
+          segments: [
+            {
+              lit: "v10"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "quoteSummary"
+            }
+            {
+              var: "symbol"
+            }
           ]
           select: {
             exist: [
@@ -239,10 +269,16 @@ main: kit: entity: ticker: {
           }
           method: "GET"
           orig: "/v6/finance/quote"
-          parts: [
-            "v6"
-            "finance"
-            "quote"
+          segments: [
+            {
+              lit: "v6"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "quote"
+            }
           ]
           select: {
             exist: [
@@ -268,12 +304,22 @@ main: kit: entity: ticker: {
           }
           method: "GET"
           orig: "/ws/insights/v1/finance/insights"
-          parts: [
-            "ws"
-            "insights"
-            "v1"
-            "finance"
-            "insights"
+          segments: [
+            {
+              lit: "ws"
+            }
+            {
+              lit: "insights"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "insights"
+            }
           ]
           select: {
             exist: [

@@ -68,15 +68,18 @@ def _download_direct_setup(mockres):
     env = runner.env_override({
         "YAHOO_FINANCE_TEST_DOWNLOAD_ENTID": {},
         "YAHOO_FINANCE_TEST_LIVE": "FALSE",
-        "YAHOO_FINANCE_APIKEY": "NONE",
+        "YAHOO_FINANCE_APIKEY": "",
     })
 
     live = env.get("YAHOO_FINANCE_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("YAHOO_FINANCE_APIKEY"),
-        }
+        })
         client = YahooFinanceSDK(merged_opts)
         return {
             "client": client,

@@ -50,7 +50,7 @@ func TestTickerEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		tickerRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.ticker", setup.data)))
+		tickerRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.ticker")))
 		var tickerRef01Data map[string]any
 		if len(tickerRef01DataRaw) > 0 {
 			tickerRef01Data = core.ToMapAny(tickerRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func tickerBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"ticker01", "ticker02", "ticker03", "quote_summary01", "quote_summary02", "quote_summary03", "option01", "option02", "option03", "chart01", "chart02", "chart03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func tickerBasicSetup(extra map[string]any) *entityTestSetup {
 		"YAHOO_FINANCE_TEST_TICKER_ENTID": idmap,
 		"YAHOO_FINANCE_TEST_LIVE":      "FALSE",
 		"YAHOO_FINANCE_TEST_EXPLAIN":   "FALSE",
-		"YAHOO_FINANCE_APIKEY":         "NONE",
+		"YAHOO_FINANCE_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["YAHOO_FINANCE_TEST_TICKER_ENTID"])
@@ -126,11 +126,23 @@ func tickerBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["YAHOO_FINANCE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["YAHOO_FINANCE_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewYahooFinanceSDK(core.ToMapAny(mergedOpts))
 	}

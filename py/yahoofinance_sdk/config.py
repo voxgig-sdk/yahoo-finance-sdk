@@ -1,6 +1,14 @@
 # YahooFinance SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -64,6 +72,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "download",
         "op": {
           "load": {
@@ -114,17 +126,25 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v7/finance/download/{symbol}",
-                "parts": [
-                  "v7",
-                  "finance",
-                  "download",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "symbol": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "v7",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "download",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "event",
@@ -138,6 +158,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v7",
+                  "finance",
+                  "download",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -175,11 +201,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/finance/trending/{region}",
-                "parts": [
-                  "v1",
-                  "finance",
-                  "trending",
-                  "{region}",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "trending",
+                  },
+                  {
+                    "var": "region",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -190,6 +224,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.finance`",
                 },
+                "parts": [
+                  "v1",
+                  "finance",
+                  "trending",
+                  "{region}",
+                ],
               },
             ],
           },
@@ -248,16 +288,27 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/v1/finance/screener",
-                "parts": [
-                  "v1",
-                  "finance",
-                  "screener",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "screener",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.finance`",
                 },
+                "parts": [
+                  "v1",
+                  "finance",
+                  "screener",
+                ],
               },
             ],
           },
@@ -312,10 +363,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/finance/search",
-                "parts": [
-                  "v1",
-                  "finance",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -328,6 +385,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "finance",
+                  "search",
+                ],
               },
             ],
           },
@@ -402,11 +464,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v8/finance/chart/{symbol}",
-                "parts": [
-                  "v8",
-                  "finance",
-                  "chart",
-                  "{symbol}",
+                "segments": [
+                  {
+                    "lit": "v8",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "chart",
+                  },
+                  {
+                    "var": "symbol",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -422,6 +492,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.chart`",
                 },
+                "parts": [
+                  "v8",
+                  "finance",
+                  "chart",
+                  "{symbol}",
+                ],
               },
               {
                 "args": {
@@ -452,10 +528,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/finance/spark",
-                "parts": [
-                  "v1",
-                  "finance",
-                  "spark",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "spark",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -468,6 +550,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.spark`",
                 },
+                "parts": [
+                  "v1",
+                  "finance",
+                  "spark",
+                ],
               },
               {
                 "args": {
@@ -492,11 +579,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v7/finance/options/{symbol}",
-                "parts": [
-                  "v7",
-                  "finance",
-                  "options",
-                  "{symbol}",
+                "segments": [
+                  {
+                    "lit": "v7",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "options",
+                  },
+                  {
+                    "var": "symbol",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -508,6 +603,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.optionChain`",
                 },
+                "parts": [
+                  "v7",
+                  "finance",
+                  "options",
+                  "{symbol}",
+                ],
               },
               {
                 "args": {
@@ -533,11 +634,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v10/finance/quoteSummary/{symbol}",
-                "parts": [
-                  "v10",
-                  "finance",
-                  "quoteSummary",
-                  "{symbol}",
+                "segments": [
+                  {
+                    "lit": "v10",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "quoteSummary",
+                  },
+                  {
+                    "var": "symbol",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -549,6 +658,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.quoteSummary`",
                 },
+                "parts": [
+                  "v10",
+                  "finance",
+                  "quoteSummary",
+                  "{symbol}",
+                ],
               },
               {
                 "args": {
@@ -566,10 +681,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v6/finance/quote",
-                "parts": [
-                  "v6",
-                  "finance",
-                  "quote",
+                "segments": [
+                  {
+                    "lit": "v6",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "quote",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -580,6 +701,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.quoteResponse`",
                 },
+                "parts": [
+                  "v6",
+                  "finance",
+                  "quote",
+                ],
               },
               {
                 "args": {
@@ -596,12 +722,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/ws/insights/v1/finance/insights",
-                "parts": [
-                  "ws",
-                  "insights",
-                  "v1",
-                  "finance",
-                  "insights",
+                "segments": [
+                  {
+                    "lit": "ws",
+                  },
+                  {
+                    "lit": "insights",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "finance",
+                  },
+                  {
+                    "lit": "insights",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -612,6 +748,13 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.finance`",
                 },
+                "parts": [
+                  "ws",
+                  "insights",
+                  "v1",
+                  "finance",
+                  "insights",
+                ],
               },
             ],
           },

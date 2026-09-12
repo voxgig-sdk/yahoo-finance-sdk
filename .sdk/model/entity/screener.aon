@@ -54,10 +54,16 @@ main: kit: entity: screener: {
         {
           method: "POST"
           orig: "/v1/finance/screener"
-          parts: [
-            "v1"
-            "finance"
-            "screener"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "screener"
+            }
           ]
           transform: {
             req: "`reqdata`"

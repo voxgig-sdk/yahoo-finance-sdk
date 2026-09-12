@@ -67,17 +67,25 @@ main: kit: entity: download: {
           }
           method: "GET"
           orig: "/v7/finance/download/{symbol}"
-          parts: [
-            "v7"
-            "finance"
-            "download"
-            "{id}"
-          ]
           rename: {
             param: {
               symbol: "id"
             }
           }
+          segments: [
+            {
+              lit: "v7"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "download"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "event"

@@ -52,10 +52,16 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/v1/finance/search"
-          parts: [
-            "v1"
-            "finance"
-            "search"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [

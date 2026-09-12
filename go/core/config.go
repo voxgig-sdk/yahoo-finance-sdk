@@ -47,6 +47,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "download",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -97,15 +101,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v7/finance/download/{symbol}",
-								"parts": []any{
-									"v7",
-									"finance",
-									"download",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"symbol": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "v7",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "download",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -120,6 +132,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v7",
+									"finance",
+									"download",
+									"{id}",
 								},
 							},
 						},
@@ -158,11 +176,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/trending/{region}",
-								"parts": []any{
-									"v1",
-									"finance",
-									"trending",
-									"{region}",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "trending",
+									},
+									map[string]any{
+										"var": "region",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -172,6 +198,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.finance`",
+								},
+								"parts": []any{
+									"v1",
+									"finance",
+									"trending",
+									"{region}",
 								},
 							},
 						},
@@ -231,15 +263,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/v1/finance/screener",
-								"parts": []any{
-									"v1",
-									"finance",
-									"screener",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "screener",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.finance`",
+								},
+								"parts": []any{
+									"v1",
+									"finance",
+									"screener",
 								},
 							},
 						},
@@ -295,10 +338,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/search",
-								"parts": []any{
-									"v1",
-									"finance",
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -310,6 +359,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v1",
+									"finance",
+									"search",
 								},
 							},
 						},
@@ -385,11 +439,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v8/finance/chart/{symbol}",
-								"parts": []any{
-									"v8",
-									"finance",
-									"chart",
-									"{symbol}",
+								"segments": []any{
+									map[string]any{
+										"lit": "v8",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "chart",
+									},
+									map[string]any{
+										"var": "symbol",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -404,6 +466,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.chart`",
+								},
+								"parts": []any{
+									"v8",
+									"finance",
+									"chart",
+									"{symbol}",
 								},
 							},
 							map[string]any{
@@ -435,10 +503,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/spark",
-								"parts": []any{
-									"v1",
-									"finance",
-									"spark",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "spark",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -450,6 +524,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.spark`",
+								},
+								"parts": []any{
+									"v1",
+									"finance",
+									"spark",
 								},
 							},
 							map[string]any{
@@ -475,11 +554,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v7/finance/options/{symbol}",
-								"parts": []any{
-									"v7",
-									"finance",
-									"options",
-									"{symbol}",
+								"segments": []any{
+									map[string]any{
+										"lit": "v7",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "options",
+									},
+									map[string]any{
+										"var": "symbol",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -490,6 +577,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.optionChain`",
+								},
+								"parts": []any{
+									"v7",
+									"finance",
+									"options",
+									"{symbol}",
 								},
 							},
 							map[string]any{
@@ -516,11 +609,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v10/finance/quoteSummary/{symbol}",
-								"parts": []any{
-									"v10",
-									"finance",
-									"quoteSummary",
-									"{symbol}",
+								"segments": []any{
+									map[string]any{
+										"lit": "v10",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "quoteSummary",
+									},
+									map[string]any{
+										"var": "symbol",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -531,6 +632,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.quoteSummary`",
+								},
+								"parts": []any{
+									"v10",
+									"finance",
+									"quoteSummary",
+									"{symbol}",
 								},
 							},
 							map[string]any{
@@ -549,10 +656,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v6/finance/quote",
-								"parts": []any{
-									"v6",
-									"finance",
-									"quote",
+								"segments": []any{
+									map[string]any{
+										"lit": "v6",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "quote",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -562,6 +675,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.quoteResponse`",
+								},
+								"parts": []any{
+									"v6",
+									"finance",
+									"quote",
 								},
 							},
 							map[string]any{
@@ -579,12 +697,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ws/insights/v1/finance/insights",
-								"parts": []any{
-									"ws",
-									"insights",
-									"v1",
-									"finance",
-									"insights",
+								"segments": []any{
+									map[string]any{
+										"lit": "ws",
+									},
+									map[string]any{
+										"lit": "insights",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "insights",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -594,6 +722,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.finance`",
+								},
+								"parts": []any{
+									"ws",
+									"insights",
+									"v1",
+									"finance",
+									"insights",
 								},
 							},
 						},
@@ -615,6 +750,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

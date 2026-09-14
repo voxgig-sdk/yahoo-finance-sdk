@@ -105,7 +105,7 @@ local result, err = client:Market():load({ region = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
+| TypeScript | `@voxgig-sdk/yahoo-finance-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
 | Python | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
 | PHP | `voxgig-sdk/yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/yahoo-finance-sdk/go` | `go get github.com/voxgig-sdk/yahoo-finance-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Market():load({ region = "example" })
 ### TypeScript
 
 ```ts
-import { YahooFinanceSDK } from '@voxgig-sdk/yahoo-finance'
+import { YahooFinanceSDK } from '@voxgig-sdk/yahoo-finance-sdk'
 
 const client = new YahooFinanceSDK({
   apikey: process.env.YAHOO_FINANCE_APIKEY,

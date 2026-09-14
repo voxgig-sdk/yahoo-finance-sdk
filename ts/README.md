@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { YahooFinanceSDK } from '@voxgig-sdk/yahoo-finance'
+import { YahooFinanceSDK } from '@voxgig-sdk/yahoo-finance-sdk'
 
 const client = new YahooFinanceSDK({
   apikey: process.env.YAHOO_FINANCE_APIKEY,
@@ -567,7 +567,7 @@ yahoo-finance/
 Import the SDK from the package root:
 
 ```ts
-import { YahooFinanceSDK } from '@voxgig-sdk/yahoo-finance'
+import { YahooFinanceSDK } from '@voxgig-sdk/yahoo-finance-sdk'
 ```
 
 ### Entity state

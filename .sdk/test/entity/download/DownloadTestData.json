@@ -16,5 +16,97 @@
     "download": {
       "download_ref01": {}
     }
+  },
+  "requests": {
+    "GET /v7/finance/download/{symbol}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "downloadHistoricalData",
+        "parameters": [
+          {
+            "description": "Ticker symbol",
+            "in": "path",
+            "name": "symbol",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Start date as Unix timestamp",
+            "in": "query",
+            "name": "period1",
+            "required": true,
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "End date as Unix timestamp",
+            "in": "query",
+            "name": "period2",
+            "required": true,
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Data interval",
+            "in": "query",
+            "name": "interval",
+            "schema": {
+              "default": "1d",
+              "enum": [
+                "1d",
+                "1wk",
+                "1mo"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Events to include",
+            "in": "query",
+            "name": "events",
+            "schema": {
+              "enum": [
+                "history",
+                "div",
+                "split"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "CSV file with historical data"
+          },
+          "404": {
+            "description": "Symbol not found"
+          }
+        },
+        "securitySchemes": {
+          "cookieAuth": {
+            "description": "Yahoo Finance uses cookie-based authentication for some endpoints",
+            "in": "cookie",
+            "name": "Session",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

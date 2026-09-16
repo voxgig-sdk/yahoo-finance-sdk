@@ -52,6 +52,12 @@ main: kit: entity: screener: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /v1/finance/screener"
+            json: "{\"operationId\":\"screenStocks\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"offset\":{\"description\":\"Offset for pagination\",\"type\":\"integer\"},\"query\":{\"description\":\"Query criteria\",\"type\":\"object\"},\"quoteType\":{\"enum\":[\"EQUITY\",\"ETF\",\"MUTUALFUND\"],\"type\":\"string\"},\"size\":{\"description\":\"Number of results to return\",\"type\":\"integer\"},\"sortField\":{\"description\":\"Field to sort by\",\"type\":\"string\"},\"sortType\":{\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"finance\":{\"properties\":{\"result\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Screening results\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/v1/finance/screener"
           segments: [

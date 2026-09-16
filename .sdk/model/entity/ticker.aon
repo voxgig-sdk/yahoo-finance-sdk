@@ -73,6 +73,12 @@ main: kit: entity: ticker: {
               }
             ]
           }
+          contract: {
+            id: "GET /v8/finance/chart/{symbol}"
+            json: "{\"operationId\":\"getTickerChart\",\"parameters\":[{\"description\":\"Ticker symbol (e.g., AAPL, BTC-USD, EURUSD=X)\",\"example\":\"AAPL\",\"in\":\"path\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Start date as Unix timestamp\",\"in\":\"query\",\"name\":\"period1\",\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}},{\"description\":\"End date as Unix timestamp\",\"in\":\"query\",\"name\":\"period2\",\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}},{\"description\":\"Data interval\",\"in\":\"query\",\"name\":\"interval\",\"schema\":{\"default\":\"1d\",\"enum\":[\"1m\",\"2m\",\"5m\",\"15m\",\"30m\",\"60m\",\"90m\",\"1h\",\"1d\",\"5d\",\"1wk\",\"1mo\",\"3mo\"],\"type\":\"string\"}},{\"description\":\"Time range for data\",\"in\":\"query\",\"name\":\"range\",\"schema\":{\"enum\":[\"1d\",\"5d\",\"1mo\",\"3mo\",\"6mo\",\"1y\",\"2y\",\"5y\",\"10y\",\"ytd\",\"max\"],\"type\":\"string\"}},{\"description\":\"Include dividends and splits\",\"in\":\"query\",\"name\":\"events\",\"schema\":{\"enum\":[\"div\",\"split\",\"div,split\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"chart\":{\"properties\":{\"error\":{\"type\":\"null\"},\"result\":{\"items\":{\"properties\":{\"indicators\":{\"properties\":{\"quote\":{\"items\":{\"properties\":{\"close\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"high\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"low\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"open\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"volume\":{\"items\":{\"type\":\"integer\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"meta\":{\"properties\":{\"chartPreviousClose\":{\"type\":\"number\"},\"currency\":{\"type\":\"string\"},\"exchangeName\":{\"type\":\"string\"},\"instrumentType\":{\"type\":\"string\"},\"regularMarketPrice\":{\"type\":\"number\"},\"symbol\":{\"type\":\"string\"}},\"type\":\"object\"},\"timestamp\":{\"items\":{\"format\":\"int64\",\"type\":\"integer\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with chart data\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Symbol not found\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v8/finance/chart/{symbol}"
           segments: [
@@ -132,6 +138,12 @@ main: kit: entity: ticker: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/finance/spark"
+            json: "{\"operationId\":\"getSparkData\",\"parameters\":[{\"description\":\"Comma-separated list of ticker symbols\",\"in\":\"query\",\"name\":\"symbols\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Time range\",\"in\":\"query\",\"name\":\"range\",\"schema\":{\"default\":\"1d\",\"enum\":[\"1d\",\"5d\",\"1mo\",\"3mo\",\"6mo\",\"1y\",\"5y\"],\"type\":\"string\"}},{\"description\":\"Data interval\",\"in\":\"query\",\"name\":\"interval\",\"schema\":{\"default\":\"5m\",\"enum\":[\"1m\",\"5m\",\"15m\",\"1d\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"spark\":{\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Spark chart data\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/finance/spark"
           segments: [
@@ -177,6 +189,12 @@ main: kit: entity: ticker: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /v7/finance/options/{symbol}"
+            json: "{\"operationId\":\"getOptions\",\"parameters\":[{\"description\":\"Ticker symbol\",\"in\":\"path\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Expiration date as Unix timestamp\",\"in\":\"query\",\"name\":\"date\",\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"optionChain\":{\"properties\":{\"result\":{\"items\":{\"properties\":{\"expirationDates\":{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"options\":{\"items\":{\"properties\":{\"calls\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"puts\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"strikes\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Options chain data\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/v7/finance/options/{symbol}"
@@ -227,6 +245,12 @@ main: kit: entity: ticker: {
               }
             ]
           }
+          contract: {
+            id: "GET /v10/finance/quoteSummary/{symbol}"
+            json: "{\"operationId\":\"getTickerSummary\",\"parameters\":[{\"description\":\"Ticker symbol\",\"in\":\"path\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of data modules to retrieve\",\"example\":\"assetProfile,financialData,defaultKeyStatistics\",\"in\":\"query\",\"name\":\"modules\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"quoteSummary\":{\"properties\":{\"error\":{\"type\":\"null\"},\"result\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with ticker summary\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Symbol not found\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v10/finance/quoteSummary/{symbol}"
           segments: [
@@ -267,6 +291,12 @@ main: kit: entity: ticker: {
               }
             ]
           }
+          contract: {
+            id: "GET /v6/finance/quote"
+            json: "{\"operationId\":\"getQuotes\",\"parameters\":[{\"description\":\"Comma-separated list of ticker symbols\",\"example\":\"AAPL,MSFT,GOOGL\",\"in\":\"query\",\"name\":\"symbols\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"quoteResponse\":{\"properties\":{\"error\":{\"type\":\"null\"},\"result\":{\"items\":{\"properties\":{\"regularMarketChange\":{\"type\":\"number\"},\"regularMarketChangePercent\":{\"type\":\"number\"},\"regularMarketDayHigh\":{\"type\":\"number\"},\"regularMarketDayLow\":{\"type\":\"number\"},\"regularMarketOpen\":{\"type\":\"number\"},\"regularMarketPreviousClose\":{\"type\":\"number\"},\"regularMarketPrice\":{\"type\":\"number\"},\"regularMarketVolume\":{\"type\":\"integer\"},\"symbol\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Quote data for requested tickers\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v6/finance/quote"
           segments: [
@@ -301,6 +331,12 @@ main: kit: entity: ticker: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /ws/insights/v1/finance/insights"
+            json: "{\"operationId\":\"getInsights\",\"parameters\":[{\"description\":\"Ticker symbol\",\"in\":\"query\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"finance\":{\"properties\":{\"result\":{\"type\":\"object\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Ticker insights\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/ws/insights/v1/finance/insights"

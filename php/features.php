@@ -4,7 +4,10 @@ declare(strict_types=1);
 // YahooFinance SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class YahooFinanceFeatures
@@ -14,8 +17,14 @@ class YahooFinanceFeatures
         switch ($name) {
             case "base":
                 return new YahooFinanceBaseFeature();
+            case "ratelimit":
+                return new YahooFinanceRatelimitFeature();
+            case "retry":
+                return new YahooFinanceRetryFeature();
             case "test":
                 return new YahooFinanceTestFeature();
+            case "timeout":
+                return new YahooFinanceTimeoutFeature();
             default:
                 return new YahooFinanceBaseFeature();
         }
@@ -31,7 +40,10 @@ class YahooFinanceFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

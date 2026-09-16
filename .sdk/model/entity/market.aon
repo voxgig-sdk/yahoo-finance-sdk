@@ -30,6 +30,12 @@ main: kit: entity: market: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/finance/trending/{region}"
+            json: "{\"operationId\":\"getTrending\",\"parameters\":[{\"description\":\"Region code (e.g., US, GB, AU)\",\"in\":\"path\",\"name\":\"region\",\"required\":true,\"schema\":{\"default\":\"US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"finance\":{\"properties\":{\"result\":{\"items\":{\"properties\":{\"quotes\":{\"items\":{\"properties\":{\"symbol\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Trending tickers\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/finance/trending/{region}"
           segments: [

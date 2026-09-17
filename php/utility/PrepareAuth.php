@@ -5,7 +5,8 @@ declare(strict_types=1);
 
 class YahooFinancePrepareAuth
 {
-    private const HEADER_AUTH = 'authorization';
+    private const COOKIE_AUTH = 'Session';
+    private const HEADER_COOKIE = 'cookie';
     private const OPTION_APIKEY = 'apikey';
     private const NOT_FOUND = '__NOTFOUND__';
 
@@ -21,23 +22,23 @@ class YahooFinancePrepareAuth
 
         // Public APIs that need no auth omit the options.auth block entirely.
         if (!isset($options['auth']) || $options['auth'] === null) {
-            unset($headers[self::HEADER_AUTH]);
             return [$spec, null];
         }
 
         $apikey = \Voxgig\Struct\Struct::getprop($options, self::OPTION_APIKEY, self::NOT_FOUND);
 
-        if (
-            (is_string($apikey) && ($apikey === self::NOT_FOUND || $apikey === ''))
-            || $apikey === null
-        ) {
-            unset($headers[self::HEADER_AUTH]);
-        } else {
-            $auth_prefix = \Voxgig\Struct\Struct::getpath($options, 'auth.prefix') ?? '';
+        $missing = (is_string($apikey) && ($apikey === self::NOT_FOUND || $apikey === ''))
+            || $apikey === null;
+
+        if (!$missing) {
+            // A COOKIE IS APPENDED, NEVER ASSIGNED: the header may already
+            // carry the caller's own cookies, and one `Cookie:` header
+            // holds all of them, separated by '; '.
             $apikey_val = is_string($apikey) ? $apikey : '';
-            // Empty prefix (raw apiKey credential) must not add a leading space.
-            $headers[self::HEADER_AUTH] = $auth_prefix === ''
-                ? $apikey_val : "{$auth_prefix} {$apikey_val}";
+            $existing = $headers[self::HEADER_COOKIE] ?? '';
+            $pair = self::COOKIE_AUTH . '=' . $apikey_val;
+            $headers[self::HEADER_COOKIE] = $existing === ''
+                ? $pair : "{$existing}; {$pair}";
         }
 
         return [$spec, null];

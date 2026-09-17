@@ -81,6 +81,8 @@ func MakeConfig() map[string]any {
 			"base": "https://query1.finance.yahoo.com",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "cookie",
+				"name": "Session",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",

@@ -77,6 +77,8 @@ local function make_config()
       base = "https://query1.finance.yahoo.com",
       auth = {
         prefix = "",
+        ["in"] = "cookie",
+        name = "Session",
       },
       headers = {
         ["content-type"] = "application/json",

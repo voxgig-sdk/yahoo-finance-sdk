@@ -6,7 +6,8 @@ import (
 	"github.com/voxgig-sdk/yahoo-finance-sdk/go/core"
 )
 
-const headerAuth = "authorization"
+const credName = "Session"
+const cookieHeader = "cookie"
 const optionApikey = "apikey"
 const notFound = "__NOTFOUND__"
 
@@ -22,7 +23,7 @@ func prepareAuthUtil(ctx *core.Context) (*core.Spec, error) {
 
 	// Public APIs that need no auth omit the options.auth block entirely.
 	if options["auth"] == nil {
-		delete(headers, headerAuth)
+		delete(headers, credName)
 		return spec, nil
 	}
 
@@ -37,21 +38,21 @@ func prepareAuthUtil(ctx *core.Context) (*core.Spec, error) {
 	}
 
 	if skip {
-		delete(headers, headerAuth)
+		delete(headers, credName)
 	} else {
-		authPrefix := ""
-		if ap := vs.GetPath(options, []any{"auth", "prefix"}); ap != nil {
-			authPrefix, _ = ap.(string)
-		}
 		apikeyVal := ""
 		if av, ok := apikey.(string); ok {
 			apikeyVal = av
 		}
-		// Empty prefix (raw apiKey credential) must not add a leading space.
-		if authPrefix == "" {
-			headers[headerAuth] = apikeyVal
+		pair := credName + "=" + apikeyVal
+		existing := ""
+		if ec, ok := headers[cookieHeader].(string); ok {
+			existing = ec
+		}
+		if existing == "" {
+			headers[cookieHeader] = pair
 		} else {
-			headers[headerAuth] = authPrefix + " " + apikeyVal
+			headers[cookieHeader] = existing + "; " + pair
 		}
 	}
 

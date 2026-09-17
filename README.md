@@ -105,12 +105,12 @@ local result, err = client:Market():load({ region = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/yahoo-finance-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
-| Python | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
-| PHP | `voxgig-sdk/yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
+| TypeScript | `@voxgig-sdk/yahoo-finance-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
+| Python | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
+| PHP | `voxgig-sdk/yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/yahoo-finance-sdk/go` | `go get github.com/voxgig-sdk/yahoo-finance-sdk/go@latest` |
-| Ruby | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
-| Lua | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases) |
+| Ruby | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
+| Lua | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/yahoo-finance-sdk/go-cli` | `go install github.com/voxgig-sdk/yahoo-finance-sdk/go-cli/cmd/yahoo-finance@latest` |
 | Go MCP server | `github.com/voxgig-sdk/yahoo-finance-sdk/go-mcp` | `go get github.com/voxgig-sdk/yahoo-finance-sdk/go-mcp@latest` |
 

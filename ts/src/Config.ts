@@ -123,6 +123,8 @@ class Config {
 
     auth: {
       prefix: '',
+      in: 'cookie',
+      name: 'Session',
     },
 
     headers: {
@@ -131,21 +133,21 @@ class Config {
 
     entity: {
       
-      download: {
-      },
-
-      market: {
-      },
-
-      screener: {
-      },
-
-      search: {
-      },
-
-      ticker: {
-      },
-
+        download: {
+        },
+  
+        market: {
+        },
+  
+        screener: {
+        },
+  
+        search: {
+        },
+  
+        ticker: {
+        },
+  
     }
   }
 

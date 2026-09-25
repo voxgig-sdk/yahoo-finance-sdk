@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('MarketEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"result","req":false,"type":"`$ARRAY`","index$":0}],"name":"market","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"US","kind":"param","name":"region","orig":"region","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /v1/finance/trending/{region}","json":"{\"operationId\":\"getTrending\",\"parameters\":[{\"description\":\"Region code (e.g., US, GB, AU)\",\"in\":\"path\",\"name\":\"region\",\"required\":true,\"schema\":{\"default\":\"US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"finance\":{\"properties\":{\"result\":{\"items\":{\"properties\":{\"quotes\":{\"items\":{\"properties\":{\"symbol\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Trending tickers\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v1/finance/trending/{region}","segments":[{"lit":"v1"},{"lit":"finance"},{"lit":"trending"},{"var":"region"}],"select":{"exist":["region"]},"transform":{"req":"`reqdata`","res":"`body.finance`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[["trending"]]},"key$":"market","name__orig":"market","Name":"Market","name_":"market","name-":"market","NAME":"MARKET","index$":1}, {"active":true,"entity":"market","key$":"BasicMarketFlow","kind":"basic","name":"BasicMarketFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"market_ref01","srcdatavar":"market_ref01_data","suffix":"_dt0"},"match":{"id":"market01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-market_ref01"}}],"index$":0}]}, 'Market')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"result":{"a":true,"h":"Result","n":"result","r":false,"t":"`$ARRAY`","key$":"result","index$":0}},"name":"market","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /v1/finance/trending/{region}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"US","k":"param","n":"region","or":"region","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/finance/trending/{region}","q":{"exist":["region"]},"r":{},"s":[{"lit":"v1"},{"lit":"finance"},{"lit":"trending"},{"var":"region"}],"t":{"req":"`reqdata`","res":"`body.finance`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"market","name__orig":"market","Name":"Market","name_":"market","name-":"market","NAME":"MARKET","index$":1}, {"active":true,"entity":"market","key$":"BasicMarketFlow","kind":"basic","name":"BasicMarketFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"market_ref01","srcdatavar":"market_ref01_data","suffix":"_dt0"},"m":{"id":"market01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-market_ref01"}}],"index$":0}]}, 'Market', {"GET /v1/finance/trending/{region}":{"protocol":"http","operationId":"getTrending","responses":{"200":{"description":"Trending tickers","content":{"application/json":{"schema":{"type":"object","properties":{"finance":{"type":"object","properties":{"result":{"type":"array","items":{"type":"object","properties":{"quotes":{"type":"array","items":{"type":"object","properties":{"symbol":{"type":"string"}}}}}},"key$":"result"}},"index$":0}}}}}}},"parameters":[{"name":"region","in":"path","required":true,"description":"Region code (e.g., US, GB, AU)","schema":{"type":"string","default":"US"},"index$":0}],"securitySource":"unspecified","securitySchemes":{"cookieAuth":{"type":"apiKey","in":"cookie","name":"Session","description":"Yahoo Finance uses cookie-based authentication for some endpoints"}}}})
     }
     const client = setup.client
     const struct = setup.struct
@@ -98,7 +94,7 @@ function basicSetup(extra?: any) {
   const transform = struct.transform
 
   let idmap = transform(
-    ['market01','market02','market03','trending01','trending02','trending03'],
+    ['market01','market02','market03'],
     {
       '`$PACK`': ['', {
         '`$KEY`': '`$COPY`',

@@ -100,6 +100,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 				},
@@ -114,54 +115,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "symbol",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "event",
-											"orig": "event",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "1d",
-											"kind": "query",
-											"name": "interval",
-											"orig": "interval",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "period1",
-											"orig": "period1",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "period2",
-											"orig": "period2",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v7/finance/download/{symbol}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"symbol": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "v7",
@@ -176,6 +132,61 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"v7",
+									"finance",
+									"download",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"symbol": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "symbol",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "event",
+											"orig": "event",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "interval",
+											"orig": "interval",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "1d",
+										},
+										map[string]any{
+											"name": "period1",
+											"orig": "period1",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "period2",
+											"orig": "period2",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"event",
@@ -184,16 +195,6 @@ func MakeConfig() map[string]any {
 										"period1",
 										"period2",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v7",
-									"finance",
-									"download",
-									"{id}",
 								},
 							},
 						},
@@ -207,6 +208,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "result",
+						"title": "Result",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -217,18 +219,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "US",
-											"kind": "param",
-											"name": "region",
-											"orig": "region",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/trending/{region}",
@@ -246,65 +236,81 @@ func MakeConfig() map[string]any {
 										"var": "region",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"region",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.finance`",
-								},
 								"parts": []any{
 									"v1",
 									"finance",
 									"trending",
 									"{region}",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.finance`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "region",
+											"orig": "region",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"region",
+									},
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"trending",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"screener": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "offset",
-						"short": "Offset for pagination",
+						"title": "Offset",
 						"type": "`$INTEGER`",
+						"short": "Offset for pagination",
 					},
 					map[string]any{
 						"name": "query",
-						"short": "Query criteria",
+						"title": "Query",
 						"type": "`$OBJECT`",
+						"short": "Query criteria",
 					},
 					map[string]any{
 						"name": "quoteType",
+						"title": "Quote Type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "result",
+						"title": "Result",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "size",
-						"short": "Number of results to return",
+						"title": "Size",
 						"type": "`$INTEGER`",
+						"short": "Number of results to return",
 					},
 					map[string]any{
 						"name": "sortField",
-						"short": "Field to sort by",
+						"title": "Sort Field",
 						"type": "`$STRING`",
+						"short": "Field to sort by",
 					},
 					map[string]any{
 						"name": "sortType",
+						"title": "Sort Type",
 						"type": "`$STRING`",
 					},
 				},
@@ -315,7 +321,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/v1/finance/screener",
@@ -330,16 +335,18 @@ func MakeConfig() map[string]any {
 										"lit": "screener",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.finance`",
-								},
 								"parts": []any{
 									"v1",
 									"finance",
 									"screener",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.finance`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -352,10 +359,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "news",
+						"title": "News",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "quotes",
+						"title": "Quotes",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -366,31 +375,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 4,
-											"kind": "query",
-											"name": "news_count",
-											"orig": "news_count",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 6,
-											"kind": "query",
-											"name": "quotes_count",
-											"orig": "quotes_count",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/search",
@@ -405,21 +389,47 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"finance",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "news_count",
+											"orig": "news_count",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 4,
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "quotes_count",
+											"orig": "quotes_count",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 6,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"news_count",
 										"q",
 										"quotes_count",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"finance",
-									"search",
 								},
 							},
 						},
@@ -433,10 +443,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "error",
+						"title": "Error",
 						"type": "`$NULL`",
 					},
 					map[string]any{
 						"name": "result",
+						"title": "Result",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -447,51 +459,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "AAPL",
-											"kind": "param",
-											"name": "symbol",
-											"orig": "symbol",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "event",
-											"orig": "event",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "1d",
-											"kind": "query",
-											"name": "interval",
-											"orig": "interval",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "period1",
-											"orig": "period1",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "period2",
-											"orig": "period2",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "range",
-											"orig": "range",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v8/finance/chart/{symbol}",
@@ -509,6 +476,62 @@ func MakeConfig() map[string]any {
 										"var": "symbol",
 									},
 								},
+								"parts": []any{
+									"v8",
+									"finance",
+									"chart",
+									"{symbol}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.chart`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "symbol",
+											"orig": "symbol",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "AAPL",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "event",
+											"orig": "event",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "interval",
+											"orig": "interval",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "1d",
+										},
+										map[string]any{
+											"name": "period1",
+											"orig": "period1",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "period2",
+											"orig": "period2",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "range",
+											"orig": "range",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"event",
@@ -519,43 +542,8 @@ func MakeConfig() map[string]any {
 										"symbol",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.chart`",
-								},
-								"parts": []any{
-									"v8",
-									"finance",
-									"chart",
-									"{symbol}",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "5m",
-											"kind": "query",
-											"name": "interval",
-											"orig": "interval",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "1d",
-											"kind": "query",
-											"name": "range",
-											"orig": "range",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "symbol",
-											"orig": "symbol",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/finance/spark",
@@ -570,6 +558,41 @@ func MakeConfig() map[string]any {
 										"lit": "spark",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"finance",
+									"spark",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.spark`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "interval",
+											"orig": "interval",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "5m",
+										},
+										map[string]any{
+											"name": "range",
+											"orig": "range",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "1d",
+										},
+										map[string]any{
+											"name": "symbol",
+											"orig": "symbol",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"interval",
@@ -577,36 +600,8 @@ func MakeConfig() map[string]any {
 										"symbol",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.spark`",
-								},
-								"parts": []any{
-									"v1",
-									"finance",
-									"spark",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "symbol",
-											"orig": "symbol",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v7/finance/options/{symbol}",
@@ -624,44 +619,44 @@ func MakeConfig() map[string]any {
 										"var": "symbol",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"date",
-										"symbol",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.optionChain`",
-								},
 								"parts": []any{
 									"v7",
 									"finance",
 									"options",
 									"{symbol}",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.optionChain`",
+								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"kind": "param",
 											"name": "symbol",
 											"orig": "symbol",
-											"reqd": true,
 											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": "assetProfile,financialData,defaultKeyStatistics",
+											"name": "date",
+											"orig": "date",
+											"type": "`$INTEGER`",
 											"kind": "query",
-											"name": "module",
-											"orig": "module",
-											"type": "`$STRING`",
 										},
 									},
 								},
+								"select": map[string]any{
+									"exist": []any{
+										"date",
+										"symbol",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v10/finance/quoteSummary/{symbol}",
@@ -679,36 +674,45 @@ func MakeConfig() map[string]any {
 										"var": "symbol",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"module",
-										"symbol",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.quoteSummary`",
-								},
 								"parts": []any{
 									"v10",
 									"finance",
 									"quoteSummary",
 									"{symbol}",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.quoteSummary`",
+								},
 								"args": map[string]any{
-									"query": []any{
+									"params": []any{
 										map[string]any{
-											"example": "AAPL,MSFT,GOOGL",
-											"kind": "query",
 											"name": "symbol",
 											"orig": "symbol",
-											"reqd": true,
 											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "module",
+											"orig": "module",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "assetProfile,financialData,defaultKeyStatistics",
 										},
 									},
 								},
+								"select": map[string]any{
+									"exist": []any{
+										"module",
+										"symbol",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v6/finance/quote",
@@ -723,33 +727,35 @@ func MakeConfig() map[string]any {
 										"lit": "quote",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"symbol",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.quoteResponse`",
-								},
 								"parts": []any{
 									"v6",
 									"finance",
 									"quote",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.quoteResponse`",
+								},
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
-											"kind": "query",
 											"name": "symbol",
 											"orig": "symbol",
-											"reqd": true,
 											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "AAPL,MSFT,GOOGL",
 										},
 									},
 								},
+								"select": map[string]any{
+									"exist": []any{
+										"symbol",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ws/insights/v1/finance/insights",
@@ -770,15 +776,6 @@ func MakeConfig() map[string]any {
 										"lit": "insights",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"symbol",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.finance`",
-								},
 								"parts": []any{
 									"ws",
 									"insights",
@@ -786,22 +783,33 @@ func MakeConfig() map[string]any {
 									"finance",
 									"insights",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.finance`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "symbol",
+											"orig": "symbol",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"symbol",
+									},
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"quote_summary",
-						},
-						[]any{
-							"option",
-						},
-						[]any{
-							"chart",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 		},

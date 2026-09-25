@@ -1,0 +1,115 @@
+# Entity: download
+
+main: kit: entity: download: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "download"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /v7/finance/download/{symbol}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "symbol"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "event"
+                or: "event"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "1d"
+                k: "query"
+                n: "interval"
+                or: "interval"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "period1"
+                or: "period1"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "period2"
+                or: "period2"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v7/finance/download/{symbol}"
+          q: {
+            exist: [
+              "event"
+              "id"
+              "interval"
+              "period1"
+              "period2"
+            ]
+          }
+          r: {
+            param: {
+              symbol: "id"
+            }
+          }
+          s: [
+            {
+              lit: "v7"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "download"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

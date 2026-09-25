@@ -1,0 +1,91 @@
+# Entity: screener
+
+main: kit: entity: screener: {
+
+  alias: field: {}
+
+  fields: {
+    offset: {
+      h: "Offset"
+      n: "offset"
+      r: false
+      sh: "Offset for pagination"
+      t: "`$INTEGER`"
+    }
+    query: {
+      h: "Query"
+      n: "query"
+      r: false
+      sh: "Query criteria"
+      t: "`$OBJECT`"
+    }
+    quoteType: {
+      h: "Quote Type"
+      n: "quoteType"
+      r: false
+      t: "`$STRING`"
+    }
+    result: {
+      h: "Result"
+      n: "result"
+      r: false
+      t: "`$ARRAY`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      r: false
+      sh: "Number of results to return"
+      t: "`$INTEGER`"
+    }
+    sortField: {
+      h: "Sort Field"
+      n: "sortField"
+      r: false
+      sh: "Field to sort by"
+      t: "`$STRING`"
+    }
+    sortType: {
+      h: "Sort Type"
+      n: "sortType"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "screener"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /v1/finance/screener"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/v1/finance/screener"
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "screener"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.finance`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

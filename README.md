@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -125,12 +125,9 @@ const client = new YahooFinanceSDK({
   apikey: process.env.YAHOO_FINANCE_APIKEY,
 })
 
-
-// Load a specific market (returns a Market)
-const market = await client.Market().load({
-  region: 'example_region',
-})
-console.log(market)
+// Load download data (returns a Download)
+const download = await client.Download().load()
+console.log(download)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -223,15 +220,12 @@ client := sdk.NewYahooFinanceSDK(map[string]any{
     "apikey": os.Getenv("YAHOO_FINANCE_APIKEY"),
 })
 
-
-// Load a specific market
-market, err := client.Market(nil).Load(
-    map[string]any{"region": "example_region"}, nil,
-)
+// Load download data
+download, err := client.Download(nil).Load(map[string]any{"id": "example_id", "period1": 1, "period2": 1}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(market)
+fmt.Println(download)
 ```
 
 ### Ruby

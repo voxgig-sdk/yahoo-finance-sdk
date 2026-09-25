@@ -39,15 +39,14 @@ client = YahooFinanceSDK({
 })
 ```
 
-### 3. Load a market
+### 3. Load a download
 
-Market is nested under region, so provide the `region`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    market = client.Market().load({"region": "example_region"})
-    print(market)
+    download = client.Download().load({"id": "example_id", "period1": 1, "period2": 1})
+    print(download)
 except Exception as err:
     print(f"load failed: {err}")
 ```

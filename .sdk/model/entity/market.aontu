@@ -1,0 +1,71 @@
+# Entity: market
+
+main: kit: entity: market: {
+
+  alias: field: {}
+
+  fields: {
+    result: {
+      h: "Result"
+      n: "result"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "market"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /v1/finance/trending/{region}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "US"
+                k: "param"
+                n: "region"
+                or: "region"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/finance/trending/{region}"
+          q: {
+            exist: [
+              "region"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "trending"
+            }
+            {
+              var: "region"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.finance`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

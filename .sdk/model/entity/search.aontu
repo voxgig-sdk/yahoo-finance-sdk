@@ -1,0 +1,91 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  fields: {
+    news: {
+      h: "News"
+      n: "news"
+      r: false
+      t: "`$ARRAY`"
+    }
+    quotes: {
+      h: "Quotes"
+      n: "quotes"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /v1/finance/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 4
+                k: "query"
+                n: "news_count"
+                or: "news_count"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: 6
+                k: "query"
+                n: "quotes_count"
+                or: "quotes_count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/finance/search"
+          q: {
+            exist: [
+              "news_count"
+              "q"
+              "quotes_count"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

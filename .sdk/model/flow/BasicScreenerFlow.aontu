@@ -1,0 +1,18 @@
+# BasicScreenerFlow
+
+main: kit: flow: BasicScreenerFlow:
+{
+  entity: "screener",
+  kind: "basic",
+  name: "BasicScreenerFlow",
+  step: [
+    {
+      i: {
+        ref: "screener_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicScreenerFlow"
+}

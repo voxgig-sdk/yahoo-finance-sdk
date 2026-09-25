@@ -108,6 +108,7 @@ module YahooFinanceConfig
           "fields" => [
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
           ],
@@ -122,54 +123,9 @@ module YahooFinanceConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "symbol",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "event",
-                        "orig" => "event",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "1d",
-                        "kind" => "query",
-                        "name" => "interval",
-                        "orig" => "interval",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "period1",
-                        "orig" => "period1",
-                        "reqd" => true,
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "period2",
-                        "orig" => "period2",
-                        "reqd" => true,
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v7/finance/download/{symbol}",
-                  "rename" => {
-                    "param" => {
-                      "symbol" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "v7",
@@ -184,6 +140,61 @@ module YahooFinanceConfig
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "v7",
+                    "finance",
+                    "download",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "symbol" => "id",
+                    },
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "symbol",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "event",
+                        "orig" => "event",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "interval",
+                        "orig" => "interval",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "1d",
+                      },
+                      {
+                        "name" => "period1",
+                        "orig" => "period1",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "period2",
+                        "orig" => "period2",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "event",
@@ -193,16 +204,6 @@ module YahooFinanceConfig
                       "period2",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "v7",
-                    "finance",
-                    "download",
-                    "{id}",
-                  ],
                 },
               ],
             },
@@ -215,6 +216,7 @@ module YahooFinanceConfig
           "fields" => [
             {
               "name" => "result",
+              "title" => "Result",
               "type" => "`$ARRAY`",
             },
           ],
@@ -225,18 +227,6 @@ module YahooFinanceConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "example" => "US",
-                        "kind" => "param",
-                        "name" => "region",
-                        "orig" => "region",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/finance/trending/{region}",
@@ -254,65 +244,81 @@ module YahooFinanceConfig
                       "var" => "region",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "region",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.finance`",
-                  },
                   "parts" => [
                     "v1",
                     "finance",
                     "trending",
                     "{region}",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.finance`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "region",
+                        "orig" => "region",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "US",
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "region",
+                    ],
+                  },
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "trending",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "screener" => {
           "fields" => [
             {
               "name" => "offset",
-              "short" => "Offset for pagination",
+              "title" => "Offset",
               "type" => "`$INTEGER`",
+              "short" => "Offset for pagination",
             },
             {
               "name" => "query",
-              "short" => "Query criteria",
+              "title" => "Query",
               "type" => "`$OBJECT`",
+              "short" => "Query criteria",
             },
             {
               "name" => "quoteType",
+              "title" => "Quote Type",
               "type" => "`$STRING`",
             },
             {
               "name" => "result",
+              "title" => "Result",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "size",
-              "short" => "Number of results to return",
+              "title" => "Size",
               "type" => "`$INTEGER`",
+              "short" => "Number of results to return",
             },
             {
               "name" => "sortField",
-              "short" => "Field to sort by",
+              "title" => "Sort Field",
               "type" => "`$STRING`",
+              "short" => "Field to sort by",
             },
             {
               "name" => "sortType",
+              "title" => "Sort Type",
               "type" => "`$STRING`",
             },
           ],
@@ -323,7 +329,6 @@ module YahooFinanceConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/v1/finance/screener",
@@ -338,16 +343,18 @@ module YahooFinanceConfig
                       "lit" => "screener",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.finance`",
-                  },
                   "parts" => [
                     "v1",
                     "finance",
                     "screener",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.finance`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -360,10 +367,12 @@ module YahooFinanceConfig
           "fields" => [
             {
               "name" => "news",
+              "title" => "News",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "quotes",
+              "title" => "Quotes",
               "type" => "`$ARRAY`",
             },
           ],
@@ -374,31 +383,6 @@ module YahooFinanceConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 4,
-                        "kind" => "query",
-                        "name" => "news_count",
-                        "orig" => "news_count",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "q",
-                        "orig" => "q",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 6,
-                        "kind" => "query",
-                        "name" => "quotes_count",
-                        "orig" => "quotes_count",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/finance/search",
@@ -413,6 +397,41 @@ module YahooFinanceConfig
                       "lit" => "search",
                     },
                   ],
+                  "parts" => [
+                    "v1",
+                    "finance",
+                    "search",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "news_count",
+                        "orig" => "news_count",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 4,
+                      },
+                      {
+                        "name" => "q",
+                        "orig" => "q",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "quotes_count",
+                        "orig" => "quotes_count",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 6,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "news_count",
@@ -420,15 +439,6 @@ module YahooFinanceConfig
                       "quotes_count",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "v1",
-                    "finance",
-                    "search",
-                  ],
                 },
               ],
             },
@@ -441,10 +451,12 @@ module YahooFinanceConfig
           "fields" => [
             {
               "name" => "error",
+              "title" => "Error",
               "type" => "`$NULL`",
             },
             {
               "name" => "result",
+              "title" => "Result",
               "type" => "`$ARRAY`",
             },
           ],
@@ -455,51 +467,6 @@ module YahooFinanceConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "example" => "AAPL",
-                        "kind" => "param",
-                        "name" => "symbol",
-                        "orig" => "symbol",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "event",
-                        "orig" => "event",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "1d",
-                        "kind" => "query",
-                        "name" => "interval",
-                        "orig" => "interval",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "period1",
-                        "orig" => "period1",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "period2",
-                        "orig" => "period2",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "range",
-                        "orig" => "range",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v8/finance/chart/{symbol}",
@@ -517,6 +484,62 @@ module YahooFinanceConfig
                       "var" => "symbol",
                     },
                   ],
+                  "parts" => [
+                    "v8",
+                    "finance",
+                    "chart",
+                    "{symbol}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.chart`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "symbol",
+                        "orig" => "symbol",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "AAPL",
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "event",
+                        "orig" => "event",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "interval",
+                        "orig" => "interval",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "1d",
+                      },
+                      {
+                        "name" => "period1",
+                        "orig" => "period1",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "period2",
+                        "orig" => "period2",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "range",
+                        "orig" => "range",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "event",
@@ -527,43 +550,8 @@ module YahooFinanceConfig
                       "symbol",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.chart`",
-                  },
-                  "parts" => [
-                    "v8",
-                    "finance",
-                    "chart",
-                    "{symbol}",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "5m",
-                        "kind" => "query",
-                        "name" => "interval",
-                        "orig" => "interval",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "1d",
-                        "kind" => "query",
-                        "name" => "range",
-                        "orig" => "range",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "symbol",
-                        "orig" => "symbol",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/finance/spark",
@@ -578,6 +566,41 @@ module YahooFinanceConfig
                       "lit" => "spark",
                     },
                   ],
+                  "parts" => [
+                    "v1",
+                    "finance",
+                    "spark",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.spark`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "interval",
+                        "orig" => "interval",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "5m",
+                      },
+                      {
+                        "name" => "range",
+                        "orig" => "range",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "1d",
+                      },
+                      {
+                        "name" => "symbol",
+                        "orig" => "symbol",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "interval",
@@ -585,36 +608,8 @@ module YahooFinanceConfig
                       "symbol",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.spark`",
-                  },
-                  "parts" => [
-                    "v1",
-                    "finance",
-                    "spark",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "symbol",
-                        "orig" => "symbol",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "date",
-                        "orig" => "date",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v7/finance/options/{symbol}",
@@ -632,44 +627,44 @@ module YahooFinanceConfig
                       "var" => "symbol",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "date",
-                      "symbol",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.optionChain`",
-                  },
                   "parts" => [
                     "v7",
                     "finance",
                     "options",
                     "{symbol}",
                   ],
-                },
-                {
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.optionChain`",
+                  },
                   "args" => {
                     "params" => [
                       {
-                        "kind" => "param",
                         "name" => "symbol",
                         "orig" => "symbol",
-                        "reqd" => true,
                         "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
                       },
                     ],
                     "query" => [
                       {
-                        "example" => "assetProfile,financialData,defaultKeyStatistics",
+                        "name" => "date",
+                        "orig" => "date",
+                        "type" => "`$INTEGER`",
                         "kind" => "query",
-                        "name" => "module",
-                        "orig" => "module",
-                        "type" => "`$STRING`",
                       },
                     ],
                   },
+                  "select" => {
+                    "exist" => [
+                      "date",
+                      "symbol",
+                    ],
+                  },
+                },
+                {
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v10/finance/quoteSummary/{symbol}",
@@ -687,36 +682,45 @@ module YahooFinanceConfig
                       "var" => "symbol",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "module",
-                      "symbol",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.quoteSummary`",
-                  },
                   "parts" => [
                     "v10",
                     "finance",
                     "quoteSummary",
                     "{symbol}",
                   ],
-                },
-                {
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.quoteSummary`",
+                  },
                   "args" => {
-                    "query" => [
+                    "params" => [
                       {
-                        "example" => "AAPL,MSFT,GOOGL",
-                        "kind" => "query",
                         "name" => "symbol",
                         "orig" => "symbol",
-                        "reqd" => true,
                         "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "module",
+                        "orig" => "module",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "assetProfile,financialData,defaultKeyStatistics",
                       },
                     ],
                   },
+                  "select" => {
+                    "exist" => [
+                      "module",
+                      "symbol",
+                    ],
+                  },
+                },
+                {
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v6/finance/quote",
@@ -731,33 +735,35 @@ module YahooFinanceConfig
                       "lit" => "quote",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "symbol",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.quoteResponse`",
-                  },
                   "parts" => [
                     "v6",
                     "finance",
                     "quote",
                   ],
-                },
-                {
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.quoteResponse`",
+                  },
                   "args" => {
                     "query" => [
                       {
-                        "kind" => "query",
                         "name" => "symbol",
                         "orig" => "symbol",
-                        "reqd" => true,
                         "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                        "example" => "AAPL,MSFT,GOOGL",
                       },
                     ],
                   },
+                  "select" => {
+                    "exist" => [
+                      "symbol",
+                    ],
+                  },
+                },
+                {
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ws/insights/v1/finance/insights",
@@ -778,15 +784,6 @@ module YahooFinanceConfig
                       "lit" => "insights",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "symbol",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.finance`",
-                  },
                   "parts" => [
                     "ws",
                     "insights",
@@ -794,22 +791,33 @@ module YahooFinanceConfig
                     "finance",
                     "insights",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.finance`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "symbol",
+                        "orig" => "symbol",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "symbol",
+                    ],
+                  },
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "quote_summary",
-              ],
-              [
-                "option",
-              ],
-              [
-                "chart",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
       },

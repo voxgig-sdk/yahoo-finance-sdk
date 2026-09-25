@@ -24,20 +24,87 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "download": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -49,69 +116,77 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v7/finance/download/{symbol}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "symbol",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "symbol",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "event",
-                        "orig": "event",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "event",
+                        "or": "event",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "1d",
-                        "kind": "query",
-                        "name": "interval",
-                        "orig": "interval",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "1d",
+                        "k": "query",
+                        "n": "interval",
+                        "or": "interval",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "period1",
-                        "orig": "period1",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "period1",
+                        "or": "period1",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "period2",
-                        "orig": "period2",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "period2",
+                        "or": "period2",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v7/finance/download/{symbol}",
-                    "json": "{\"operationId\":\"downloadHistoricalData\",\"parameters\":[{\"description\":\"Ticker symbol\",\"in\":\"path\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Start date as Unix timestamp\",\"in\":\"query\",\"name\":\"period1\",\"required\":true,\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}},{\"description\":\"End date as Unix timestamp\",\"in\":\"query\",\"name\":\"period2\",\"required\":true,\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}},{\"description\":\"Data interval\",\"in\":\"query\",\"name\":\"interval\",\"schema\":{\"default\":\"1d\",\"enum\":[\"1d\",\"1wk\",\"1mo\"],\"type\":\"string\"}},{\"description\":\"Events to include\",\"in\":\"query\",\"name\":\"events\",\"schema\":{\"enum\":[\"history\",\"div\",\"split\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/csv\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"CSV file with historical data\"},\"404\":{\"description\":\"Symbol not found\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v7/finance/download/{symbol}",
+                  "q": {
+                    "exist": [
+                      "event",
+                      "id",
+                      "interval",
+                      "period1",
+                      "period2"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v7/finance/download/{symbol}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "symbol": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "v7"
                     },
@@ -125,16 +200,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "event",
-                      "id",
-                      "interval",
-                      "period1",
-                      "period2"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -151,14 +217,15 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "result",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "result": {
+              "a": true,
+              "h": "Result",
+              "n": "result",
+              "r": false,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "market",
           "op": {
             "load": {
@@ -166,30 +233,35 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/finance/trending/{region}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "US",
-                        "kind": "param",
-                        "name": "region",
-                        "orig": "region",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "US",
+                        "k": "param",
+                        "n": "region",
+                        "or": "region",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/finance/trending/{region}",
-                    "json": "{\"operationId\":\"getTrending\",\"parameters\":[{\"description\":\"Region code (e.g., US, GB, AU)\",\"in\":\"path\",\"name\":\"region\",\"required\":true,\"schema\":{\"default\":\"US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"finance\":{\"properties\":{\"result\":{\"items\":{\"properties\":{\"quotes\":{\"items\":{\"properties\":{\"symbol\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Trending tickers\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/finance/trending/{region}",
+                  "q": {
+                    "exist": [
+                      "region"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/finance/trending/{region}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -203,12 +275,7 @@
                       "var": "region"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "region"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.finance`"
                   }
@@ -217,11 +284,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "trending"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "screener": {
@@ -229,54 +292,61 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "offset",
-              "req": false,
-              "short": "Offset for pagination",
-              "type": "`$INTEGER`"
+          "fields": {
+            "offset": {
+              "a": true,
+              "h": "Offset",
+              "n": "offset",
+              "r": false,
+              "sh": "Offset for pagination",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "query",
-              "req": false,
-              "short": "Query criteria",
-              "type": "`$OBJECT`"
+            "query": {
+              "a": true,
+              "h": "Query",
+              "n": "query",
+              "r": false,
+              "sh": "Query criteria",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "quoteType",
-              "req": false,
-              "type": "`$STRING`"
+            "quoteType": {
+              "a": true,
+              "h": "Quote Type",
+              "n": "quoteType",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "result",
-              "req": false,
-              "type": "`$ARRAY`"
+            "result": {
+              "a": true,
+              "h": "Result",
+              "n": "result",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "size",
-              "req": false,
-              "short": "Number of results to return",
-              "type": "`$INTEGER`"
+            "size": {
+              "a": true,
+              "h": "Size",
+              "n": "size",
+              "r": false,
+              "sh": "Number of results to return",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "sortField",
-              "req": false,
-              "short": "Field to sort by",
-              "type": "`$STRING`"
+            "sortField": {
+              "a": true,
+              "h": "Sort Field",
+              "n": "sortField",
+              "r": false,
+              "sh": "Field to sort by",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "sortType",
-              "req": false,
-              "type": "`$STRING`"
+            "sortType": {
+              "a": true,
+              "h": "Sort Type",
+              "n": "sortType",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "screener",
           "op": {
             "create": {
@@ -284,18 +354,19 @@
               "name": "create",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "POST /v1/finance/screener",
-                    "json": "{\"operationId\":\"screenStocks\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"offset\":{\"description\":\"Offset for pagination\",\"type\":\"integer\"},\"query\":{\"description\":\"Query criteria\",\"type\":\"object\"},\"quoteType\":{\"enum\":[\"EQUITY\",\"ETF\",\"MUTUALFUND\"],\"type\":\"string\"},\"size\":{\"description\":\"Number of results to return\",\"type\":\"integer\"},\"sortField\":{\"description\":\"Field to sort by\",\"type\":\"string\"},\"sortType\":{\"enum\":[\"ASC\",\"DESC\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"finance\":{\"properties\":{\"result\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Screening results\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/v1/finance/screener",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/v1/finance/screener",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -306,8 +377,7 @@
                       "lit": "screener"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.finance`"
                   }
@@ -324,20 +394,22 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "news",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "news": {
+              "a": true,
+              "h": "News",
+              "n": "news",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "quotes",
-              "req": false,
-              "type": "`$ARRAY`"
+            "quotes": {
+              "a": true,
+              "h": "Quotes",
+              "n": "quotes",
+              "r": false,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "search",
           "op": {
             "list": {
@@ -345,47 +417,54 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/finance/search",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 4,
-                        "kind": "query",
-                        "name": "news_count",
-                        "orig": "news_count",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 4,
+                        "k": "query",
+                        "n": "news_count",
+                        "or": "news_count",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "q",
-                        "orig": "q",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 6,
-                        "kind": "query",
-                        "name": "quotes_count",
-                        "orig": "quotes_count",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 6,
+                        "k": "query",
+                        "n": "quotes_count",
+                        "or": "quotes_count",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/finance/search",
-                    "json": "{\"operationId\":\"searchTickers\",\"parameters\":[{\"description\":\"Search query\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of quote results to return\",\"in\":\"query\",\"name\":\"quotesCount\",\"schema\":{\"default\":6,\"type\":\"integer\"}},{\"description\":\"Number of news results to return\",\"in\":\"query\",\"name\":\"newsCount\",\"schema\":{\"default\":4,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"news\":{\"items\":{\"properties\":{\"link\":{\"type\":\"string\"},\"publisher\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"uuid\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"quotes\":{\"items\":{\"properties\":{\"exchange\":{\"type\":\"string\"},\"longname\":{\"type\":\"string\"},\"quoteType\":{\"type\":\"string\"},\"shortname\":{\"type\":\"string\"},\"symbol\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Search results\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/finance/search",
+                  "q": {
+                    "exist": [
+                      "news_count",
+                      "q",
+                      "quotes_count"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/finance/search",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -396,14 +475,7 @@
                       "lit": "search"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "news_count",
-                      "q",
-                      "quotes_count"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -420,20 +492,22 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "error",
-              "req": false,
-              "type": "`$NULL`"
+          "fields": {
+            "error": {
+              "a": true,
+              "h": "Error",
+              "n": "error",
+              "r": false,
+              "t": "`$NULL`"
             },
-            {
-              "active": true,
-              "name": "result",
-              "req": false,
-              "type": "`$ARRAY`"
+            "result": {
+              "a": true,
+              "h": "Result",
+              "n": "result",
+              "r": false,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "ticker",
           "op": {
             "load": {
@@ -441,73 +515,83 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v8/finance/chart/{symbol}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "AAPL",
-                        "kind": "param",
-                        "name": "symbol",
-                        "orig": "symbol",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "AAPL",
+                        "k": "param",
+                        "n": "symbol",
+                        "or": "symbol",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "event",
-                        "orig": "event",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "event",
+                        "or": "event",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "1d",
-                        "kind": "query",
-                        "name": "interval",
-                        "orig": "interval",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "1d",
+                        "k": "query",
+                        "n": "interval",
+                        "or": "interval",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "period1",
-                        "orig": "period1",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "period1",
+                        "or": "period1",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "period2",
-                        "orig": "period2",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "period2",
+                        "or": "period2",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "range",
-                        "orig": "range",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "range",
+                        "or": "range",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v8/finance/chart/{symbol}",
-                    "json": "{\"operationId\":\"getTickerChart\",\"parameters\":[{\"description\":\"Ticker symbol (e.g., AAPL, BTC-USD, EURUSD=X)\",\"example\":\"AAPL\",\"in\":\"path\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Start date as Unix timestamp\",\"in\":\"query\",\"name\":\"period1\",\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}},{\"description\":\"End date as Unix timestamp\",\"in\":\"query\",\"name\":\"period2\",\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}},{\"description\":\"Data interval\",\"in\":\"query\",\"name\":\"interval\",\"schema\":{\"default\":\"1d\",\"enum\":[\"1m\",\"2m\",\"5m\",\"15m\",\"30m\",\"60m\",\"90m\",\"1h\",\"1d\",\"5d\",\"1wk\",\"1mo\",\"3mo\"],\"type\":\"string\"}},{\"description\":\"Time range for data\",\"in\":\"query\",\"name\":\"range\",\"schema\":{\"enum\":[\"1d\",\"5d\",\"1mo\",\"3mo\",\"6mo\",\"1y\",\"2y\",\"5y\",\"10y\",\"ytd\",\"max\"],\"type\":\"string\"}},{\"description\":\"Include dividends and splits\",\"in\":\"query\",\"name\":\"events\",\"schema\":{\"enum\":[\"div\",\"split\",\"div,split\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"chart\":{\"properties\":{\"error\":{\"type\":\"null\"},\"result\":{\"items\":{\"properties\":{\"indicators\":{\"properties\":{\"quote\":{\"items\":{\"properties\":{\"close\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"high\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"low\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"open\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"volume\":{\"items\":{\"type\":\"integer\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"meta\":{\"properties\":{\"chartPreviousClose\":{\"type\":\"number\"},\"currency\":{\"type\":\"string\"},\"exchangeName\":{\"type\":\"string\"},\"instrumentType\":{\"type\":\"string\"},\"regularMarketPrice\":{\"type\":\"number\"},\"symbol\":{\"type\":\"string\"}},\"type\":\"object\"},\"timestamp\":{\"items\":{\"format\":\"int64\",\"type\":\"integer\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with chart data\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Symbol not found\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v8/finance/chart/{symbol}",
+                  "q": {
+                    "exist": [
+                      "event",
+                      "interval",
+                      "period1",
+                      "period2",
+                      "range",
+                      "symbol"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v8/finance/chart/{symbol}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v8"
                     },
@@ -521,63 +605,60 @@
                       "var": "symbol"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "event",
-                      "interval",
-                      "period1",
-                      "period2",
-                      "range",
-                      "symbol"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.chart`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/finance/spark",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "5m",
-                        "kind": "query",
-                        "name": "interval",
-                        "orig": "interval",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "5m",
+                        "k": "query",
+                        "n": "interval",
+                        "or": "interval",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "1d",
-                        "kind": "query",
-                        "name": "range",
-                        "orig": "range",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "1d",
+                        "k": "query",
+                        "n": "range",
+                        "or": "range",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "symbol",
-                        "orig": "symbol",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "symbol",
+                        "or": "symbol",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/finance/spark",
-                    "json": "{\"operationId\":\"getSparkData\",\"parameters\":[{\"description\":\"Comma-separated list of ticker symbols\",\"in\":\"query\",\"name\":\"symbols\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Time range\",\"in\":\"query\",\"name\":\"range\",\"schema\":{\"default\":\"1d\",\"enum\":[\"1d\",\"5d\",\"1mo\",\"3mo\",\"6mo\",\"1y\",\"5y\"],\"type\":\"string\"}},{\"description\":\"Data interval\",\"in\":\"query\",\"name\":\"interval\",\"schema\":{\"default\":\"5m\",\"enum\":[\"1m\",\"5m\",\"15m\",\"1d\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"spark\":{\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Spark chart data\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/finance/spark",
+                  "q": {
+                    "exist": [
+                      "interval",
+                      "range",
+                      "symbol"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/finance/spark",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -588,52 +669,51 @@
                       "lit": "spark"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "interval",
-                      "range",
-                      "symbol"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.spark`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v7/finance/options/{symbol}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "symbol",
-                        "orig": "symbol",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "symbol",
+                        "or": "symbol",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "date",
-                        "orig": "date",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "date",
+                        "or": "date",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v7/finance/options/{symbol}",
-                    "json": "{\"operationId\":\"getOptions\",\"parameters\":[{\"description\":\"Ticker symbol\",\"in\":\"path\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Expiration date as Unix timestamp\",\"in\":\"query\",\"name\":\"date\",\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"optionChain\":{\"properties\":{\"result\":{\"items\":{\"properties\":{\"expirationDates\":{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"options\":{\"items\":{\"properties\":{\"calls\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"puts\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"strikes\":{\"items\":{\"type\":\"number\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Options chain data\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v7/finance/options/{symbol}",
+                  "q": {
+                    "exist": [
+                      "date",
+                      "symbol"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v7/finance/options/{symbol}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v7"
                     },
@@ -647,52 +727,52 @@
                       "var": "symbol"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "date",
-                      "symbol"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.optionChain`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v10/finance/quoteSummary/{symbol}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "symbol",
-                        "orig": "symbol",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "symbol",
+                        "or": "symbol",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "assetProfile,financialData,defaultKeyStatistics",
-                        "kind": "query",
-                        "name": "module",
-                        "orig": "module",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "assetProfile,financialData,defaultKeyStatistics",
+                        "k": "query",
+                        "n": "module",
+                        "or": "module",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v10/finance/quoteSummary/{symbol}",
-                    "json": "{\"operationId\":\"getTickerSummary\",\"parameters\":[{\"description\":\"Ticker symbol\",\"in\":\"path\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of data modules to retrieve\",\"example\":\"assetProfile,financialData,defaultKeyStatistics\",\"in\":\"query\",\"name\":\"modules\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"quoteSummary\":{\"properties\":{\"error\":{\"type\":\"null\"},\"result\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with ticker summary\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Symbol not found\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v10/finance/quoteSummary/{symbol}",
+                  "q": {
+                    "exist": [
+                      "module",
+                      "symbol"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v10/finance/quoteSummary/{symbol}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v10"
                     },
@@ -706,42 +786,41 @@
                       "var": "symbol"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "module",
-                      "symbol"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.quoteSummary`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v6/finance/quote",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "AAPL,MSFT,GOOGL",
-                        "kind": "query",
-                        "name": "symbol",
-                        "orig": "symbol",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "AAPL,MSFT,GOOGL",
+                        "k": "query",
+                        "n": "symbol",
+                        "or": "symbol",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v6/finance/quote",
-                    "json": "{\"operationId\":\"getQuotes\",\"parameters\":[{\"description\":\"Comma-separated list of ticker symbols\",\"example\":\"AAPL,MSFT,GOOGL\",\"in\":\"query\",\"name\":\"symbols\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"quoteResponse\":{\"properties\":{\"error\":{\"type\":\"null\"},\"result\":{\"items\":{\"properties\":{\"regularMarketChange\":{\"type\":\"number\"},\"regularMarketChangePercent\":{\"type\":\"number\"},\"regularMarketDayHigh\":{\"type\":\"number\"},\"regularMarketDayLow\":{\"type\":\"number\"},\"regularMarketOpen\":{\"type\":\"number\"},\"regularMarketPreviousClose\":{\"type\":\"number\"},\"regularMarketPrice\":{\"type\":\"number\"},\"regularMarketVolume\":{\"type\":\"integer\"},\"symbol\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Quote data for requested tickers\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v6/finance/quote",
+                  "q": {
+                    "exist": [
+                      "symbol"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v6/finance/quote",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v6"
                     },
@@ -752,40 +831,40 @@
                       "lit": "quote"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "symbol"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.quoteResponse`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /ws/insights/v1/finance/insights",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "symbol",
-                        "orig": "symbol",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "symbol",
+                        "or": "symbol",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /ws/insights/v1/finance/insights",
-                    "json": "{\"operationId\":\"getInsights\",\"parameters\":[{\"description\":\"Ticker symbol\",\"in\":\"query\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"finance\":{\"properties\":{\"result\":{\"type\":\"object\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Ticker insights\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Yahoo Finance uses cookie-based authentication for some endpoints\",\"in\":\"cookie\",\"name\":\"Session\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/ws/insights/v1/finance/insights",
+                  "q": {
+                    "exist": [
+                      "symbol"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/ws/insights/v1/finance/insights",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "ws"
                     },
@@ -802,12 +881,7 @@
                       "lit": "insights"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "symbol"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.finance`"
                   }
@@ -816,17 +890,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "quote_summary"
-              ],
-              [
-                "option"
-              ],
-              [
-                "chart"
-              ]
-            ]
+            "ancestors": []
           }
         }
       },
@@ -1246,19 +1310,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "download_ref01",
                 "srcdatavar": "download_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "download01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1278,19 +1342,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "market_ref01",
                 "srcdatavar": "market_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "market01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1310,15 +1374,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "screener_ref01"
               },
-              "match": {},
-              "op": "create",
-              "spec": [],
-              "valid": []
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
             }
           ]
         },
@@ -1331,13 +1395,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1357,17 +1421,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "ticker_ref01",
                 "srcdatavar": "ticker_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

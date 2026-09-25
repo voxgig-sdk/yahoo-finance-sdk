@@ -19,7 +19,6 @@ import type {
   SearchListMatch,
 } from '../YahooFinanceTypes'
 
-// TODO: needs Entity superclass
 class SearchEntity extends YahooFinanceEntityBase<Search> {
 
   constructor(client: YahooFinanceSDK, entopts: any) {

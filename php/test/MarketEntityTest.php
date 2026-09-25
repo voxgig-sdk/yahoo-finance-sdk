@@ -70,7 +70,7 @@ function market_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["market01", "market02", "market03", "trending01", "trending02", "trending03"] as $k) {
+    foreach (["market01", "market02", "market03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

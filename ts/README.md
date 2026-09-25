@@ -35,17 +35,14 @@ const client = new YahooFinanceSDK({
 })
 ```
 
-### 3. Load a market
+### 3. Load a download
 
-Market is nested under region, so provide the `region`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const market = await client.Market().load({
-    region: 'example_region',
-  })
-  console.log(market)
+  const download = await client.Download().load({ id: 'example_id', period1: 1, period2: 1 })
+  console.log(download)
 } catch (err) {
   console.error('load failed:', err)
 }

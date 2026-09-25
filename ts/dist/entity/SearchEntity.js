@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchEntity = void 0;
 const YahooFinanceEntityBase_1 = require("../YahooFinanceEntityBase");
-// TODO: needs Entity superclass
 class SearchEntity extends YahooFinanceEntityBase_1.YahooFinanceEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

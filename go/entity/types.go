@@ -1,7 +1,7 @@
 // Typed models for the YahooFinance SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,7 +14,6 @@ import (
 
 // Download is the typed data model for the download entity.
 type Download struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // DownloadLoadMatch is the typed request payload for Download.LoadTyped.
@@ -28,7 +27,6 @@ type DownloadLoadMatch struct {
 
 // Market is the typed data model for the market entity.
 type Market struct {
-	Result *[]any `json:"result,omitempty"`
 }
 
 // MarketLoadMatch is the typed request payload for Market.LoadTyped.
@@ -38,13 +36,6 @@ type MarketLoadMatch struct {
 
 // Screener is the typed data model for the screener entity.
 type Screener struct {
-	Offset *int `json:"offset,omitempty"`
-	Query *map[string]any `json:"query,omitempty"`
-	QuoteType *string `json:"quoteType,omitempty"`
-	Result *[]any `json:"result,omitempty"`
-	Size *int `json:"size,omitempty"`
-	SortField *string `json:"sortField,omitempty"`
-	SortType *string `json:"sortType,omitempty"`
 }
 
 // ScreenerCreateData is the typed request payload for Screener.CreateTyped.
@@ -60,8 +51,6 @@ type ScreenerCreateData struct {
 
 // Search is the typed data model for the search entity.
 type Search struct {
-	News *[]any `json:"news,omitempty"`
-	Quotes *[]any `json:"quotes,omitempty"`
 }
 
 // SearchListMatch is the typed request payload for Search.ListTyped.
@@ -73,8 +62,6 @@ type SearchListMatch struct {
 
 // Ticker is the typed data model for the ticker entity.
 type Ticker struct {
-	Error *any `json:"error,omitempty"`
-	Result *[]any `json:"result,omitempty"`
 }
 
 // TickerLoadMatch is the typed request payload for Ticker.LoadTyped.

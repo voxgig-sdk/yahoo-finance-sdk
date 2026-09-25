@@ -62,7 +62,7 @@ def ticker_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["ticker01", "ticker02", "ticker03", "quote_summary01", "quote_summary02", "quote_summary03", "option01", "option02", "option03", "chart01", "chart02", "chart03"],
+    ["ticker01", "ticker02", "ticker03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

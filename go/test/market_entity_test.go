@@ -98,7 +98,7 @@ func marketBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"market01", "market02", "market03", "trending01", "trending02", "trending03"},
+		[]any{"market01", "market02", "market03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

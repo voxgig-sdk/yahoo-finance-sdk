@@ -62,7 +62,7 @@ def market_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["market01", "market02", "market03", "trending01", "trending02", "trending03"],
+    ["market01", "market02", "market03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

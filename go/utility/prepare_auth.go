@@ -1,6 +1,8 @@
 package utility
 
 import (
+	"strings"
+
 	vs "github.com/voxgig-sdk/yahoo-finance-sdk/go/utility/struct"
 
 	"github.com/voxgig-sdk/yahoo-finance-sdk/go/core"
@@ -10,6 +12,32 @@ const credName = "Session"
 const cookieHeader = "cookie"
 const optionApikey = "apikey"
 const notFound = "__NOTFOUND__"
+
+func cookieSet(headers map[string]any, value any) {
+	kept := []string{}
+
+	if existing, ok := headers[cookieHeader].(string); ok && existing != "" {
+		for _, part := range strings.Split(existing, ";") {
+			piece := strings.TrimSpace(part)
+			if piece == "" || piece == credName ||
+				strings.HasPrefix(piece, credName+"=") {
+				continue
+			}
+			kept = append(kept, piece)
+		}
+	}
+
+	if value != nil {
+		valStr, _ := value.(string)
+		kept = append(kept, credName+"="+valStr)
+	}
+
+	if len(kept) == 0 {
+		delete(headers, cookieHeader)
+	} else {
+		headers[cookieHeader] = strings.Join(kept, "; ")
+	}
+}
 
 func prepareAuthUtil(ctx *core.Context) (*core.Spec, error) {
 	spec := ctx.Spec
@@ -23,7 +51,7 @@ func prepareAuthUtil(ctx *core.Context) (*core.Spec, error) {
 
 	// Public APIs that need no auth omit the options.auth block entirely.
 	if options["auth"] == nil {
-		delete(headers, credName)
+		cookieSet(headers, nil)
 		return spec, nil
 	}
 
@@ -38,22 +66,13 @@ func prepareAuthUtil(ctx *core.Context) (*core.Spec, error) {
 	}
 
 	if skip {
-		delete(headers, credName)
+		cookieSet(headers, nil)
 	} else {
 		apikeyVal := ""
 		if av, ok := apikey.(string); ok {
 			apikeyVal = av
 		}
-		pair := credName + "=" + apikeyVal
-		existing := ""
-		if ec, ok := headers[cookieHeader].(string); ok {
-			existing = ec
-		}
-		if existing == "" {
-			headers[cookieHeader] = pair
-		} else {
-			headers[cookieHeader] = existing + "; " + pair
-		}
+		cookieSet(headers, apikeyVal)
 	}
 
 	return spec, nil

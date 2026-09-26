@@ -106,11 +106,11 @@ local result, err = client:Market():load({ region = "example" })
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/yahoo-finance-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
-| Python | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
-| PHP | `voxgig-sdk/yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
+| Python | `voxgig-sdk-yahoo-finance-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
+| PHP | `voxgig-sdk/yahoo-finance-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/yahoo-finance-sdk/go` | `go get github.com/voxgig-sdk/yahoo-finance-sdk/go@latest` |
-| Ruby | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
-| Lua | `voxgig-sdk-yahoo-finance` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
+| Ruby | `voxgig-sdk-yahoo-finance-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
+| Lua | `voxgig-sdk-yahoo-finance-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/yahoo-finance-sdk/go-cli` | `go install github.com/voxgig-sdk/yahoo-finance-sdk/go-cli/cmd/yahoo-finance@latest` |
 | Go MCP server | `github.com/voxgig-sdk/yahoo-finance-sdk/go-mcp` | `go get github.com/voxgig-sdk/yahoo-finance-sdk/go-mcp@latest` |
 
@@ -357,10 +357,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 

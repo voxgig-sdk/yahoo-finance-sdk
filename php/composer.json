@@ -1,5 +1,5 @@
 {
-  "name": "voxgig-sdk/yahoo-finance",
+  "name": "voxgig-sdk/yahoo-finance-sdk",
   "description": "Unofficial generated PHP SDK for the Yahoo Finance public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
   "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "yahoo-finance"],

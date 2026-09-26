@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prepareAuth = prepareAuth;
 const CRED_name = 'Session';
+const COOKIE_header = 'cookie';
 const OPTION_apikey = 'apikey';
 const OPTION_secret = 'secret';
 const NOTFOUND = '__NOTFOUND__';
@@ -17,21 +18,41 @@ function prepareAuth(ctx) {
         return ctx.error('auth_no_spec', 'Expected context spec property to be defined.');
     }
     const headers = spec.headers;
+    function cookieSet(headers, value) {
+        const existing = getprop(headers, COOKIE_header, '');
+        const kept = [];
+        if ('string' === typeof existing && '' !== existing) {
+            for (const part of existing.split(';')) {
+                const piece = part.trim();
+                if ('' === piece || piece === CRED_name || piece.startsWith(CRED_name + '=')) {
+                    continue;
+                }
+                kept.push(piece);
+            }
+        }
+        if (null != value) {
+            kept.push(CRED_name + '=' + value);
+        }
+        if (0 === kept.length) {
+            delprop(headers, COOKIE_header);
+        }
+        else {
+            setprop(headers, COOKIE_header, kept.join('; '));
+        }
+    }
     const options = client.options();
     // Public APIs that need no auth omit the options.auth block entirely.
     if (null == options.auth) {
-        delprop(headers, CRED_name);
+        cookieSet(headers, null);
         return spec;
     }
     const prefix = options.auth.prefix;
     const apikey = getprop(options, OPTION_apikey, NOTFOUND);
     if (NOTFOUND === apikey || null == apikey || '' === apikey) {
-        delprop(headers, CRED_name);
+        cookieSet(headers, null);
     }
     else {
-        const existing = getprop(headers, 'cookie', '');
-        const pair = CRED_name + '=' + apikey;
-        setprop(headers, 'cookie', existing ? existing + '; ' + pair : pair);
+        cookieSet(headers, apikey);
     }
     return spec;
 }

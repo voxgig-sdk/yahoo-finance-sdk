@@ -10,6 +10,33 @@ class YahooFinancePrepareAuth
     private const OPTION_APIKEY = 'apikey';
     private const NOT_FOUND = '__NOTFOUND__';
 
+    private static function applyCookie(array &$headers, ?string $value): void
+    {
+        $kept = [];
+        $existing = $headers[self::HEADER_COOKIE] ?? '';
+
+        if (is_string($existing) && '' !== $existing) {
+            foreach (explode(';', $existing) as $part) {
+                $piece = trim($part);
+                if ('' === $piece || $piece === self::COOKIE_AUTH
+                    || str_starts_with($piece, self::COOKIE_AUTH . '=')) {
+                    continue;
+                }
+                $kept[] = $piece;
+            }
+        }
+
+        if (null !== $value) {
+            $kept[] = self::COOKIE_AUTH . '=' . $value;
+        }
+
+        if ([] === $kept) {
+            unset($headers[self::HEADER_COOKIE]);
+        } else {
+            $headers[self::HEADER_COOKIE] = implode('; ', $kept);
+        }
+    }
+
     public static function call(YahooFinanceContext $ctx): array
     {
         $spec = $ctx->spec;
@@ -22,6 +49,7 @@ class YahooFinancePrepareAuth
 
         // Public APIs that need no auth omit the options.auth block entirely.
         if (!isset($options['auth']) || $options['auth'] === null) {
+            self::applyCookie($headers, null);
             return [$spec, null];
         }
 
@@ -30,15 +58,11 @@ class YahooFinancePrepareAuth
         $missing = (is_string($apikey) && ($apikey === self::NOT_FOUND || $apikey === ''))
             || $apikey === null;
 
-        if (!$missing) {
-            // A COOKIE IS APPENDED, NEVER ASSIGNED: the header may already
-            // carry the caller's own cookies, and one `Cookie:` header
-            // holds all of them, separated by '; '.
-            $apikey_val = is_string($apikey) ? $apikey : '';
-            $existing = $headers[self::HEADER_COOKIE] ?? '';
-            $pair = self::COOKIE_AUTH . '=' . $apikey_val;
-            $headers[self::HEADER_COOKIE] = $existing === ''
-                ? $pair : "{$existing}; {$pair}";
+        if ($missing) {
+            self::applyCookie($headers, null);
+        } else {
+            // One `Cookie:` header holds every cookie, separated by '; '.
+            self::applyCookie($headers, is_string($apikey) ? $apikey : '');
         }
 
         return [$spec, null];

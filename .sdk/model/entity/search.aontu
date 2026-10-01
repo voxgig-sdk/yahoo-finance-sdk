@@ -36,7 +36,7 @@ main: kit: entity: search: {
                 ex: 4
                 k: "query"
                 n: "news_count"
-                or: "news_count"
+                or: "newsCount"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -51,7 +51,7 @@ main: kit: entity: search: {
                 ex: 6
                 k: "query"
                 n: "quotes_count"
-                or: "quotes_count"
+                or: "quotesCount"
                 r: false
                 t: "`$INTEGER`"
               }

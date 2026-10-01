@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 YahooFinanceUtility::setRegistrar(function (YahooFinanceUtility $u): void {
     $u->clean = [YahooFinanceClean::class, 'call'];
+    $u->clean_add = [YahooFinanceClean::class, 'add'];
+    $u->clean_explain = [YahooFinanceDone::class, 'clean_explain'];
     $u->done = [YahooFinanceDone::class, 'call'];
     $u->make_error = [YahooFinanceMakeError::class, 'call'];
     $u->feature_add = [YahooFinanceFeatureAdd::class, 'call'];

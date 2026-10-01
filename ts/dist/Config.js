@@ -176,7 +176,7 @@ class Config {
                                 "query": [
                                     {
                                         "name": "event",
-                                        "orig": "event",
+                                        "orig": "events",
                                         "type": "`$STRING`",
                                         "kind": "query"
                                     },
@@ -419,7 +419,7 @@ class Config {
                                 "query": [
                                     {
                                         "name": "news_count",
-                                        "orig": "news_count",
+                                        "orig": "newsCount",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
                                         "example": 4
@@ -433,7 +433,7 @@ class Config {
                                     },
                                     {
                                         "name": "quotes_count",
-                                        "orig": "quotes_count",
+                                        "orig": "quotesCount",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
                                         "example": 6
@@ -517,7 +517,7 @@ class Config {
                                 "query": [
                                     {
                                         "name": "event",
-                                        "orig": "event",
+                                        "orig": "events",
                                         "type": "`$STRING`",
                                         "kind": "query"
                                     },
@@ -602,7 +602,7 @@ class Config {
                                     },
                                     {
                                         "name": "symbol",
-                                        "orig": "symbol",
+                                        "orig": "symbols",
                                         "type": "`$STRING`",
                                         "kind": "query",
                                         "reqd": true
@@ -714,7 +714,7 @@ class Config {
                                 "query": [
                                     {
                                         "name": "module",
-                                        "orig": "module",
+                                        "orig": "modules",
                                         "type": "`$STRING`",
                                         "kind": "query",
                                         "example": "assetProfile,financialData,defaultKeyStatistics"
@@ -757,7 +757,7 @@ class Config {
                                 "query": [
                                     {
                                         "name": "symbol",
-                                        "orig": "symbol",
+                                        "orig": "symbols",
                                         "type": "`$STRING`",
                                         "kind": "query",
                                         "reqd": true,

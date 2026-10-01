@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 YahooFinanceUtility.registrar = ->(u) {
   u.clean = YahooFinanceUtilities::Clean
+  u.clean_add = YahooFinanceUtilities::CleanAdd
+  u.clean_explain = YahooFinanceUtilities::CleanExplain
   u.done = YahooFinanceUtilities::Done
   u.make_error = YahooFinanceUtilities::MakeError
   u.feature_add = YahooFinanceUtilities::FeatureAdd

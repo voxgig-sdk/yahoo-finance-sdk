@@ -185,7 +185,7 @@ def make_config():
                   "query": [
                     {
                       "name": "event",
-                      "orig": "event",
+                      "orig": "events",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -428,7 +428,7 @@ def make_config():
                   "query": [
                     {
                       "name": "news_count",
-                      "orig": "news_count",
+                      "orig": "newsCount",
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 4,
@@ -442,7 +442,7 @@ def make_config():
                     },
                     {
                       "name": "quotes_count",
-                      "orig": "quotes_count",
+                      "orig": "quotesCount",
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 6,
@@ -526,7 +526,7 @@ def make_config():
                   "query": [
                     {
                       "name": "event",
-                      "orig": "event",
+                      "orig": "events",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -611,7 +611,7 @@ def make_config():
                     },
                     {
                       "name": "symbol",
-                      "orig": "symbol",
+                      "orig": "symbols",
                       "type": "`$STRING`",
                       "kind": "query",
                       "reqd": True,
@@ -723,7 +723,7 @@ def make_config():
                   "query": [
                     {
                       "name": "module",
-                      "orig": "module",
+                      "orig": "modules",
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "assetProfile,financialData,defaultKeyStatistics",
@@ -766,7 +766,7 @@ def make_config():
                   "query": [
                     {
                       "name": "symbol",
-                      "orig": "symbol",
+                      "orig": "symbols",
                       "type": "`$STRING`",
                       "kind": "query",
                       "reqd": True,

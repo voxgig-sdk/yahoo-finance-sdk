@@ -45,7 +45,7 @@ main: kit: entity: ticker: {
               {
                 k: "query"
                 n: "event"
-                or: "event"
+                or: "events"
                 r: false
                 t: "`$STRING`"
               }
@@ -138,7 +138,7 @@ main: kit: entity: ticker: {
               {
                 k: "query"
                 n: "symbol"
-                or: "symbol"
+                or: "symbols"
                 r: true
                 t: "`$STRING`"
               }
@@ -243,7 +243,7 @@ main: kit: entity: ticker: {
                 ex: "assetProfile,financialData,defaultKeyStatistics"
                 k: "query"
                 n: "module"
-                or: "module"
+                or: "modules"
                 r: false
                 t: "`$STRING`"
               }
@@ -288,7 +288,7 @@ main: kit: entity: ticker: {
                 ex: "AAPL,MSFT,GOOGL"
                 k: "query"
                 n: "symbol"
-                or: "symbol"
+                or: "symbols"
                 r: true
                 t: "`$STRING`"
               }

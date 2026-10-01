@@ -138,7 +138,7 @@
                         "a": true,
                         "k": "query",
                         "n": "event",
-                        "or": "event",
+                        "or": "events",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -430,7 +430,7 @@
                         "ex": 4,
                         "k": "query",
                         "n": "news_count",
-                        "or": "news_count",
+                        "or": "newsCount",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -447,7 +447,7 @@
                         "ex": 6,
                         "k": "query",
                         "n": "quotes_count",
-                        "or": "quotes_count",
+                        "or": "quotesCount",
                         "r": false,
                         "t": "`$INTEGER`"
                       }
@@ -538,7 +538,7 @@
                         "a": true,
                         "k": "query",
                         "n": "event",
-                        "or": "event",
+                        "or": "events",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -641,7 +641,7 @@
                         "a": true,
                         "k": "query",
                         "n": "symbol",
-                        "or": "symbol",
+                        "or": "symbols",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -756,7 +756,7 @@
                         "ex": "assetProfile,financialData,defaultKeyStatistics",
                         "k": "query",
                         "n": "module",
-                        "or": "module",
+                        "or": "modules",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -805,7 +805,7 @@
                         "ex": "AAPL,MSFT,GOOGL",
                         "k": "query",
                         "n": "symbol",
-                        "or": "symbol",
+                        "or": "symbols",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -1496,7 +1496,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

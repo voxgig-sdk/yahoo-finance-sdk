@@ -160,7 +160,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "event",
-											"orig": "event",
+											"orig": "events",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -403,7 +403,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "news_count",
-											"orig": "news_count",
+											"orig": "newsCount",
 											"type": "`$INTEGER`",
 											"kind": "query",
 											"example": 4,
@@ -417,7 +417,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "quotes_count",
-											"orig": "quotes_count",
+											"orig": "quotesCount",
 											"type": "`$INTEGER`",
 											"kind": "query",
 											"example": 6,
@@ -501,7 +501,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "event",
-											"orig": "event",
+											"orig": "events",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -586,7 +586,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "symbol",
-											"orig": "symbol",
+											"orig": "symbols",
 											"type": "`$STRING`",
 											"kind": "query",
 											"reqd": true,
@@ -698,7 +698,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "module",
-											"orig": "module",
+											"orig": "modules",
 											"type": "`$STRING`",
 											"kind": "query",
 											"example": "assetProfile,financialData,defaultKeyStatistics",
@@ -741,7 +741,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "symbol",
-											"orig": "symbol",
+											"orig": "symbols",
 											"type": "`$STRING`",
 											"kind": "query",
 											"reqd": true,

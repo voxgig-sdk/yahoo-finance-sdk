@@ -182,7 +182,7 @@ class YahooFinanceConfig
                     'query' => [
                       [
                         'name' => 'event',
-                        'orig' => 'event',
+                        'orig' => 'events',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -425,7 +425,7 @@ class YahooFinanceConfig
                     'query' => [
                       [
                         'name' => 'news_count',
-                        'orig' => 'news_count',
+                        'orig' => 'newsCount',
                         'type' => '`$INTEGER`',
                         'kind' => 'query',
                         'example' => 4,
@@ -439,7 +439,7 @@ class YahooFinanceConfig
                       ],
                       [
                         'name' => 'quotes_count',
-                        'orig' => 'quotes_count',
+                        'orig' => 'quotesCount',
                         'type' => '`$INTEGER`',
                         'kind' => 'query',
                         'example' => 6,
@@ -523,7 +523,7 @@ class YahooFinanceConfig
                     'query' => [
                       [
                         'name' => 'event',
-                        'orig' => 'event',
+                        'orig' => 'events',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -608,7 +608,7 @@ class YahooFinanceConfig
                       ],
                       [
                         'name' => 'symbol',
-                        'orig' => 'symbol',
+                        'orig' => 'symbols',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'reqd' => true,
@@ -720,7 +720,7 @@ class YahooFinanceConfig
                     'query' => [
                       [
                         'name' => 'module',
-                        'orig' => 'module',
+                        'orig' => 'modules',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'example' => 'assetProfile,financialData,defaultKeyStatistics',
@@ -763,7 +763,7 @@ class YahooFinanceConfig
                     'query' => [
                       [
                         'name' => 'symbol',
-                        'orig' => 'symbol',
+                        'orig' => 'symbols',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'reqd' => true,

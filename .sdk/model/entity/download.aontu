@@ -43,7 +43,7 @@ main: kit: entity: download: {
               {
                 k: "query"
                 n: "event"
-                or: "event"
+                or: "events"
                 r: false
                 t: "`$STRING`"
               }

@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Download();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.YahooFinanceSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Download().load({ "id": 1, "period1": 1, "period2": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.YAHOO_FINANCE_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 } }, "id": { "field": "id", "name": "id" }, "name": "download", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /v7/finance/download/{symbol}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "symbol", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "k": "query", "n": "event", "or": "events", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "1d", "k": "query", "n": "interval", "or": "interval", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "period1", "or": "period1", "r": true, "t": "`$INTEGER`", "index$": 2 }, { "a": true, "k": "query", "n": "period2", "or": "period2", "r": true, "t": "`$INTEGER`", "index$": 3 }] }, "k": "http", "m": "GET", "o": "/v7/finance/download/{symbol}", "q": { "exist": ["event", "id", "interval", "period1", "period2"] }, "r": { "param": { "symbol": "id" } }, "s": [{ "lit": "v7" }, { "lit": "finance" }, { "lit": "download" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "download", "name__orig": "download", "Name": "Download", "name_": "download", "name-": "download", "NAME": "DOWNLOAD", "index$": 0 }, { "active": true, "entity": "download", "key$": "BasicDownloadFlow", "kind": "basic", "name": "BasicDownloadFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "download_ref01", "srcdatavar": "download_ref01_data", "suffix": "_dt0" }, "m": { "id": "download01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-download_ref01" } }], "index$": 0 }] }, 'Download', { "GET /v7/finance/download/{symbol}": { "protocol": "http", "parameters": [{ "name": "symbol", "in": "path", "required": true, "description": "Ticker symbol", "schema": { "type": "string" }, "index$": 0 }, { "name": "period1", "in": "query", "required": true, "description": "Start date as Unix timestamp", "schema": { "type": "integer", "format": "int64" }, "index$": 1 }, { "name": "period2", "in": "query", "required": true, "description": "End date as Unix timestamp", "schema": { "type": "integer", "format": "int64" }, "index$": 2 }, { "name": "interval", "in": "query", "description": "Data interval", "schema": { "type": "string", "enum": ["1d", "1wk", "1mo"], "default": "1d" }, "index$": 3 }, { "name": "events", "in": "query", "description": "Events to include", "schema": { "type": "string", "enum": ["history", "div", "split"] }, "index$": 4 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 } }, "id": { "field": "id", "name": "id" }, "name": "download", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /v7/finance/download/{symbol}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "symbol", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "k": "query", "n": "event", "or": "events", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "1d", "k": "query", "n": "interval", "or": "interval", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "period1", "or": "period1", "r": true, "t": "`$INTEGER`", "index$": 2 }, { "a": true, "k": "query", "n": "period2", "or": "period2", "r": true, "t": "`$INTEGER`", "index$": 3 }] }, "k": "http", "m": "GET", "o": "/v7/finance/download/{symbol}", "q": { "exist": ["id", "period1", "period2"] }, "r": { "param": { "symbol": "id" } }, "rs": { "binary": true, "kind": "raw", "media": "text/csv" }, "s": [{ "lit": "v7" }, { "lit": "finance" }, { "lit": "download" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "download", "name__orig": "download", "Name": "Download", "name_": "download", "name-": "download", "NAME": "DOWNLOAD", "index$": 0 }, { "active": true, "entity": "download", "key$": "BasicDownloadFlow", "kind": "basic", "name": "BasicDownloadFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "download_ref01", "srcdatavar": "download_ref01_data", "suffix": "_dt0" }, "m": { "id": "download01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-download_ref01" } }], "index$": 0 }] }, 'Download', { "GET /v7/finance/download/{symbol}": { "protocol": "http", "parameters": [{ "name": "symbol", "in": "path", "required": true, "description": "Ticker symbol", "schema": { "type": "string" }, "index$": 0 }, { "name": "period1", "in": "query", "required": true, "description": "Start date as Unix timestamp", "schema": { "type": "integer", "format": "int64" }, "index$": 1 }, { "name": "period2", "in": "query", "required": true, "description": "End date as Unix timestamp", "schema": { "type": "integer", "format": "int64" }, "index$": 2 }, { "name": "interval", "in": "query", "description": "Data interval", "schema": { "type": "string", "enum": ["1d", "1wk", "1mo"], "default": "1d" }, "index$": 3 }, { "name": "events", "in": "query", "description": "Events to include", "schema": { "type": "string", "enum": ["history", "div", "split"] }, "index$": 4 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -77,6 +85,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(download_ref01_data_dt0.id === download_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

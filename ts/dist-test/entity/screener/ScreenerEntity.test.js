@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Screener();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.YahooFinanceSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Screener().create({ "offset": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.YAHOO_FINANCE_TEST_LIVE;
         for (const op of ['create']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "offset": { "a": true, "h": "Offset", "n": "offset", "r": false, "sh": "Offset for pagination", "t": "`$INTEGER`", "key$": "offset", "index$": 0 }, "query": { "a": true, "h": "Query", "n": "query", "r": false, "sh": "Query criteria", "t": "`$OBJECT`", "key$": "query", "index$": 1 }, "quoteType": { "a": true, "h": "Quote Type", "n": "quoteType", "r": false, "t": "`$STRING`", "key$": "quoteType", "index$": 2 }, "result": { "a": true, "h": "Result", "n": "result", "r": false, "t": "`$ARRAY`", "key$": "result", "index$": 3 }, "size": { "a": true, "h": "Size", "n": "size", "r": false, "sh": "Number of results to return", "t": "`$INTEGER`", "key$": "size", "index$": 4 }, "sortField": { "a": true, "h": "Sort Field", "n": "sortField", "r": false, "sh": "Field to sort by", "t": "`$STRING`", "key$": "sortField", "index$": 5 }, "sortType": { "a": true, "h": "Sort Type", "n": "sortType", "r": false, "t": "`$STRING`", "key$": "sortType", "index$": 6 } }, "name": "screener", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /v1/finance/screener", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/v1/finance/screener", "q": {}, "r": {}, "s": [{ "lit": "v1" }, { "lit": "finance" }, { "lit": "screener" }], "t": { "req": "`reqdata`", "res": "`body.finance`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "screener", "name__orig": "screener", "Name": "Screener", "name_": "screener", "name-": "screener", "NAME": "SCREENER", "index$": 2 }, { "active": true, "entity": "screener", "key$": "BasicScreenerFlow", "kind": "basic", "name": "BasicScreenerFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "screener_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Screener', { "POST /v1/finance/screener": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "properties": { "size": { "type": "integer", "description": "Number of results to return", "key$": "size" }, "offset": { "type": "integer", "description": "Offset for pagination", "key$": "offset" }, "sortField": { "type": "string", "description": "Field to sort by", "key$": "sortField" }, "sortType": { "type": "string", "enum": ["ASC", "DESC"], "key$": "sortType" }, "quoteType": { "type": "string", "enum": ["EQUITY", "ETF", "MUTUALFUND"], "key$": "quoteType" }, "query": { "type": "object", "description": "Query criteria", "key$": "query" } }, "index$": 1 } } } }, "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "offset": { "a": true, "h": "Offset", "n": "offset", "r": false, "sh": "Offset for pagination", "t": "`$INTEGER`", "key$": "offset", "index$": 0 }, "query": { "a": true, "h": "Query", "n": "query", "r": false, "sh": "Query criteria", "t": "`$OBJECT`", "key$": "query", "index$": 1 }, "quoteType": { "a": true, "h": "Quote Type", "n": "quoteType", "r": false, "t": "`$STRING`", "key$": "quoteType", "index$": 2 }, "result": { "a": true, "h": "Result", "n": "result", "r": false, "t": "`$ARRAY`", "key$": "result", "index$": 3 }, "size": { "a": true, "h": "Size", "n": "size", "r": false, "sh": "Number of results to return", "t": "`$INTEGER`", "key$": "size", "index$": 4 }, "sortField": { "a": true, "h": "Sort Field", "n": "sortField", "r": false, "sh": "Field to sort by", "t": "`$STRING`", "key$": "sortField", "index$": 5 }, "sortType": { "a": true, "h": "Sort Type", "n": "sortType", "r": false, "t": "`$STRING`", "key$": "sortType", "index$": 6 } }, "name": "screener", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "bf": ["offset", "query", "quoteType", "size", "sortField", "sortType"], "co": { "id": "POST /v1/finance/screener", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/v1/finance/screener", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "v1" }, { "lit": "finance" }, { "lit": "screener" }], "t": { "req": "`reqdata`", "res": "`body.finance`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "screener", "name__orig": "screener", "Name": "Screener", "name_": "screener", "name-": "screener", "NAME": "SCREENER", "index$": 2 }, { "active": true, "entity": "screener", "key$": "BasicScreenerFlow", "kind": "basic", "name": "BasicScreenerFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "screener_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Screener', { "POST /v1/finance/screener": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "properties": { "size": { "type": "integer", "description": "Number of results to return", "key$": "size" }, "offset": { "type": "integer", "description": "Offset for pagination", "key$": "offset" }, "sortField": { "type": "string", "description": "Field to sort by", "key$": "sortField" }, "sortType": { "type": "string", "enum": ["ASC", "DESC"], "key$": "sortType" }, "quoteType": { "type": "string", "enum": ["EQUITY", "ETF", "MUTUALFUND"], "key$": "quoteType" }, "query": { "type": "object", "description": "Query criteria", "key$": "query" } }, "index$": 1 } } } }, "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +83,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != screener_ref01_data);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/yahoo-finance-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/yahoo-finance-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -29,7 +29,7 @@ gem "voxgig-sdk-yahoo-finance-sdk", path: "./yahoo-finance-sdk/rb"
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key as the `Session` cookie.
 
 ### 1. Create a client
 
@@ -47,7 +47,7 @@ client = YahooFinanceSDK.new({
 begin
   # load returns the ENTITY — call data_get for the Download record (raises on error).
   download = client.Download.load({ "id" => "example_id", "period1" => 1, "period2" => 1 })
-  puts download
+  puts download.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -129,9 +129,9 @@ Create a mock client for unit testing — no server required:
 client = YahooFinanceSDK.test
 
 # Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
+# data_get reads its mock record.
 market = client.Market.load({ "region" => "example" })
-puts market
+puts market.data_get
 ```
 
 ### Use a custom fetch function
@@ -221,9 +221,9 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity, and return it. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -233,9 +233,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `YahooFinanceError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`YahooFinanceError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -306,7 +307,7 @@ API path: `/v1/finance/search`
 
 Operations: Load.
 
-API path: `/v8/finance/chart/{symbol}`
+API path: `/v1/finance/spark`
 
 
 
@@ -411,8 +412,9 @@ Create an instance: `search = client.Search`
 #### Example: List
 
 ```ruby
-# list returns an Array of Search records (raises on error).
-searchs = client.Search.list
+# list returns an Array of Search entities, one per record (raises on error).
+searchs = client.Search.list({ "q" => "example" })
+searchs.each { |item| puts item.data_get }
 ```
 
 

@@ -53,7 +53,6 @@ class ScreenerCreateData(TypedDict, total=False):
     offset: int
     query: dict
     quoteType: str
-    result: list
     size: int
     sortField: str
     sortType: str
@@ -83,10 +82,10 @@ class TickerLoadMatchRequired(TypedDict):
 
 
 class TickerLoadMatch(TickerLoadMatchRequired, total=False):
-    event: str
     interval: str
+    range: str
+    module: str
+    date: int
+    event: str
     period1: int
     period2: int
-    range: str
-    date: int
-    module: str

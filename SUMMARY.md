@@ -45,7 +45,7 @@ SDK operations: `list`.
 
 ### Ticker
 
-Results: Successful response with chart data; Spark chart data; Options chain data; Successful response with ticker summary; Quote data for requested tickers; Ticker insights.
+Results: Spark chart data; Successful response with ticker summary; Quote data for requested tickers; Options chain data; Successful response with chart data; Ticker insights.
 
 SDK operations: `load`.
 
@@ -59,11 +59,11 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Market | `load` | `GET /v1/finance/trending/{region}` | See reference |
 | Screener | `create` | `POST /v1/finance/screener` | See reference |
 | Search | `list` | `GET /v1/finance/search` | See reference |
-| Ticker | `load` | `GET /v8/finance/chart/{symbol}` | See reference |
 | Ticker | `load` | `GET /v1/finance/spark` | See reference |
-| Ticker | `load` | `GET /v7/finance/options/{symbol}` | See reference |
 | Ticker | `load` | `GET /v10/finance/quoteSummary/{symbol}` | See reference |
 | Ticker | `load` | `GET /v6/finance/quote` | See reference |
+| Ticker | `load` | `GET /v7/finance/options/{symbol}` | See reference |
+| Ticker | `load` | `GET /v8/finance/chart/{symbol}` | See reference |
 | Ticker | `load` | `GET /ws/insights/v1/finance/insights` | See reference |
 
 ## Connect to the API

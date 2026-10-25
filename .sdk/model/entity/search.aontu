@@ -61,10 +61,12 @@ main: kit: entity: search: {
           o: "/v1/finance/search"
           q: {
             exist: [
-              "news_count"
               "q"
-              "quotes_count"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

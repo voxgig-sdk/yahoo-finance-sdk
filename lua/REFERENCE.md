@@ -113,7 +113,7 @@ local download = client:Download(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Download():load({ id = "download_id", period1 = 1, period2 = 1 })
@@ -165,7 +165,7 @@ local market = client:Market(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Market():load({ region = "region" })
@@ -223,7 +223,7 @@ local screener = client:Screener(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Screener():create({
@@ -277,10 +277,10 @@ local search = client:Search(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:Search():list()
+local results, err = client:Search():list({ q = "example" })
 ```
 
 ### Common Methods
@@ -330,7 +330,7 @@ local ticker = client:Ticker(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Ticker():load({ symbol = "symbol" })
@@ -523,6 +523,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

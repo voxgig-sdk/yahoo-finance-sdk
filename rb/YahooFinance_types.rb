@@ -104,9 +104,6 @@ Screener = Struct.new(
 # @!attribute [rw] quoteType
 #   @return [String, nil]
 #
-# @!attribute [rw] result
-#   @return [Array, nil]
-#
 # @!attribute [rw] size
 #   @return [Integer, nil]
 #
@@ -119,7 +116,6 @@ ScreenerCreateData = Struct.new(
   :offset,
   :query,
   :quoteType,
-  :result,
   :size,
   :sortField,
   :sortType,
@@ -171,13 +167,22 @@ Ticker = Struct.new(
 
 # Request payload for Ticker#load.
 #
+# @!attribute [rw] interval
+#   @return [String, nil]
+#
+# @!attribute [rw] range
+#   @return [String, nil]
+#
 # @!attribute [rw] symbol
 #   @return [String]
 #
-# @!attribute [rw] event
+# @!attribute [rw] module
 #   @return [String, nil]
 #
-# @!attribute [rw] interval
+# @!attribute [rw] date
+#   @return [Integer, nil]
+#
+# @!attribute [rw] event
 #   @return [String, nil]
 #
 # @!attribute [rw] period1
@@ -185,24 +190,15 @@ Ticker = Struct.new(
 #
 # @!attribute [rw] period2
 #   @return [Integer, nil]
-#
-# @!attribute [rw] range
-#   @return [String, nil]
-#
-# @!attribute [rw] date
-#   @return [Integer, nil]
-#
-# @!attribute [rw] module
-#   @return [String, nil]
 TickerLoadMatch = Struct.new(
-  :symbol,
-  :event,
   :interval,
+  :range,
+  :symbol,
+  :module,
+  :date,
+  :event,
   :period1,
   :period2,
-  :range,
-  :date,
-  :module,
   keyword_init: true
 )
 

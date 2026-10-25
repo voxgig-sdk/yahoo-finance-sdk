@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -189,12 +190,15 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"event",
 										"id",
-										"interval",
 										"period1",
 										"period2",
 									},
+								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "text/csv",
 								},
 							},
 						},
@@ -263,6 +267,10 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"region",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -347,6 +355,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -426,10 +438,12 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"news_count",
 										"q",
-										"quotes_count",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -458,6 +472,230 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "load",
 						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/v1/finance/spark",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "spark",
+									},
+								},
+								"parts": []any{
+									"v1",
+									"finance",
+									"spark",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.spark`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "interval",
+											"orig": "interval",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "5m",
+										},
+										map[string]any{
+											"name": "range",
+											"orig": "range",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "1d",
+										},
+										map[string]any{
+											"name": "symbol",
+											"orig": "symbols",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"symbol",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/v10/finance/quoteSummary/{symbol}",
+								"segments": []any{
+									map[string]any{
+										"lit": "v10",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "quoteSummary",
+									},
+									map[string]any{
+										"var": "symbol",
+									},
+								},
+								"parts": []any{
+									"v10",
+									"finance",
+									"quoteSummary",
+									"{symbol}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.quoteSummary`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "symbol",
+											"orig": "symbol",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "module",
+											"orig": "modules",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "assetProfile,financialData,defaultKeyStatistics",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"symbol",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/v6/finance/quote",
+								"segments": []any{
+									map[string]any{
+										"lit": "v6",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "quote",
+									},
+								},
+								"parts": []any{
+									"v6",
+									"finance",
+									"quote",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.quoteResponse`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "symbol",
+											"orig": "symbols",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "AAPL,MSFT,GOOGL",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"symbol",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/v7/finance/options/{symbol}",
+								"segments": []any{
+									map[string]any{
+										"lit": "v7",
+									},
+									map[string]any{
+										"lit": "finance",
+									},
+									map[string]any{
+										"lit": "options",
+									},
+									map[string]any{
+										"var": "symbol",
+									},
+								},
+								"parts": []any{
+									"v7",
+									"finance",
+									"options",
+									"{symbol}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.optionChain`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "symbol",
+											"orig": "symbol",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"symbol",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
@@ -534,225 +772,12 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"event",
-										"interval",
-										"period1",
-										"period2",
-										"range",
 										"symbol",
 									},
 								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/v1/finance/spark",
-								"segments": []any{
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "finance",
-									},
-									map[string]any{
-										"lit": "spark",
-									},
-								},
-								"parts": []any{
-									"v1",
-									"finance",
-									"spark",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.spark`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "interval",
-											"orig": "interval",
-											"type": "`$STRING`",
-											"kind": "query",
-											"example": "5m",
-										},
-										map[string]any{
-											"name": "range",
-											"orig": "range",
-											"type": "`$STRING`",
-											"kind": "query",
-											"example": "1d",
-										},
-										map[string]any{
-											"name": "symbol",
-											"orig": "symbols",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"interval",
-										"range",
-										"symbol",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/v7/finance/options/{symbol}",
-								"segments": []any{
-									map[string]any{
-										"lit": "v7",
-									},
-									map[string]any{
-										"lit": "finance",
-									},
-									map[string]any{
-										"lit": "options",
-									},
-									map[string]any{
-										"var": "symbol",
-									},
-								},
-								"parts": []any{
-									"v7",
-									"finance",
-									"options",
-									"{symbol}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.optionChain`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "symbol",
-											"orig": "symbol",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"name": "date",
-											"orig": "date",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"date",
-										"symbol",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/v10/finance/quoteSummary/{symbol}",
-								"segments": []any{
-									map[string]any{
-										"lit": "v10",
-									},
-									map[string]any{
-										"lit": "finance",
-									},
-									map[string]any{
-										"lit": "quoteSummary",
-									},
-									map[string]any{
-										"var": "symbol",
-									},
-								},
-								"parts": []any{
-									"v10",
-									"finance",
-									"quoteSummary",
-									"{symbol}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.quoteSummary`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "symbol",
-											"orig": "symbol",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"name": "module",
-											"orig": "modules",
-											"type": "`$STRING`",
-											"kind": "query",
-											"example": "assetProfile,financialData,defaultKeyStatistics",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"module",
-										"symbol",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/v6/finance/quote",
-								"segments": []any{
-									map[string]any{
-										"lit": "v6",
-									},
-									map[string]any{
-										"lit": "finance",
-									},
-									map[string]any{
-										"lit": "quote",
-									},
-								},
-								"parts": []any{
-									"v6",
-									"finance",
-									"quote",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.quoteResponse`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "symbol",
-											"orig": "symbols",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-											"example": "AAPL,MSFT,GOOGL",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"symbol",
-									},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 							map[string]any{
@@ -803,6 +828,10 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"symbol",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

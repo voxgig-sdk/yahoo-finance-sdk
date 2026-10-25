@@ -43,6 +43,10 @@ main: kit: entity: market: {
               "region"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "v1"

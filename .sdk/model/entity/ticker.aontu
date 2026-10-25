@@ -26,6 +26,224 @@ main: kit: entity: ticker: {
       points: [
         {
           co: {
+            id: "GET /v1/finance/spark"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "5m"
+                k: "query"
+                n: "interval"
+                or: "interval"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "1d"
+                k: "query"
+                n: "range"
+                or: "range"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "symbol"
+                or: "symbols"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/finance/spark"
+          q: {
+            exist: [
+              "symbol"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "spark"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.spark`"
+          }
+        }
+        {
+          co: {
+            id: "GET /v10/finance/quoteSummary/{symbol}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "symbol"
+                or: "symbol"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "assetProfile,financialData,defaultKeyStatistics"
+                k: "query"
+                n: "module"
+                or: "modules"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v10/finance/quoteSummary/{symbol}"
+          q: {
+            exist: [
+              "symbol"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "v10"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "quoteSummary"
+            }
+            {
+              var: "symbol"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.quoteSummary`"
+          }
+        }
+        {
+          co: {
+            id: "GET /v6/finance/quote"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "AAPL,MSFT,GOOGL"
+                k: "query"
+                n: "symbol"
+                or: "symbols"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v6/finance/quote"
+          q: {
+            exist: [
+              "symbol"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "v6"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "quote"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.quoteResponse`"
+          }
+        }
+        {
+          co: {
+            id: "GET /v7/finance/options/{symbol}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "symbol"
+                or: "symbol"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v7/finance/options/{symbol}"
+          q: {
+            exist: [
+              "symbol"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "v7"
+            }
+            {
+              lit: "finance"
+            }
+            {
+              lit: "options"
+            }
+            {
+              var: "symbol"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.optionChain`"
+          }
+        }
+        {
+          co: {
             id: "GET /v8/finance/chart/{symbol}"
             source: "openapi3"
             version: 2
@@ -84,13 +302,12 @@ main: kit: entity: ticker: {
           o: "/v8/finance/chart/{symbol}"
           q: {
             exist: [
-              "event"
-              "interval"
-              "period1"
-              "period2"
-              "range"
               "symbol"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -109,212 +326,6 @@ main: kit: entity: ticker: {
           t: {
             req: "`reqdata`"
             res: "`body.chart`"
-          }
-        }
-        {
-          co: {
-            id: "GET /v1/finance/spark"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                ex: "5m"
-                k: "query"
-                n: "interval"
-                or: "interval"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                ex: "1d"
-                k: "query"
-                n: "range"
-                or: "range"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "symbol"
-                or: "symbols"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/v1/finance/spark"
-          q: {
-            exist: [
-              "interval"
-              "range"
-              "symbol"
-            ]
-          }
-          s: [
-            {
-              lit: "v1"
-            }
-            {
-              lit: "finance"
-            }
-            {
-              lit: "spark"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body.spark`"
-          }
-        }
-        {
-          co: {
-            id: "GET /v7/finance/options/{symbol}"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "symbol"
-                or: "symbol"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-            query: [
-              {
-                k: "query"
-                n: "date"
-                or: "date"
-                r: false
-                t: "`$INTEGER`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/v7/finance/options/{symbol}"
-          q: {
-            exist: [
-              "date"
-              "symbol"
-            ]
-          }
-          s: [
-            {
-              lit: "v7"
-            }
-            {
-              lit: "finance"
-            }
-            {
-              lit: "options"
-            }
-            {
-              var: "symbol"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body.optionChain`"
-          }
-        }
-        {
-          co: {
-            id: "GET /v10/finance/quoteSummary/{symbol}"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "symbol"
-                or: "symbol"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-            query: [
-              {
-                ex: "assetProfile,financialData,defaultKeyStatistics"
-                k: "query"
-                n: "module"
-                or: "modules"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/v10/finance/quoteSummary/{symbol}"
-          q: {
-            exist: [
-              "module"
-              "symbol"
-            ]
-          }
-          s: [
-            {
-              lit: "v10"
-            }
-            {
-              lit: "finance"
-            }
-            {
-              lit: "quoteSummary"
-            }
-            {
-              var: "symbol"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body.quoteSummary`"
-          }
-        }
-        {
-          co: {
-            id: "GET /v6/finance/quote"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                ex: "AAPL,MSFT,GOOGL"
-                k: "query"
-                n: "symbol"
-                or: "symbols"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/v6/finance/quote"
-          q: {
-            exist: [
-              "symbol"
-            ]
-          }
-          s: [
-            {
-              lit: "v6"
-            }
-            {
-              lit: "finance"
-            }
-            {
-              lit: "quote"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body.quoteResponse`"
           }
         }
         {
@@ -340,6 +351,10 @@ main: kit: entity: ticker: {
             exist: [
               "symbol"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

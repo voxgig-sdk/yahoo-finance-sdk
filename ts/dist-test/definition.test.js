@@ -22,17 +22,39 @@ const PLAN = [
             }
         ],
         "select": {
-            "event": "v1",
-            "interval": "v1",
             "period1": "v1",
-            "period2": "v1"
+            "period2": "v1",
+            "event": "v1",
+            "interval": "1d"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "text/csv"
+        ],
         "query": [
             "period1",
             "period2",
             "interval",
             "events"
+        ],
+        "queryArgs": [
+            {
+                "name": "event",
+                "wire": "events"
+            },
+            {
+                "name": "interval",
+                "wire": "interval"
+            },
+            {
+                "name": "period1",
+                "wire": "period1"
+            },
+            {
+                "name": "period2",
+                "wire": "period2"
+            }
         ],
         "auth": [],
         "status": 200,
@@ -54,7 +76,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [],
         "status": 200,
         "sample": {
@@ -81,7 +108,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [],
         "status": 200,
         "sample": {
@@ -101,192 +133,54 @@ const PLAN = [
         "path": "/v1/finance/search",
         "args": [],
         "select": {
-            "news_count": "v1",
             "q": "v1",
-            "quotes_count": "v1"
+            "news_count": 4,
+            "quotes_count": 6
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "q",
             "quotesCount",
             "newsCount"
+        ],
+        "queryArgs": [
+            {
+                "name": "news_count",
+                "wire": "newsCount"
+            },
+            {
+                "name": "q",
+                "wire": "q"
+            },
+            {
+                "name": "quotes_count",
+                "wire": "quotesCount"
+            }
         ],
         "auth": [],
         "status": 200,
         "sample": {
             "quotes": [
                 {
-                    "exchange": "x",
-                    "longname": "x",
-                    "quoteType": "x",
+                    "symbol": "x",
                     "shortname": "x",
-                    "symbol": "x"
+                    "longname": "x",
+                    "exchange": "x",
+                    "quoteType": "x"
                 }
             ],
             "news": [
                 {
-                    "link": "x",
-                    "publisher": "x",
+                    "uuid": "x",
                     "title": "x",
-                    "uuid": "x"
+                    "publisher": "x",
+                    "link": "x"
                 }
             ]
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "ticker",
-        "accessor": "Ticker",
-        "op": "load",
-        "method": "GET",
-        "path": "/v8/finance/chart/{symbol}",
-        "args": [
-            {
-                "name": "symbol",
-                "wire": "symbol",
-                "value": "AAPL"
-            }
-        ],
-        "select": {
-            "event": "v1",
-            "interval": "v1",
-            "period1": "v1",
-            "period2": "v1",
-            "range": "v1"
-        },
-        "headers": [],
-        "query": [
-            "period1",
-            "period2",
-            "interval",
-            "range",
-            "events"
-        ],
-        "auth": [],
-        "status": 200,
-        "sample": {
-            "chart": {
-                "result": [
-                    {
-                        "meta": {
-                            "currency": "x",
-                            "symbol": "x",
-                            "exchangeName": "x",
-                            "instrumentType": "x",
-                            "regularMarketPrice": 1,
-                            "chartPreviousClose": 1
-                        },
-                        "timestamp": [
-                            1
-                        ],
-                        "indicators": {
-                            "quote": [
-                                {}
-                            ]
-                        }
-                    }
-                ]
-            }
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "ticker",
-        "accessor": "Ticker",
-        "op": "load",
-        "method": "GET",
-        "path": "/v1/finance/spark",
-        "args": [],
-        "select": {
-            "interval": "v1",
-            "range": "v1",
-            "symbol": "v1"
-        },
-        "headers": [],
-        "query": [
-            "symbols",
-            "range",
-            "interval"
-        ],
-        "auth": [],
-        "status": 200,
-        "sample": {
-            "spark": {}
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "ticker",
-        "accessor": "Ticker",
-        "op": "load",
-        "method": "GET",
-        "path": "/v7/finance/options/{symbol}",
-        "args": [
-            {
-                "name": "symbol",
-                "wire": "symbol",
-                "value": "p1"
-            }
-        ],
-        "select": {
-            "date": "v1"
-        },
-        "headers": [],
-        "query": [
-            "date"
-        ],
-        "auth": [],
-        "status": 200,
-        "sample": {
-            "optionChain": {
-                "result": [
-                    {
-                        "expirationDates": [
-                            1
-                        ],
-                        "strikes": [
-                            1
-                        ],
-                        "options": [
-                            {
-                                "calls": [],
-                                "puts": []
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "ticker",
-        "accessor": "Ticker",
-        "op": "load",
-        "method": "GET",
-        "path": "/v10/finance/quoteSummary/{symbol}",
-        "args": [
-            {
-                "name": "symbol",
-                "wire": "symbol",
-                "value": "p1"
-            }
-        ],
-        "select": {
-            "module": "v1"
-        },
-        "headers": [],
-        "query": [
-            "modules"
-        ],
-        "auth": [],
-        "status": 200,
-        "sample": {
-            "quoteSummary": {
-                "result": [
-                    {}
-                ]
-            }
         },
         "idField": "id"
     }

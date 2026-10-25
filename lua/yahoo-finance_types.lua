@@ -35,7 +35,6 @@
 ---@field offset? number
 ---@field query? table
 ---@field quoteType? string
----@field result? table
 ---@field size? number
 ---@field sortField? string
 ---@field sortType? string
@@ -54,14 +53,14 @@
 ---@field result? table
 
 ---@class TickerLoadMatch
----@field symbol string
----@field event? string
 ---@field interval? string
+---@field range? string
+---@field symbol string
+---@field module? string
+---@field date? number
+---@field event? string
 ---@field period1? number
 ---@field period2? number
----@field range? string
----@field date? number
----@field module? string
 
 local M = {}
 

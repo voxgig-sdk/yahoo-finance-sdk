@@ -30,17 +30,7 @@
     }
   },
   "requests": {
-    "GET /v8/finance/chart/{symbol}": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
     "GET /v1/finance/spark": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "GET /v7/finance/options/{symbol}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -51,6 +41,16 @@
       "source": "openapi3"
     },
     "GET /v6/finance/quote": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /v7/finance/options/{symbol}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /v8/finance/chart/{symbol}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

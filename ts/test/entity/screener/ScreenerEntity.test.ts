@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { YahooFinanceSDK, BaseFeature, stdutil } from '../../..'
+import { YahooFinanceSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('ScreenerEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = YahooFinanceSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Screener().create({"offset":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.YAHOO_FINANCE_TEST_LIVE
@@ -51,7 +63,7 @@ describe('ScreenerEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"offset":{"a":true,"h":"Offset","n":"offset","r":false,"sh":"Offset for pagination","t":"`$INTEGER`","key$":"offset","index$":0},"query":{"a":true,"h":"Query","n":"query","r":false,"sh":"Query criteria","t":"`$OBJECT`","key$":"query","index$":1},"quoteType":{"a":true,"h":"Quote Type","n":"quoteType","r":false,"t":"`$STRING`","key$":"quoteType","index$":2},"result":{"a":true,"h":"Result","n":"result","r":false,"t":"`$ARRAY`","key$":"result","index$":3},"size":{"a":true,"h":"Size","n":"size","r":false,"sh":"Number of results to return","t":"`$INTEGER`","key$":"size","index$":4},"sortField":{"a":true,"h":"Sort Field","n":"sortField","r":false,"sh":"Field to sort by","t":"`$STRING`","key$":"sortField","index$":5},"sortType":{"a":true,"h":"Sort Type","n":"sortType","r":false,"t":"`$STRING`","key$":"sortType","index$":6}},"name":"screener","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /v1/finance/screener","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/v1/finance/screener","q":{},"r":{},"s":[{"lit":"v1"},{"lit":"finance"},{"lit":"screener"}],"t":{"req":"`reqdata`","res":"`body.finance`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"screener","name__orig":"screener","Name":"Screener","name_":"screener","name-":"screener","NAME":"SCREENER","index$":2}, {"active":true,"entity":"screener","key$":"BasicScreenerFlow","kind":"basic","name":"BasicScreenerFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"screener_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'Screener', {"POST /v1/finance/screener":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"size":{"type":"integer","description":"Number of results to return","key$":"size"},"offset":{"type":"integer","description":"Offset for pagination","key$":"offset"},"sortField":{"type":"string","description":"Field to sort by","key$":"sortField"},"sortType":{"type":"string","enum":["ASC","DESC"],"key$":"sortType"},"quoteType":{"type":"string","enum":["EQUITY","ETF","MUTUALFUND"],"key$":"quoteType"},"query":{"type":"object","description":"Query criteria","key$":"query"}},"index$":1}}}},"parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"offset":{"a":true,"h":"Offset","n":"offset","r":false,"sh":"Offset for pagination","t":"`$INTEGER`","key$":"offset","index$":0},"query":{"a":true,"h":"Query","n":"query","r":false,"sh":"Query criteria","t":"`$OBJECT`","key$":"query","index$":1},"quoteType":{"a":true,"h":"Quote Type","n":"quoteType","r":false,"t":"`$STRING`","key$":"quoteType","index$":2},"result":{"a":true,"h":"Result","n":"result","r":false,"t":"`$ARRAY`","key$":"result","index$":3},"size":{"a":true,"h":"Size","n":"size","r":false,"sh":"Number of results to return","t":"`$INTEGER`","key$":"size","index$":4},"sortField":{"a":true,"h":"Sort Field","n":"sortField","r":false,"sh":"Field to sort by","t":"`$STRING`","key$":"sortField","index$":5},"sortType":{"a":true,"h":"Sort Type","n":"sortType","r":false,"t":"`$STRING`","key$":"sortType","index$":6}},"name":"screener","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["offset","query","quoteType","size","sortField","sortType"],"co":{"id":"POST /v1/finance/screener","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/v1/finance/screener","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"v1"},{"lit":"finance"},{"lit":"screener"}],"t":{"req":"`reqdata`","res":"`body.finance`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"screener","name__orig":"screener","Name":"Screener","name_":"screener","name-":"screener","NAME":"SCREENER","index$":2}, {"active":true,"entity":"screener","key$":"BasicScreenerFlow","kind":"basic","name":"BasicScreenerFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"screener_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'Screener', {"POST /v1/finance/screener":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"size":{"type":"integer","description":"Number of results to return","key$":"size"},"offset":{"type":"integer","description":"Offset for pagination","key$":"offset"},"sortField":{"type":"string","description":"Field to sort by","key$":"sortField"},"sortType":{"type":"string","enum":["ASC","DESC"],"key$":"sortType"},"quoteType":{"type":"string","enum":["EQUITY","ETF","MUTUALFUND"],"key$":"quoteType"},"query":{"type":"object","description":"Query criteria","key$":"query"}},"index$":1}}}},"parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('ScreenerEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

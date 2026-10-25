@@ -58,7 +58,6 @@ class ScreenerCreateData
     public ?int $offset = null;
     public ?array $query = null;
     public ?string $quoteType = null;
-    public ?array $result = null;
     public ?int $size = null;
     public ?string $sortField = null;
     public ?string $sortType = null;
@@ -89,13 +88,13 @@ class Ticker
 /** Request payload for Ticker#load. */
 class TickerLoadMatch
 {
-    public string $symbol;
-    public ?string $event = null;
     public ?string $interval = null;
+    public ?string $range = null;
+    public string $symbol;
+    public ?string $module = null;
+    public ?int $date = null;
+    public ?string $event = null;
     public ?int $period1 = null;
     public ?int $period2 = null;
-    public ?string $range = null;
-    public ?int $date = null;
-    public ?string $module = null;
 }
 

@@ -75,9 +75,7 @@ main: kit: entity: download: {
           o: "/v7/finance/download/{symbol}"
           q: {
             exist: [
-              "event"
               "id"
-              "interval"
               "period1"
               "period2"
             ]
@@ -86,6 +84,11 @@ main: kit: entity: download: {
             param: {
               symbol: "id"
             }
+          }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "text/csv"
           }
           s: [
             {

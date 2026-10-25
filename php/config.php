@@ -93,6 +93,7 @@ class YahooFinanceConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -211,12 +212,15 @@ class YahooFinanceConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'event',
                       'id',
-                      'interval',
                       'period1',
                       'period2',
                     ],
+                  ],
+                  'response' => [
+                    'binary' => true,
+                    'kind' => 'raw',
+                    'media' => 'text/csv',
                   ],
                 ],
               ],
@@ -285,6 +289,10 @@ class YahooFinanceConfig
                     'exist' => [
                       'region',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -369,6 +377,10 @@ class YahooFinanceConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -448,10 +460,12 @@ class YahooFinanceConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'news_count',
                       'q',
-                      'quotes_count',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -480,6 +494,230 @@ class YahooFinanceConfig
               'input' => 'data',
               'name' => 'load',
               'points' => [
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/v1/finance/spark',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'finance',
+                    ],
+                    [
+                      'lit' => 'spark',
+                    ],
+                  ],
+                  'parts' => [
+                    'v1',
+                    'finance',
+                    'spark',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.spark`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'interval',
+                        'orig' => 'interval',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => '5m',
+                      ],
+                      [
+                        'name' => 'range',
+                        'orig' => 'range',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => '1d',
+                      ],
+                      [
+                        'name' => 'symbol',
+                        'orig' => 'symbols',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'symbol',
+                    ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/v10/finance/quoteSummary/{symbol}',
+                  'segments' => [
+                    [
+                      'lit' => 'v10',
+                    ],
+                    [
+                      'lit' => 'finance',
+                    ],
+                    [
+                      'lit' => 'quoteSummary',
+                    ],
+                    [
+                      'var' => 'symbol',
+                    ],
+                  ],
+                  'parts' => [
+                    'v10',
+                    'finance',
+                    'quoteSummary',
+                    '{symbol}',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.quoteSummary`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'symbol',
+                        'orig' => 'symbol',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                    'query' => [
+                      [
+                        'name' => 'module',
+                        'orig' => 'modules',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'assetProfile,financialData,defaultKeyStatistics',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'symbol',
+                    ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/v6/finance/quote',
+                  'segments' => [
+                    [
+                      'lit' => 'v6',
+                    ],
+                    [
+                      'lit' => 'finance',
+                    ],
+                    [
+                      'lit' => 'quote',
+                    ],
+                  ],
+                  'parts' => [
+                    'v6',
+                    'finance',
+                    'quote',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.quoteResponse`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'symbol',
+                        'orig' => 'symbols',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => 'AAPL,MSFT,GOOGL',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'symbol',
+                    ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/v7/finance/options/{symbol}',
+                  'segments' => [
+                    [
+                      'lit' => 'v7',
+                    ],
+                    [
+                      'lit' => 'finance',
+                    ],
+                    [
+                      'lit' => 'options',
+                    ],
+                    [
+                      'var' => 'symbol',
+                    ],
+                  ],
+                  'parts' => [
+                    'v7',
+                    'finance',
+                    'options',
+                    '{symbol}',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.optionChain`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'symbol',
+                        'orig' => 'symbol',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                    'query' => [
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'symbol',
+                    ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                ],
                 [
                   'kind' => 'http',
                   'method' => 'GET',
@@ -556,225 +794,12 @@ class YahooFinanceConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'event',
-                      'interval',
-                      'period1',
-                      'period2',
-                      'range',
                       'symbol',
                     ],
                   ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/v1/finance/spark',
-                  'segments' => [
-                    [
-                      'lit' => 'v1',
-                    ],
-                    [
-                      'lit' => 'finance',
-                    ],
-                    [
-                      'lit' => 'spark',
-                    ],
-                  ],
-                  'parts' => [
-                    'v1',
-                    'finance',
-                    'spark',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.spark`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'interval',
-                        'orig' => 'interval',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                        'example' => '5m',
-                      ],
-                      [
-                        'name' => 'range',
-                        'orig' => 'range',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                        'example' => '1d',
-                      ],
-                      [
-                        'name' => 'symbol',
-                        'orig' => 'symbols',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                        'reqd' => true,
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'interval',
-                      'range',
-                      'symbol',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/v7/finance/options/{symbol}',
-                  'segments' => [
-                    [
-                      'lit' => 'v7',
-                    ],
-                    [
-                      'lit' => 'finance',
-                    ],
-                    [
-                      'lit' => 'options',
-                    ],
-                    [
-                      'var' => 'symbol',
-                    ],
-                  ],
-                  'parts' => [
-                    'v7',
-                    'finance',
-                    'options',
-                    '{symbol}',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.optionChain`',
-                  ],
-                  'args' => [
-                    'params' => [
-                      [
-                        'name' => 'symbol',
-                        'orig' => 'symbol',
-                        'type' => '`$STRING`',
-                        'kind' => 'param',
-                        'reqd' => true,
-                      ],
-                    ],
-                    'query' => [
-                      [
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'date',
-                      'symbol',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/v10/finance/quoteSummary/{symbol}',
-                  'segments' => [
-                    [
-                      'lit' => 'v10',
-                    ],
-                    [
-                      'lit' => 'finance',
-                    ],
-                    [
-                      'lit' => 'quoteSummary',
-                    ],
-                    [
-                      'var' => 'symbol',
-                    ],
-                  ],
-                  'parts' => [
-                    'v10',
-                    'finance',
-                    'quoteSummary',
-                    '{symbol}',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.quoteSummary`',
-                  ],
-                  'args' => [
-                    'params' => [
-                      [
-                        'name' => 'symbol',
-                        'orig' => 'symbol',
-                        'type' => '`$STRING`',
-                        'kind' => 'param',
-                        'reqd' => true,
-                      ],
-                    ],
-                    'query' => [
-                      [
-                        'name' => 'module',
-                        'orig' => 'modules',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                        'example' => 'assetProfile,financialData,defaultKeyStatistics',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'module',
-                      'symbol',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/v6/finance/quote',
-                  'segments' => [
-                    [
-                      'lit' => 'v6',
-                    ],
-                    [
-                      'lit' => 'finance',
-                    ],
-                    [
-                      'lit' => 'quote',
-                    ],
-                  ],
-                  'parts' => [
-                    'v6',
-                    'finance',
-                    'quote',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.quoteResponse`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'symbol',
-                        'orig' => 'symbols',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                        'reqd' => true,
-                        'example' => 'AAPL,MSFT,GOOGL',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'symbol',
-                    ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
                 [
@@ -825,6 +850,10 @@ class YahooFinanceConfig
                     'exist' => [
                       'symbol',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

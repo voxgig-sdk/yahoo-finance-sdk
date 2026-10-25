@@ -116,7 +116,7 @@ download = client.Download
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Download.load({ "id" => "download_id", "period1" => 1, "period2" => 1 })
@@ -168,7 +168,7 @@ market = client.Market
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Market.load({ "region" => "region" })
@@ -226,7 +226,7 @@ screener = client.Screener
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Screener.create({
@@ -280,10 +280,11 @@ search = client.Search
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
-results = client.Search.list
+results = client.Search.list({ "q" => "example" })
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -333,7 +334,7 @@ ticker = client.Ticker
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Ticker.load({ "symbol" => "symbol" })
@@ -526,6 +527,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

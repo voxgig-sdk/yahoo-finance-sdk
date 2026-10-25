@@ -59,6 +59,14 @@ main: kit: entity: screener: {
       name: "create"
       points: [
         {
+          bf: [
+            "offset"
+            "query"
+            "quoteType"
+            "size"
+            "sortField"
+            "sortType"
+          ]
           co: {
             id: "POST /v1/finance/screener"
             source: "openapi3"
@@ -66,6 +74,10 @@ main: kit: entity: screener: {
           }
           m: "POST"
           o: "/v1/finance/screener"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "v1"

@@ -39,7 +39,6 @@ export interface ScreenerCreateData {
   offset?: number
   query?: Record<string, any>
   quoteType?: string
-  result?: any[]
   size?: number
   sortField?: string
   sortType?: string
@@ -62,13 +61,13 @@ export interface Ticker {
 }
 
 export interface TickerLoadMatch {
-  symbol: string
-  event?: string
   interval?: string
+  range?: string
+  symbol: string
+  module?: string
+  date?: number
+  event?: string
   period1?: number
   period2?: number
-  range?: string
-  date?: number
-  module?: string
 }
 

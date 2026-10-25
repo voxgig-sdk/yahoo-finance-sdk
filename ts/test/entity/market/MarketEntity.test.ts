@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { YahooFinanceSDK, BaseFeature, stdutil } from '../../..'
+import { YahooFinanceSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,17 +41,29 @@ describe('MarketEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = YahooFinanceSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Market().load({"region":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.YAHOO_FINANCE_TEST_LIVE
-    for (const op of ['load']) {
+    for (const op of []) {
       if (!live && maybeSkipControl(t, 'entityOp', 'market.' + op, live)) return
     }
 
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"result":{"a":true,"h":"Result","n":"result","r":false,"t":"`$ARRAY`","key$":"result","index$":0}},"name":"market","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /v1/finance/trending/{region}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"US","k":"param","n":"region","or":"region","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/finance/trending/{region}","q":{"exist":["region"]},"r":{},"s":[{"lit":"v1"},{"lit":"finance"},{"lit":"trending"},{"var":"region"}],"t":{"req":"`reqdata`","res":"`body.finance`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"market","name__orig":"market","Name":"Market","name_":"market","name-":"market","NAME":"MARKET","index$":1}, {"active":true,"entity":"market","key$":"BasicMarketFlow","kind":"basic","name":"BasicMarketFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"market_ref01","srcdatavar":"market_ref01_data","suffix":"_dt0"},"m":{"id":"market01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-market_ref01"}}],"index$":0}]}, 'Market', {"GET /v1/finance/trending/{region}":{"protocol":"http","parameters":[{"name":"region","in":"path","required":true,"description":"Region code (e.g., US, GB, AU)","schema":{"type":"string","default":"US"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"result":{"a":true,"h":"Result","n":"result","r":false,"t":"`$ARRAY`","key$":"result","index$":0}},"name":"market","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /v1/finance/trending/{region}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"US","k":"param","n":"region","or":"region","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/finance/trending/{region}","q":{"exist":["region"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"v1"},{"lit":"finance"},{"lit":"trending"},{"var":"region"}],"t":{"req":"`reqdata`","res":"`body.finance`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"market","name__orig":"market","Name":"Market","name_":"market","name-":"market","NAME":"MARKET","index$":1}, {"active":true,"entity":"market","key$":"BasicMarketFlow","kind":"basic","name":"BasicMarketFlow","param":{},"step":[{"a":false,"d":{},"i":{"ref":"market_ref01","srcdatavar":"market_ref01_data","suffix":"_dt0"},"m":{"id":"market01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-market_ref01"}}],"unreachable":true}]}, 'Market', {"GET /v1/finance/trending/{region}":{"protocol":"http","parameters":[{"name":"region","in":"path","required":true,"description":"Region code (e.g., US, GB, AU)","schema":{"type":"string","default":"US"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -61,15 +73,16 @@ describe('MarketEntity', async () => {
 
     let market_ref01_data = Object.values(setup.data.existing.market)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
-    const market_ref01_ent = client.Market()
-
-
   })
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

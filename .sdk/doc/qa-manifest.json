@@ -3,5 +3,27 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "CSV file with historical data",
+      "Field to sort by",
+      "Number of results to return",
+      "Offset for pagination",
+      "Options chain data",
+      "Query criteria",
+      "Quote data for requested tickers",
+      "Screening results",
+      "Search results",
+      "Spark chart data",
+      "Successful response with chart data",
+      "Successful response with ticker summary",
+      "Ticker insights",
+      "Trending tickers",
+      "Yahoo Finance API Server",
+      "Yahoo Finance API Server (Alternative)",
+      "Yahoo Finance uses cookie-based authentication for some endpoints",
+      "Yahoo finance API to access current and historical crypto and finance data. This is an unofficial API wrapper that uses Yahoo&#39;s publicly available APIs for research and educational purposes."
+    ]
+  }
 }

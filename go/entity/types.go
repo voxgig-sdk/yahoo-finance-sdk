@@ -43,7 +43,6 @@ type ScreenerCreateData struct {
 	Offset *int `json:"offset,omitempty"`
 	Query *map[string]any `json:"query,omitempty"`
 	QuoteType *string `json:"quoteType,omitempty"`
-	Result *[]any `json:"result,omitempty"`
 	Size *int `json:"size,omitempty"`
 	SortField *string `json:"sortField,omitempty"`
 	SortType *string `json:"sortType,omitempty"`
@@ -66,14 +65,14 @@ type Ticker struct {
 
 // TickerLoadMatch is the typed request payload for Ticker.LoadTyped.
 type TickerLoadMatch struct {
-	Symbol string `json:"symbol"`
-	Event *string `json:"event,omitempty"`
 	Interval *string `json:"interval,omitempty"`
+	Range *string `json:"range,omitempty"`
+	Symbol string `json:"symbol"`
+	Module *string `json:"module,omitempty"`
+	Date *int `json:"date,omitempty"`
+	Event *string `json:"event,omitempty"`
 	Period1 *int `json:"period1,omitempty"`
 	Period2 *int `json:"period2,omitempty"`
-	Range *string `json:"range,omitempty"`
-	Date *int `json:"date,omitempty"`
-	Module *string `json:"module,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

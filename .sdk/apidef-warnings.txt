@@ -1,0 +1,15 @@
+{
+  point: "warning"
+  note: "Points GET /v1/finance/spark, GET /v10/finance/quoteSummary/{symbol}, GET /v6/finance/quote, GET /v7/finance/options/{symbol}, GET /v8/finance/chart/{symbol} and GET /ws/insights/v1/finance/insights on entity=ticker op=load have the same selector (exist: symbol), so only GET /v1/finance/spark is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "ticker"
+  op: "load"
+  points: [
+    "GET /v1/finance/spark"
+    "GET /v10/finance/quoteSummary/{symbol}"
+    "GET /v6/finance/quote"
+    "GET /v7/finance/options/{symbol}"
+    "GET /v8/finance/chart/{symbol}"
+    "GET /ws/insights/v1/finance/insights"
+  ]
+
+}
